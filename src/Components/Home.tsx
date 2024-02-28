@@ -1,3 +1,7 @@
 export const Home = () => {
-    return <h1>Hello world</h1>
+    return (
+        <main className="h-screen bg-zinc-900/90">
+
+        </main>
+    )
 }
