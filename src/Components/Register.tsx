@@ -1,8 +1,8 @@
-// imports react-router-dom
+// import recat-router-dom
 import { Link } from 'react-router-dom'
 
-export const Home = () => {
-    return (
+export const Register = () => {
+    return(
         <main className=" flex justify-center items-center h-screen bg-[#5356ad]">
             {/* container do formulario de login */}
             <div className=" text-white flex justify-center items-center h-[90vh] w-[90vw] rounded-2xl bg-[#202124]">
@@ -19,8 +19,8 @@ export const Home = () => {
                 </div>
 
                 <form className="w-1/2 flex flex-col justify-center items-center">
-                    <legend className='mb-7 font-bold font-roboto text-3xl'>Sing In</legend>
-
+                    <legend className='mb-7 font-bold font-roboto text-3xl'>Sing Up</legend>
+                    
                     <div className="flex flex-col gap-2 mb-5">
                         <label className="text-lg">Email:</label>
                         <input type="email" placeholder="Digite seu email..." className=" text-black rounded-sm w-[25vw] outline-none pl-2 py-2"/>
@@ -33,10 +33,10 @@ export const Home = () => {
 
                     <div className="flex flex-col gap-2 mt-2">
                         <button className="text-white bg-[#5356ad] w-[25vw] py-2 rounded-sm">
-                            Entrar
+                            Cadastrar
                         </button>
 
-                        <p className='text-center'>Não possui uma conta ? <Link to='/register' className='text-violet-600'>Crie agora</Link></p>
+                        <p className='text-center'>Ja possui uma conta ? <Link to='/' className='text-violet-600'>Entrar agora</Link></p>
                     </div>
                 </form>
             </div>
