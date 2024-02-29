@@ -21,7 +21,9 @@ export const Register = () => {
 
     // sing Up
     function singUp({email,password,username}:RegisterType){
-        console.log(email + '\n' + password + '\n' + username)
+        if(email !== '' && password !== '' && username != ''){
+            console.log(email + '\n' + password + '\n' + username)
+        }
     }
 
 
@@ -46,7 +48,7 @@ export const Register = () => {
                     
                     <div className="flex flex-col gap-2 mb-5">
                         <label className="text-lg">Username:</label>
-                        <input type="text" placeholder="Digite seu nome..." className=" text-black rounded-sm w-[25vw] outline-none pl-2 py-2" {...register("username")}/>
+                        <input type="text" placeholder="Digite seu nome..." className=" text-black rounded-sm w-[25vw] outline-none pl-2 py-2" {...register("username")} />
                     </div>
 
                     <div className="flex flex-col gap-2 mb-5">
