@@ -1,33 +1,33 @@
 export const Home = () => {
     return (
-        <main className=" flex justify-center items-center h-auto lg:h-screen bg-[#1e1e1e]">
+        <main className=" flex justify-center items-center h-screen bg-[#5356ad]">
             {/* container do formulario de login */}
-            <div className=" flex flex-col h-auto justify-center items-center lg:flex-row lg:h-[80vh] w-[75vw] rounded-2xl bg-[#f6f6f6]">
+            <div className=" text-white flex justify-center items-center h-[90vh] w-[90vw] rounded-2xl bg-[#202124]">
 
                 <div className="w-1/2 flex flex-col justify-center items-center gap-10 ">
                     <h1 className="text-5xl text-wrap w-80 text-center">
                         Bem-vindo ao <strong>Study-io</strong>
                     </h1>
-                    <p className="text-xl w-96 text-justify"> O Study IO é um aplicativo de produtividade cuidadosamente projetado para estudantes e trabalhadores de todas as áreas e níveis de ensino.</p>
+                    <p className="text-xl w-[37vw] text-justify"> O Study IO é um aplicativo de produtividade cuidadosamente projetado para estudantes e trabalhadores de todas as áreas e níveis de ensino.</p>
 
-                    <p className="text-xl w-96 text-justify">Oferecendo uma ampla gama de recursos e funcionalidades, nosso objetivo é aumentar o processo de aprendizado e capacitar você a alcançar todo o seu potencial de aprendizado.</p>
+                    <p className="text-xl w-[37vw] text-justify">Oferecendo uma ampla gama de recursos e funcionalidades, nosso objetivo é aumentar o processo de aprendizado e capacitar você a alcançar todo o seu potencial de aprendizado.</p>
 
                     <h1  className="text-5xl font-bold text-wrap text-center">Venha Conosco!</h1>
                 </div>
 
                 <form className="w-1/2 flex flex-col justify-center items-center">
-                    <div className="flex flex-col gap-2 m-3">
+                    <div className="flex flex-col gap-2 mb-5">
                         <label className="text-lg">Email:</label>
-                        <input type="email" className="rounded-sm w-[280px] outline-none pl-2 py-1"/>
+                        <input type="email" placeholder="Digite seu email..." className=" text-black rounded-sm w-[25vw] outline-none pl-2 py-2"/>
                     </div>
 
-                    <div className="flex flex-col gap-2 m-3">
+                    <div className="flex flex-col gap-2 mb-5">
                         <label className="text-lg">Password:</label>
-                        <input type="password" className="rounded-sm w-[280px] outline-none pl-2 py-1"/>
+                        <input type="password" placeholder="Digite sua senha" className=" text-black rounded-sm w-[25vw] outline-none pl-2 py-2"/>
                     </div>
 
-                    <div className="flex flex-col gap-2 m-3">
-                        <button className="bg-gray-900 w-[280px] py-2 rounded-sm">Entrar</button>
+                    <div className="flex flex-col gap-2 mt-2">
+                        <button className="text-white bg-[#5356ad] w-[25vw] py-2 rounded-sm">Entrar</button>
                     </div>
                 </form>
             </div>
