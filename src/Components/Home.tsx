@@ -15,7 +15,7 @@ export const Home = () => {
 
                     <p className="font-roboto text-xl w-[37vw] text-justify">👉 Oferecendo uma ampla gama de recursos e funcionalidades, nosso objetivo é aumentar o processo de aprendizado e capacitar você a alcançar todo o seu potencial.</p>
 
-                    <h1  className="font-roboto text-5xl font-medium text-wrap text-center">🌌Venha Conosco!🌌</h1>
+                    <h1  className="font-roboto text-[3rem] font-medium text-wrap text-center">🌌Venha Conosco!🌌</h1>
                 </div>
 
                 <form className="w-1/2 flex flex-col justify-center items-center">

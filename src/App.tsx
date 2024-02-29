@@ -1,3 +1,6 @@
+import { PhysicalSize, appWindow } from '@tauri-apps/api/window'
+appWindow.setMinSize(new PhysicalSize(1450,900))
+appWindow.setFullscreen(false)
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Home } from "./Components/Home";
 
