@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 export const Home = () => {
     return (
         <main className=" flex justify-center items-center h-screen bg-[#5356ad]">
@@ -8,7 +9,7 @@ export const Home = () => {
                     <h1 className="text-5xl text-wrap w-80 text-center">
                         Bem-vindo ao <strong>Study-io</strong>
                     </h1>
-                    <p className="text-xl w-[37vw] text-justify"> O Study IO é um aplicativo de produtividade cuidadosamente projetado para estudantes e trabalhadores de todas as áreas e níveis de ensino.</p>
+                    <p className="text-xl w-[37vw] text-justify"> O Study-io é um aplicativo de produtividade cuidadosamente projetado para estudantes e trabalhadores de todas as áreas e níveis de ensino.</p>
 
                     <p className="text-xl w-[37vw] text-justify">Oferecendo uma ampla gama de recursos e funcionalidades, nosso objetivo é aumentar o processo de aprendizado e capacitar você a alcançar todo o seu potencial de aprendizado.</p>
 
@@ -27,7 +28,11 @@ export const Home = () => {
                     </div>
 
                     <div className="flex flex-col gap-2 mt-2">
-                        <button className="text-white bg-[#5356ad] w-[25vw] py-2 rounded-sm">Entrar</button>
+                        <button className="text-white bg-[#5356ad] w-[25vw] py-2 rounded-sm">
+                            Entrar
+                        </button>
+
+                        <p className='text-center'>Não possui uma conta ? <Link to='/register' className='text-violet-600'>Crie agora</Link></p>
                     </div>
                 </form>
             </div>
