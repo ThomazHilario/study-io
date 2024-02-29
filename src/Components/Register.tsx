@@ -1,7 +1,30 @@
 // import recat-router-dom
 import { Link } from 'react-router-dom'
 
+// react-hook-form
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+// import interfaces
+import { RegisterType } from '../interfaces/formType'
+
+const schema = z.object({
+    username:z.string(),
+    email:z.string().regex( /\S+@\S+\.\S+/),
+    password:z.string()
+})
+
 export const Register = () => {
+    // Desestruturando o useForm
+    const { register, handleSubmit } = useForm<RegisterType>({resolver:zodResolver(schema)})
+
+    // sing Up
+    function singUp({email,password,username}:RegisterType){
+        console.log(email + '\n' + password + '\n' + username)
+    }
+
+
     return(
         <main className=" flex justify-center items-center h-screen bg-[#5356ad]">
             {/* container do formulario de login */}
@@ -18,22 +41,22 @@ export const Register = () => {
                     <h1  className="font-roboto text-[2.5rem] font-medium text-wrap text-center">🌌Venha Conosco!🌌</h1>
                 </div>
 
-                <form className="w-1/2 flex flex-col justify-center items-center">
+                <form className="w-1/2 flex flex-col justify-center items-center" onSubmit={handleSubmit(singUp)}>
                     <legend className='mb-7 font-bold font-roboto text-3xl'>Sing Up</legend>
                     
                     <div className="flex flex-col gap-2 mb-5">
                         <label className="text-lg">Username:</label>
-                        <input type="text" placeholder="Digite seu nome..." className=" text-black rounded-sm w-[25vw] outline-none pl-2 py-2"/>
+                        <input type="text" placeholder="Digite seu nome..." className=" text-black rounded-sm w-[25vw] outline-none pl-2 py-2" {...register("username")}/>
                     </div>
 
                     <div className="flex flex-col gap-2 mb-5">
                         <label className="text-lg">Email:</label>
-                        <input type="email" placeholder="Digite seu email..." className=" text-black rounded-sm w-[25vw] outline-none pl-2 py-2"/>
+                        <input type="email" placeholder="Digite seu email..." className=" text-black rounded-sm w-[25vw] outline-none pl-2 py-2" {...register("email")}/>
                     </div>
 
                     <div className="flex flex-col gap-2 mb-5">
                         <label className="text-lg">Password:</label>
-                        <input type="password" placeholder="Digite sua senha" className=" text-black rounded-sm w-[25vw] outline-none pl-2 py-2"/>
+                        <input type="password" placeholder="Digite sua senha" className=" text-black rounded-sm w-[25vw] outline-none pl-2 py-2" {...register("password")}/>
                     </div>
 
                     <div className="flex flex-col gap-2 mt-2">
