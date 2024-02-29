@@ -1,4 +1,6 @@
+// imports react-router-dom
 import { Link } from 'react-router-dom'
+
 export const Home = () => {
     return (
         <main className=" flex justify-center items-center h-screen bg-[#5356ad]">
