@@ -8,14 +8,14 @@ export const Home = () => {
             <div className=" text-white flex justify-center items-center h-[90vh] w-[90vw] rounded-2xl bg-[#202124]">
 
                 <div className="w-1/2 flex flex-col justify-center items-center gap-10 ">
-                    <h1 className="text-5xl text-wrap w-80 text-center">
+                    <h1 className=" font-roboto text-5xl text-wrap w-80 text-center">
                         Bem-vindo ao <strong>Study-io</strong>
                     </h1>
-                    <p className="text-xl w-[37vw] text-justify"> O Study-io é um aplicativo de produtividade cuidadosamente projetado para estudantes e trabalhadores de todas as áreas e níveis de ensino.</p>
+                    <p className="font-roboto text-xl w-[37vw] text-justify"> O Study-io é um aplicativo de produtividade cuidadosamente projetado para estudantes e trabalhadores de todas as áreas e níveis de ensino.</p>
 
-                    <p className="text-xl w-[37vw] text-justify">Oferecendo uma ampla gama de recursos e funcionalidades, nosso objetivo é aumentar o processo de aprendizado e capacitar você a alcançar todo o seu potencial de aprendizado.</p>
+                    <p className="font-roboto text-xl w-[37vw] text-justify">Oferecendo uma ampla gama de recursos e funcionalidades, nosso objetivo é aumentar o processo de aprendizado e capacitar você a alcançar todo o seu potencial de aprendizado.</p>
 
-                    <h1  className="text-5xl font-bold text-wrap text-center">Venha Conosco!</h1>
+                    <h1  className="font-roboto text-5xl font-medium text-wrap text-center">Venha Conosco!</h1>
                 </div>
 
                 <form className="w-1/2 flex flex-col justify-center items-center">
