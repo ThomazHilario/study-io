@@ -57,7 +57,7 @@ export const Register = () => {
                         <label className="text-lg">Username:</label>
                         <input type="text" 
                         placeholder="Digite seu nome..." 
-                        className=" text-black rounded-sm w-[25vw] outline-none pl-2 py-2" 
+                        className={`text-black rounded-sm w-[25vw] outline-none pl-2 py-2 ${errors.username ? 'border-2 border-red-500' : 'border-none'}`} 
                         {...register("username")}
                         />
 
@@ -70,14 +70,25 @@ export const Register = () => {
 
                     <div className="flex flex-col gap-2 mb-5">
                         <label className="text-lg">Email:</label>
-                        <input type="text" placeholder="Digite seu email..." className=" text-black rounded-sm w-[25vw] outline-none pl-2 py-2" {...register("email")}/>
+                        <input 
+                        type="text" 
+                        placeholder="Digite seu email..." 
+                        className={`text-black rounded-sm w-[25vw] outline-none pl-2 py-2 ${errors.email ? 'border-2 border-red-500' : 'border-none'}`} 
+                        {...register("email")}/>
 
-                        {errors.email && <p className='text-red-500 text-wrap'>{errors.email.message}</p>}
+                        {errors.email && 
+                            <p className='text-red-500 text-wrap'>
+                                {errors.email.message}
+                            </p>}
                     </div>
 
                     <div className="flex flex-col gap-2 mb-5">
                         <label className="text-lg">Password:</label>
-                        <input type="password" placeholder="Digite sua senha" className=" text-black rounded-sm w-[25vw] outline-none pl-2 py-2" {...register("password")}
+                        <input 
+                        type="password" 
+                        placeholder="Digite sua senha" 
+                        className={`text-black rounded-sm w-[25vw] outline-none pl-2 py-2 ${errors.password ? 'border-2 border-red-500' : 'border-none'}`}  
+                        {...register("password")}
                         />
 
                         {errors.password && 

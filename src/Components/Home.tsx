@@ -52,7 +52,7 @@ export const Home = () => {
                         <label className="text-lg">Email:</label>
                         <input type="text" 
                         placeholder="Digite seu email..." 
-                        className=" text-black rounded-sm w-[25vw] outline-none pl-2 py-2"
+                        className={`text-black rounded-sm w-[25vw] outline-none pl-2 py-2 ${errors.email ? 'border-2 border-red-500' : 'border-none'}`}
                         {...register('email')}/>
 
                         {errors.email && 
@@ -65,7 +65,7 @@ export const Home = () => {
                         <label className="text-lg">Password:</label>
                         <input type="password" 
                         placeholder="Digite sua senha" 
-                        className=" text-black rounded-sm w-[25vw] outline-none pl-2 py-2"
+                        className={` text-black rounded-sm w-[25vw] outline-none pl-2 py-2 ${errors.password ? 'border-2 border-red-500' : 'border-none'}`}
                         {...register('password')}/>
 
                         {errors.password && 
