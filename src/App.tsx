@@ -4,14 +4,19 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Home } from "./Components/Home";
 import { Register } from './Components/Register';
 
+// import Context - UserData
+import { UserData } from './Context/context';
+
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/register' element={<Register/>}/>
-      </Routes>
+    <UserData>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Home/>}/>
+          <Route path='/register' element={<Register/>}/>
+        </Routes>
     </BrowserRouter>
+    </UserData>
   )
 }
 
