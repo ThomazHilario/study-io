@@ -9,6 +9,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 // import interfaces
 import { RegisterType } from '../interfaces/formType'
 
+// import firebase
+import { auth, database } from '../Services/FirebaseConnection'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { doc, setDoc } from 'firebase/firestore'
+
 const schema = z.object({
     username:z.string().min(1,'Preencha o campo acima'),
     email:z.string().min(1,'Preencha o campo acima').regex( /\S+@\S+\.\S+/,'email invalido'),
@@ -25,15 +30,14 @@ export const Register = () => {
     const { register, handleSubmit, formState:{errors} } = useForm<RegisterType>({resolver:zodResolver(schema)})
 
     // sing Up
-    async function singUp({username,email,password}:RegisterType){
+    async function singUp(data:RegisterType){
         try {
-            console.log(username, email, password)
+
         } catch (error) {
-            console.log(error)
+            
         }
     }
 
-    console.log(errors.email)
     return(
         <main className=" flex justify-center items-center h-screen bg-[#5356ad]">
             {/* container do formulario de login */}
