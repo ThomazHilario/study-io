@@ -1,21 +1,28 @@
 // import recat-router-dom
 import { Link } from 'react-router-dom'
 
-// react-hook-form
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
+// import Context
+import { UseMyContext } from '../Context/context'
 
-// import interfaces
-import { RegisterType } from '../interfaces/formType'
+// import toast from sonner
+import { toast } from 'sonner'
 
 // import firebase
 import { auth, database } from '../Services/FirebaseConnection'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { doc, setDoc } from 'firebase/firestore'
+import { FirebaseError } from 'firebase/app'
 
-// import Context
-import { UseMyContext } from '../Context/context'
+
+// import interfaces
+import { RegisterType } from '../interfaces/formType'
+
+// react-hook-form
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+
 
 // schema from form
 const schema = z.object({
@@ -31,7 +38,9 @@ const schema = z.object({
 export const Register = () => {
 
     // Desestruturando o useForm
-    const { register, handleSubmit, formState:{errors} } = useForm<RegisterType>({resolver:zodResolver(schema)})
+    const { register, handleSubmit, formState:{errors} } = useForm<RegisterType>(
+        {resolver:zodResolver(schema)
+    })
 
     // Context
     const { setId, setUsername } = UseMyContext()
@@ -52,8 +61,19 @@ export const Register = () => {
             await setDoc(doc(database,'users',user.user.uid),{
                 dataUser:data
             })
+
         } catch (error) {
-            console.log(error)
+            if(error instanceof FirebaseError){
+                if(error.message == 'Firebase: Error (auth/email-already-in-use).'){
+                    toast.error(
+                        'Email ja esta cadastrado',{style:{
+                            background:'#202124',
+                            color:'rgb(239 68 68)',
+                            border:0,
+                        }}
+                    )
+                }
+            }
         }
     }
 
