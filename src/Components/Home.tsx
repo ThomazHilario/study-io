@@ -54,7 +54,8 @@ export const Home = () => {
                         placeholder="Digite seu email..." 
                         className={`text-black rounded-sm w-[25vw] outline-none pl-2 py-2 ${errors.email ? 'border-2 border-red-500' : 'border-none'}`}
                         {...register('email')}/>
-
+                        
+                        {/* validação de erros dos inputs */}
                         {errors.email && 
                             <p className='text-red-500'>
                                 {errors.email.message}
@@ -67,7 +68,8 @@ export const Home = () => {
                         placeholder="Digite sua senha" 
                         className={` text-black rounded-sm w-[25vw] outline-none pl-2 py-2 ${errors.password ? 'border-2 border-red-500' : 'border-none'}`}
                         {...register('password')}/>
-
+                        
+                        {/* validação de erros dos inputs */}
                         {errors.password && 
                             <p className='text-red-500'>
                                 {errors.password.message}

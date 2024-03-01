@@ -61,6 +61,7 @@ export const Register = () => {
                         {...register("username")}
                         />
 
+                        {/* validação de erro dos inputs */}
                         {errors.username && 
                             <p className='text-red-500'>
                                 {errors.username.message}
@@ -76,6 +77,7 @@ export const Register = () => {
                         className={`text-black rounded-sm w-[25vw] outline-none pl-2 py-2 ${errors.email ? 'border-2 border-red-500' : 'border-none'}`} 
                         {...register("email")}/>
 
+                        {/* validação de erro dos inputs */}
                         {errors.email && 
                             <p className='text-red-500 text-wrap'>
                                 {errors.email.message}
@@ -91,6 +93,7 @@ export const Register = () => {
                         {...register("password")}
                         />
 
+                        {/* validação de erro dos inputs */}
                         {errors.password && 
                             <p className='text-red-500 text-wrap'>
                                 {errors.password.message}
