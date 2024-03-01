@@ -10,23 +10,30 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { RegisterType } from '../interfaces/formType'
 
 const schema = z.object({
-    username:z.string(),
-    email:z.string().regex( /\S+@\S+\.\S+/),
-    password:z.string()
+    username:z.string().min(1,'Preencha o campo acima'),
+    email:z.string().min(1,'Preencha o campo acima').regex( /\S+@\S+\.\S+/,'email invalido'),
+    password:z.string().min(1,"Preencha o campo acima").min(8,'A senha deve conter 8 caracteres')
+}).required({
+    username:true,
+    email:true,
+    password:true
 })
 
 export const Register = () => {
+
     // Desestruturando o useForm
-    const { register, handleSubmit } = useForm<RegisterType>({resolver:zodResolver(schema)})
+    const { register, handleSubmit, formState:{errors} } = useForm<RegisterType>({resolver:zodResolver(schema)})
 
     // sing Up
-    function singUp({email,password,username}:RegisterType){
-        if(email !== '' && password !== '' && username != ''){
-            console.log(email + '\n' + password + '\n' + username)
+    async function singUp({username,email,password}:RegisterType){
+        try {
+            console.log(username, email, password)
+        } catch (error) {
+            console.log(error)
         }
     }
 
-
+    console.log(errors.email)
     return(
         <main className=" flex justify-center items-center h-screen bg-[#5356ad]">
             {/* container do formulario de login */}
@@ -48,17 +55,32 @@ export const Register = () => {
                     
                     <div className="flex flex-col gap-2 mb-5">
                         <label className="text-lg">Username:</label>
-                        <input type="text" placeholder="Digite seu nome..." className=" text-black rounded-sm w-[25vw] outline-none pl-2 py-2" {...register("username")} />
+                        <input type="text" placeholder="Digite seu nome..." className=" text-black rounded-sm w-[25vw] outline-none pl-2 py-2" {...register("username")}
+                        />
+
+                        {errors.username && 
+                            <p className='text-red-500 text-wrap'>
+                                {errors.username.message}
+                            </p>
+                        }
                     </div>
 
                     <div className="flex flex-col gap-2 mb-5">
                         <label className="text-lg">Email:</label>
                         <input type="email" placeholder="Digite seu email..." className=" text-black rounded-sm w-[25vw] outline-none pl-2 py-2" {...register("email")}/>
+
+                        {errors.email && <p className='text-red-500 text-wrap'>{errors.email.message}</p>}
                     </div>
 
                     <div className="flex flex-col gap-2 mb-5">
                         <label className="text-lg">Password:</label>
-                        <input type="password" placeholder="Digite sua senha" className=" text-black rounded-sm w-[25vw] outline-none pl-2 py-2" {...register("password")}/>
+                        <input type="password" placeholder="Digite sua senha" className=" text-black rounded-sm w-[25vw] outline-none pl-2 py-2" {...register("password")}
+                        />
+
+                        {errors.password && 
+                            <p className='text-red-500 text-wrap'>
+                                {errors.password.message}
+                            </p>}
                     </div>
 
                     <div className="flex flex-col gap-2 mt-2">
