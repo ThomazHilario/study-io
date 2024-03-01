@@ -24,7 +24,7 @@ export const UserData = ({children}:ChildrenType) => {
 }
 
 // Verificando se tem contexto e o retornando
-export function useMyContext():UserDataType{
+export function UseMyContext():UserDataType{
     const context = useContext(Context)
 
     if(!context){

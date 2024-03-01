@@ -14,6 +14,10 @@ import { auth, database } from '../Services/FirebaseConnection'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { doc, setDoc } from 'firebase/firestore'
 
+// import Context
+import { UseMyContext } from '../Context/context'
+
+// schema from form
 const schema = z.object({
     username:z.string().min(1,'Preencha o campo acima'),
     email:z.string().min(1,'Preencha o campo acima').regex( /\S+@\S+\.\S+/,'email invalido'),
@@ -29,12 +33,27 @@ export const Register = () => {
     // Desestruturando o useForm
     const { register, handleSubmit, formState:{errors} } = useForm<RegisterType>({resolver:zodResolver(schema)})
 
+    // Context
+    const { setId, setUsername } = UseMyContext()
+
     // sing Up
     async function singUp(data:RegisterType){
         try {
+            // Criando autenticacao do usuario
+            const user = await createUserWithEmailAndPassword(auth, data.email, data.password)
 
+            // Salvando o uid
+            setId(user.user.uid)
+
+            // Salvando o username
+            setUsername(data.username)
+
+            // Salvando dados no banco de dados do usuario
+            await setDoc(doc(database,'users',user.user.uid),{
+                dataUser:data
+            })
         } catch (error) {
-            
+            console.log(error)
         }
     }
 
