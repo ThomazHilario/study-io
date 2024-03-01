@@ -55,11 +55,14 @@ export const Register = () => {
                     
                     <div className="flex flex-col gap-2 mb-5">
                         <label className="text-lg">Username:</label>
-                        <input type="text" placeholder="Digite seu nome..." className=" text-black rounded-sm w-[25vw] outline-none pl-2 py-2" {...register("username")}
+                        <input type="text" 
+                        placeholder="Digite seu nome..." 
+                        className=" text-black rounded-sm w-[25vw] outline-none pl-2 py-2" 
+                        {...register("username")}
                         />
 
                         {errors.username && 
-                            <p className='text-red-500 text-wrap'>
+                            <p className='text-red-500'>
                                 {errors.username.message}
                             </p>
                         }
@@ -67,7 +70,7 @@ export const Register = () => {
 
                     <div className="flex flex-col gap-2 mb-5">
                         <label className="text-lg">Email:</label>
-                        <input type="email" placeholder="Digite seu email..." className=" text-black rounded-sm w-[25vw] outline-none pl-2 py-2" {...register("email")}/>
+                        <input type="text" placeholder="Digite seu email..." className=" text-black rounded-sm w-[25vw] outline-none pl-2 py-2" {...register("email")}/>
 
                         {errors.email && <p className='text-red-500 text-wrap'>{errors.email.message}</p>}
                     </div>
