@@ -12,10 +12,10 @@ function App() {
     <UserData>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/register' element={<Register/>}/>
+          <Route path='/' element={<Home/>} />
+          <Route path='/register' element={<Register/>} />
         </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
     </UserData>
   )
 }

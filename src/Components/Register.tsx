@@ -43,7 +43,7 @@ export const Register = () => {
     })
 
     // Context
-    const { setId, setUsername } = UseMyContext()
+    const { setId, setDataUser } = UseMyContext()
 
     // sing Up
     async function singUp(data:RegisterType){
@@ -55,7 +55,7 @@ export const Register = () => {
             setId(user.user.uid)
 
             // Salvando o username
-            setUsername(data.username)
+            setDataUser(data)
 
             // Salvando dados no banco de dados do usuario
             await setDoc(doc(database,'users',user.user.uid),{

@@ -14,10 +14,10 @@ export const UserData = ({children}:ChildrenType) => {
     const [id, setId] = useState<string>('')
 
     // context - name
-    const [username, setUsername] = useState<string>('')
+    const [dataUser, setDataUser] = useState<object>({})
 
     return(
-        <Context.Provider value={{id, setId ,username, setUsername}}>
+        <Context.Provider value={{id, setId ,dataUser, setDataUser}}>
             {children}
         </Context.Provider>
     )
