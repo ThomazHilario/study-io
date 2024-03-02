@@ -1,13 +1,18 @@
+// imports react-router-dom
+import { Link } from 'react-router-dom'
+
+// import Context
+import { UseMyContext } from '../Context/context'
+
+// imports firebase
+import { auth, database } from '../Services/FirebaseConnection'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { doc, getDoc } from 'firebase/firestore'
+
 // imports hook form and zod
 import { useForm } from 'react-hook-form'
 import {z} from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-
-// imports react-router-dom
-import { Link } from 'react-router-dom'
-
-// imports interface
-import { LoginType } from '../interfaces/formType'
 
 // schema form
 const schema = z.object({
@@ -18,14 +23,53 @@ const schema = z.object({
     password:true
 })
 
+// imports interface
+import { LoginType } from '../interfaces/formType'
+
+import {toast} from 'sonner'
+
 export const Home = () => {
 
     // Desestruturando o useForm
     const { register, handleSubmit, formState:{errors} } = useForm<LoginType>({resolver:zodResolver(schema)})
 
+    // Context
+    const { setId, setDataUser } = UseMyContext()
+
     // sing in
-    function singIn({email,password}:LoginType){
-        console.log(email, password)
+    async function singIn(data:LoginType){
+        try {
+            // Autenticando usuario
+            const user = await signInWithEmailAndPassword(auth, data.email, data.password)
+
+            // Referencia ao banco de dados
+            const docRef = doc(database,'users',user.user.uid)
+
+            // Buscando dados do usuario
+            const userData = await getDoc(docRef)
+
+            // Verificando se tem dados no banco de dados
+            if(userData.exists()){
+                // Salvando dados do usuario
+                setDataUser(userData.data().userData)
+            }
+            
+            // Salvando uid do usuario
+            setId(user.user.uid)
+
+
+        } catch (error) {
+
+            // Notificando o error com o toast
+            toast.error('Email ou senha invalidos',{
+                style:{
+                    background:'#202124',
+                    color:'rgb(239 68 68)',
+                    border:0,
+                }
+            })
+
+        }
     }
 
     return (
