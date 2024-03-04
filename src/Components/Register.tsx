@@ -85,12 +85,12 @@ export const Register = () => {
                 <div className=" text-white flex justify-center items-center h-[90vh] w-[90vw] rounded-2xl bg-[#202124]">
 
                     <div className="w-1/2 flex flex-col justify-center items-center gap-10 ">
-                        <h1 className=" font-roboto text-5xl text-wrap w-80 text-center">
-                            Bem-vindo ao <strong>Study-io</strong>
+                        <h1 className=" leading-[3.5rem] font-system text-5xl text-wrap w-80 text-center">
+                            Bem-vindo ao <strong className='bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-fuchsia-500'>Study-io</strong>
                         </h1>
-                        <p className="font-roboto text-[1.1rem] w-[37vw] text-justify">👉 O Study-io é um aplicativo de produtividade cuidadosamente projetado para estudantes e trabalhadores de todas as áreas e níveis de ensino.</p>
+                        <p className="font-system text-[1.1rem] w-[37vw] text-justify">👉 O Study-io é um aplicativo de produtividade cuidadosamente projetado para estudantes e trabalhadores de todas as áreas e níveis de ensino.</p>
 
-                        <p className="font-roboto text-[1.1rem] w-[37vw] text-justify">👉 Com o Study-io, você pode criar, organizar e priorizar suas tarefas de estudo e trabalho em uma interface simples e intuitiva. Nunca mais perca o foco do que realmente importa.</p>
+                        <p className="font-system text-[1.1rem] w-[37vw] text-justify">👉 Com o Study-io, você pode criar, organizar e priorizar suas tarefas de estudo e trabalho em uma interface simples e intuitiva. Nunca mais perca o foco do que realmente importa.</p>
 
                         <h1  className="font-roboto text-[2.5rem] font-medium text-wrap text-center">🌌Venha Conosco!🌌</h1>
                     </div>

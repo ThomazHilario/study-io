@@ -7,7 +7,8 @@ export default {
   theme: {
     extend: {},
     fontFamily: {
-      'roboto': 'Roboto'
+      'roboto': 'Roboto',
+      'system': 'system-ui-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif'
     }
   },
   plugins: [],
