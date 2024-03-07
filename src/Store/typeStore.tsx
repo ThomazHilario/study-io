@@ -1,11 +1,12 @@
 
 interface UserProps{
     id: string,
-    name:string,
+    username:string,
     email:string,
     img:unknown,
 }
 
 export interface StoreProps{
-    user: null | UserProps
+    user: null | UserProps,
+    setUserData: (id:string, username:string, email:string, img:unknown) => void
 }

@@ -3,8 +3,8 @@ import { useState } from 'react'
 // imports react-router-dom
 import { Link } from 'react-router-dom'
 
-// import Context
-import { UseMyContext } from '../Context/context'
+// import Store
+import { user } from '../Store/store'
 
 // imports firebase
 import { auth, database } from '../Services/FirebaseConnection'
@@ -39,8 +39,8 @@ export const Home = () => {
     // Desestruturando o useForm
     const { register, handleSubmit, formState:{errors} } = useForm<LoginType>({resolver:zodResolver(schema)})
 
-    // Context
-    const { setId, setDataUser } = UseMyContext()
+    // Store - zustand
+    const userData = user(state => state.setUserData)
 
     // state - loading
     const [loading, setLoading] = useState(false)
@@ -58,17 +58,13 @@ export const Home = () => {
             const docRef = doc(database,'users',user.user.uid)
 
             // Buscando dados do usuario
-            const userData = await getDoc(docRef)
+            const userDataDB = await getDoc(docRef)
 
             // Verificando se tem dados no banco de dados
-            if(userData.exists()){
+            if(userDataDB.exists()){
                 // Salvando dados do usuario
-                setDataUser(userData.data().userData)
+                userData(user.user.uid, userDataDB.data().dataUser.username, data.email, userDataDB.data().dataUser.img)
             }
-            
-            // Salvando uid do usuario
-            setId(user.user.uid)
-
 
         } catch (error) {
 

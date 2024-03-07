@@ -3,8 +3,8 @@ import { useState } from 'react'
 // import recat-router-dom
 import { Link } from 'react-router-dom'
 
-// import Context
-import { UseMyContext } from '../Context/context'
+// import Store
+import {user} from '../Store/store'
 
 // import toast from sonner
 import { toast } from 'sonner'
@@ -45,8 +45,8 @@ export const Register = () => {
         {resolver:zodResolver(schema)
     })
 
-    // Context
-    const { setId, setDataUser } = UseMyContext()
+    // Store - zustand
+    const userData = user((state) => state.setUserData)
 
     // state - loading
     const [loading, setLoading] = useState(false)
@@ -60,15 +60,15 @@ export const Register = () => {
             // Criando autenticacao do usuario
             const user = await createUserWithEmailAndPassword(auth, data.email, data.password)
 
-            // Salvando o uid
-            setId(user.user.uid)
-
-            // Salvando o username
-            setDataUser(data)
+            // Salvando informacoes do usuario na store
+            userData(user.user.uid, data.username, data.email, null)           
 
             // Salvando dados no banco de dados do usuario
             await setDoc(doc(database,'users',user.user.uid),{
-                dataUser:data
+                dataUser:{
+                    username:data.username,
+                    img:null,
+                }
             })
 
         } catch (error) {

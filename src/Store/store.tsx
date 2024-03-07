@@ -7,10 +7,10 @@ import { StoreProps } from "./typeStore";
 export const user = create<StoreProps>((set) => ({
     user:null,
 
-    setUserData: (id:string, name:string, email:string, img:unknown) => set({
+    setUserData: (id:string, username:string, email:string, img:unknown) => set({
         user:{
             id:id,
-            name:name,
+            username:username,
             email:email,
             img:img
         }
