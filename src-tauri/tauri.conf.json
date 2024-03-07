@@ -58,7 +58,8 @@
         "title": "study-io",
         "width": 1200,
         "height": 750,
-        "center":true
+        "center":true,
+        "decorations":false
       }
     ],
     "security": {

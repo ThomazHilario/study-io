@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 // imports react-router-dom
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 // import Store
 import { user } from '../Store/store'
@@ -36,6 +36,9 @@ import { RightClick } from './rightClick'
 
 export const Home = () => {
 
+    // navigate
+    const navigate = useNavigate()
+
     // Desestruturando o useForm
     const { register, handleSubmit, formState:{errors} } = useForm<LoginType>({resolver:zodResolver(schema)})
 
@@ -64,6 +67,12 @@ export const Home = () => {
             if(userDataDB.exists()){
                 // Salvando dados do usuario
                 userData(user.user.uid, userDataDB.data().dataUser.username, data.email, userDataDB.data().dataUser.img)
+
+                // Salvando dados na localStorage
+                localStorage.setItem('@DataId',JSON.stringify(user.user.uid) as string)
+
+                // navegando para o study
+                navigate('/study')
             }
 
         } catch (error) {
