@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 // import recat-router-dom
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 // import Store
 import {user} from '../Store/store'
@@ -39,6 +39,8 @@ const schema = z.object({
 })
 
 export const Register = () => {
+    // navigate
+    const navigate = useNavigate()
 
     // Desestruturando o useForm
     const { register, handleSubmit, formState:{errors} } = useForm<RegisterType>(
@@ -70,6 +72,9 @@ export const Register = () => {
                     img:null,
                 }
             })
+
+            // navegando ate o componente study
+            navigate('/study')
 
         } catch (error) {
             if(error instanceof FirebaseError){
