@@ -6,7 +6,7 @@ import { appWindow } from '@tauri-apps/api/window'
 
 export const WindowHeader = () => {
     return(
-        <div className="flex fixed top-0 w-full pr-2 gap-2 justify-end items-center bg-zinc-800">
+        <div data-tauri-drag-region className="flex fixed top-0 h-6 w-full pr-2 gap-2 justify-end items-center bg-zinc-800 select-none">
             <div className="cursor-pointer" onClick={() => appWindow.minimize()}>
                <Minus color='white'/>
             </div>
