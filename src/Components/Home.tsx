@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 // imports react-router-dom
 import { Link, useNavigate } from 'react-router-dom'
@@ -8,7 +8,7 @@ import { user } from '../Store/store'
 
 // imports firebase
 import { auth, database } from '../Services/FirebaseConnection'
-import { signInWithEmailAndPassword } from 'firebase/auth'
+import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
 import { doc, getDoc } from 'firebase/firestore'
 
 // imports hook form and zod
@@ -38,15 +38,33 @@ export const Home = () => {
 
     // navigate
     const navigate = useNavigate()
+    // state - loading
+    const [loading, setLoading] = useState(true)
+
+    // Verificando se o usuario logado
+    useEffect(() => {
+        function verifyAutenticationUser(){
+            onAuthStateChanged(auth,(user) => {
+                if(user){
+                    navigate('/study')
+
+                    // Alterando o loading para false
+                    setLoading(false)
+                }
+
+                // Alterando o loading para false
+                setLoading(false)
+            })
+        }
+
+        verifyAutenticationUser()
+    },[])
 
     // Desestruturando o useForm
     const { register, handleSubmit, formState:{errors} } = useForm<LoginType>({resolver:zodResolver(schema)})
 
     // Store - zustand
     const userData = user(state => state.setUserData)
-
-    // state - loading
-    const [loading, setLoading] = useState(false)
 
     // sing in
     async function singIn(data:LoginType){
