@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
 
-export interface UserDataType{
-    id:string,
-    setId:React.Dispatch<React.SetStateAction<string>>,
-    dataUser:object,
-    setDataUser:React.Dispatch<React.SetStateAction<object>>
+export interface FullScreenProps{
+    isFullscreen: boolean,
+    setIsFullscreen: React.Dispatch<React.SetStateAction<boolean>>
+    resizable:boolean,
+    setResizable:React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export interface ChildrenType{

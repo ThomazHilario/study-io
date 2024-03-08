@@ -2,29 +2,29 @@
 import { createContext, useContext ,useState } from 'react'
 
 // import interface
-import { UserDataType, ChildrenType } from '../interfaces/contextType'
+import { FullScreenProps, ChildrenType } from '../interfaces/contextType'
 
 // Contexto
-export const Context = createContext<UserDataType | null>(null)
+export const Context = createContext<FullScreenProps | null>(null)
 
 // Componente UserData
 export const UserData = ({children}:ChildrenType) => {
 
-    // context - id
-    const [id, setId] = useState<string>('')
+    // context - fullscreen
+    const [isFullscreen, setIsFullscreen] = useState<boolean>(true)
 
-    // context - name
-    const [dataUser, setDataUser] = useState<object>({})
+    // resizable
+    const [resizable, setResizable] = useState<boolean>(false)
 
     return(
-        <Context.Provider value={{id, setId ,dataUser, setDataUser}}>
+        <Context.Provider value={{isFullscreen, setIsFullscreen, resizable, setResizable}}>
             {children}
         </Context.Provider>
     )
 }
 
 // Verificando se tem contexto e o retornando
-export function UseMyContext():UserDataType{
+export function UseMyContext():FullScreenProps{
     const context = useContext(Context)
 
     if(!context){
