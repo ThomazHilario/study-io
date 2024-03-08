@@ -52,7 +52,7 @@ export const Study = () => {
     return(
         <main className="flex flex-col bg-slate-900 h-screen">
             {/* header */}
-            <header className="bg-slate-700 h-6 basis-10 mt-5">
+            <header className="bg-slate-700 h-6 basis-8 mt-5">
                 {userData?.id}
             </header>
 
