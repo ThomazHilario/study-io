@@ -15,19 +15,25 @@ export const Study = () => {
     const userData = user(state => state.user)
 
     useEffect(() => {
-        // verificando id na localStorage
-        const id = localStorage.getItem(`@DataID`) !== null && JSON.parse(localStorage.getItem('@DataId') as string)
 
+        // localStorage
+        const Storage = JSON.parse(localStorage.getItem(`@DataId`) as string)
+
+        // verificando id na localStorage
+        const id = Storage !== null ? Storage : false
+
+        // Inserindo dados na store do zustand
         async function loadUserData(){
             try {
                 // Referencia do banco de dados
-                const docRef = doc(database,'users',JSON.parse(localStorage.getItem('@DataId') as string))
+                const docRef = doc(database,'users',id)
 
                 // Buscando dados do banco de dados
                 const data = await getDoc(docRef)
 
                 if(data.exists()){
-                    setUserData(JSON.parse(localStorage.getItem('@DataId') as string), 
+                    // Inserindo dados na store
+                    setUserData(id, 
                     data.data().dataUser.username, 
                     data.data().dataUser.email, 
                     data.data().dataUser.img
@@ -47,7 +53,7 @@ export const Study = () => {
         <main className="flex flex-col bg-slate-900 h-screen">
             {/* header */}
             <header className="bg-slate-700 h-6 basis-10 mt-5">
-                
+                {userData?.id}
             </header>
 
             {/* area de trabalho */}

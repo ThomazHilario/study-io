@@ -68,7 +68,7 @@ export const Home = () => {
                 // Salvando dados do usuario
                 userData(user.user.uid, userDataDB.data().dataUser.username, data.email, userDataDB.data().dataUser.img)
 
-                // Salvando dados na localStorage
+                // Salvando uid na localStorage
                 localStorage.setItem('@DataId',JSON.stringify(user.user.uid) as string)
 
                 // navegando para o study

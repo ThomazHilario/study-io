@@ -74,7 +74,7 @@ export const Register = () => {
                 }
             })
 
-            // Salvando dados na localStorage
+            // Salvando uid na localStorage
             localStorage.setItem('@DataId',JSON.stringify(user.user.uid) as string)
 
             // navegando ate o componente study
