@@ -4,6 +4,9 @@ import { useEffect } from "react"
 // import Context
 import { UseMyContext } from "../Context/context"
 
+// Components
+import { MenuDialog } from "./menu-dialog"
+
 // import Firebase
 import { database } from "../Services/FirebaseConnection"
 import { getDoc, doc } from "firebase/firestore"
@@ -12,7 +15,7 @@ import { getDoc, doc } from "firebase/firestore"
 import { user } from "../Store/store"
 
 // imports lucide
-import { Maximize2, User } from 'lucide-react'
+import { Maximize2 } from 'lucide-react'
 
 // import window from tauri
 import { appWindow } from '@tauri-apps/api/window'
@@ -95,7 +98,8 @@ export const Study = () => {
                 {/* Account config */}
                 <div className="flex gap-2 mt-1">
                     <Maximize2 className="cursor-pointer" size={18} color="white" onClick={() => changeFullScreen()}/>
-                    <User className="cursor-pointer" size={18} color="white"/>
+                    
+                    <MenuDialog/>
                 </div>
             </header>
 
