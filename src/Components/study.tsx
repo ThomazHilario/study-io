@@ -6,6 +6,7 @@ import { UseMyContext } from "../Context/context"
 
 // Components
 import { MenuDialog } from "./menu-dialog"
+import { MenuAside } from "./menu-aside"
 
 // import Firebase
 import { database } from "../Services/FirebaseConnection"
@@ -105,8 +106,8 @@ export const Study = () => {
 
             {/* area de trabalho */}
             <div className='flex basis-full'>
-                <aside className="bg-[#202224] w-14 border-r-gray-600 border-r-[1px]">
-                    
+                <aside className="bg-[#202224] w-14 border-r-gray-600 border-r-[1px] flex justify-center">
+                    <MenuAside/>
                 </aside>
 
                 {/* Wallpaper */}
