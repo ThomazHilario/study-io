@@ -75,23 +75,12 @@ export const Home = () => {
             // Autenticando usuario
             const user = await signInWithEmailAndPassword(auth, data.email, data.password)
 
-            // Referencia ao banco de dados
-            const docRef = doc(database,'users',user.user.uid)
+            // Salvando uid na localStorage
+            localStorage.setItem('@DataId',JSON.stringify(user.user.uid) as string)
 
-            // Buscando dados do usuario
-            const userDataDB = await getDoc(docRef)
-
-            // Verificando se tem dados no banco de dados
-            if(userDataDB.exists()){
-                // Salvando dados do usuario
-                userData(user.user.uid, userDataDB.data().dataUser.username, data.email, userDataDB.data().dataUser.img)
-
-                // Salvando uid na localStorage
-                localStorage.setItem('@DataId',JSON.stringify(user.user.uid) as string)
-
-                // navegando para o study
-                navigate('/study')
-            }
+            // navegando para o study
+            navigate('/study')
+            
 
         } catch (error) {
 
