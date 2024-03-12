@@ -17,6 +17,15 @@ export const UpdateImage = () => {
         
     }
 
+    // AddImageInFirebase
+    async function AddImageInFirebase(){
+        try {
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     // updateImageUser
     function updateImageUser(e:ChangeEvent){
         if(e.target instanceof HTMLInputElement){
