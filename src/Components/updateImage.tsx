@@ -5,8 +5,9 @@ import { ChangeEvent } from 'react'
 import {user} from '../Store/store'
 
 // import Firebase from storage
-import { storage } from '../Services/FirebaseConnection'
+import { database, storage } from '../Services/FirebaseConnection'
 import { ref, uploadBytes, getDownloadURL, StorageReference } from 'firebase/storage'
+import { doc, updateDoc } from 'firebase/firestore'
 
 export const UpdateImage = () => {
 
@@ -30,7 +31,9 @@ export const UpdateImage = () => {
             // Salvando a imagem na storage passando a referencia e o file
             await uploadBytes(storageRef, file)
 
-            
+            // Salvando a url da foto no banco de dados do firebase
+            addImageUrlInDataBase(storageRef)
+
         } catch (error) {
             console.log(error)
         }
@@ -42,7 +45,13 @@ export const UpdateImage = () => {
             // Pegando url
             const url = await getDownloadURL(storageRef)
 
-            
+            // Referencia do banco de dados
+            const docRef = doc(database,'users',dataUser?.id as string)
+
+            // Salvando a url da imagem no banco de dados do firebase
+            await updateDoc(docRef,{
+                "dataUser.img": url
+            })
         } catch (error) {
             console.log(error)
         }
