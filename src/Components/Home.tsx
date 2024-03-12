@@ -3,13 +3,9 @@ import { useState, useEffect } from 'react'
 // imports react-router-dom
 import { Link, useNavigate } from 'react-router-dom'
 
-// import Store
-import { user } from '../Store/store'
-
 // imports firebase
-import { auth, database } from '../Services/FirebaseConnection'
+import { auth } from '../Services/FirebaseConnection'
 import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
-import { doc, getDoc } from 'firebase/firestore'
 
 // imports hook form and zod
 import { useForm } from 'react-hook-form'
@@ -62,9 +58,6 @@ export const Home = () => {
 
     // Desestruturando o useForm
     const { register, handleSubmit, formState:{errors} } = useForm<LoginType>({resolver:zodResolver(schema)})
-
-    // Store - zustand
-    const userData = user(state => state.setUserData)
 
     // sing in
     async function singIn(data:LoginType){
