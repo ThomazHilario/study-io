@@ -6,6 +6,7 @@ import { UseMyContext } from "../Context/context"
 
 // Components
 import { MenuDialog } from "./menu-dialog"
+import { UpdateImage } from "./updateImage"
 import { MenuAside } from "./menu-aside"
 
 // import Firebase
@@ -16,7 +17,7 @@ import { getDoc, doc } from "firebase/firestore"
 import { user } from "../Store/store"
 
 // imports lucide
-import { Maximize2 } from 'lucide-react'
+import { Maximize2} from 'lucide-react'
 
 // import window from tauri
 import { appWindow } from '@tauri-apps/api/window'
@@ -90,11 +91,19 @@ export const Study = () => {
     return(
         <main className="flex flex-col bg-slate-900 h-screen">
             {/* header */}
-            <header className={`flex items-center justify-between px-2 bg-[#202224] basis-12 ${isFullscreen ? 'mt-5' : 'mt-0'} border-b-[1px] border-b-gray-600`}>
-                {/* user what using app */}
-                <p className="bg-neutral-300/20 rounded-sm mt-1 text-white py-[2px] px-3">
-                    {userData?.username}'s Room
-                </p>
+            <header className={`flex items-center justify-between px-2 bg-[#202224] basis-12 ${isFullscreen ? 'mt-5 pt-1' : 'mt-0'} border-b-[1px] border-b-gray-600`}>
+                {/*  what user using app */}
+                <div className={`flex gap-2 items-center`}>
+                    {userData?.img !== null ? (
+                    <img className="h-8 w-8 rounded-full object-fill" src={userData?.img as string}/>
+                    ) : (
+                        <UpdateImage/>
+                    )}
+
+                    <p className="bg-neutral-300/20 rounded-sm text-white py-[2px] px-3">
+                        {userData?.username}'s Room
+                    </p>
+                </div>
 
                 {/* Account config */}
                 <div className="flex gap-2 mt-1">
