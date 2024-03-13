@@ -11,6 +11,9 @@ import { User } from 'lucide-react'
 import { auth } from '../Services/FirebaseConnection'
 import { signOut } from 'firebase/auth'
 
+// import Components
+import { AccountDialog } from './account-dialog'
+
 export const MenuDialog = () => {
 
     // navigate
@@ -42,7 +45,7 @@ export const MenuDialog = () => {
             <Dialog.Portal>
                 <Dialog.Content className='absolute right-2 top-[4.5rem]'>
                     <menu className='py-2 w-[13vw] bg-slate-800 rounded-sm'>
-                        <li><button className='p-2 text-center text-white w-full'>My Account</button></li>
+                        <li><AccountDialog/></li>
                         <li><button className='p-2 text-center text-white w-full' onClick={LogOut}>Log Out</button></li>
                     </menu>
                 </Dialog.Content>
