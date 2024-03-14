@@ -1,17 +1,44 @@
 // import dialog from radix
 import * as Dialog from '@radix-ui/react-dialog'
 import * as Alert from '@radix-ui/react-alert-dialog'
+
+// import react-router-dom
+import { useNavigate } from 'react-router-dom'
+
 // import Store
 import { user } from '../Store/store'
 
 // import firebase
+import { auth, database } from '../Services/FirebaseConnection'
 import { doc, deleteDoc } from 'firebase/firestore'
-import { deleteUser } from 'firebase/auth'
+import { User, deleteUser, signOut } from 'firebase/auth'
 
 export const AccountDialog = () => {
 
+    // navigate
+    const navigate = useNavigate()
+
     // Buscando dados da store
     const data = user(state => state.user)
+
+    // deleteAccount - deletando conta
+    async function deleteAccount(){
+        try {
+            // Deletando usuário
+            deleteUser(auth.currentUser as User)
+            
+            // Excluindo o seu banco de dados
+            await deleteDoc(doc(database,'users', data?.id as string))     
+
+            // Navegando para a pagina inicial da aplicação
+            navigate('/')
+
+            // Deslogando usuário ainda autenticado
+            signOut(auth)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <Dialog.Root>
@@ -42,8 +69,8 @@ export const AccountDialog = () => {
                             <p className='font-light mb-5'>Ao deletar sua conta suas informações armazenadas como as task, notes e kanban não podem ser recuperadas:</p>
                             
                             <Alert.Root>
-                              <Alert.Trigger>
-                                <button className='bg-red-500 p-2 px-5 rounded-sm'>Delete Account</button>
+                              <Alert.Trigger className='bg-red-500 p-2 px-5 rounded-sm'>
+                                Delete Account
                               </Alert.Trigger>
 
                               <Alert.Content className='absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-[30vw] bg-slate-900 p-5 rounded-md'>
@@ -56,16 +83,15 @@ export const AccountDialog = () => {
                                 </Alert.Description>
 
                                 <div className='flex gap-2'>
-                                    <Alert.Cancel>
-                                        <button className='w-32 h-8 bg-gray-600 rounded-sm'>
+                                    <button className='w-32 h-8 bg-gray-600 rounded-sm'>
                                         Cancel
-                                        </button>
-                                    </Alert.Cancel>
-                                    <Alert.Action>
-                                        <button className='w-32 h-8 bg-red-500 rounded-sm'>
-                                            Delete Account
-                                        </button>
-                                    </Alert.Action>
+                                    </button>
+                                
+                                
+                                    <button className='w-32 h-8 bg-red-500 rounded-sm' onClick={deleteAccount}>
+                                        Delete Account
+                                    </button>
+                                    
                                 </div>
                               </Alert.Content>
                             </Alert.Root>
