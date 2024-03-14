@@ -16,8 +16,8 @@ export const MenuAside = () => {
                 <p className='text-white text-[0.8rem] font-semibold font-system'>Timer</p>
             </li>
 
-            <li className='flex flex-col justify-center items-center hover:bg-gray-400/10 py-[0.15rem] px-1 rounded-md'>
-                <PencilLine color='white' size={20} onClick={() => setIsTask(!isTask)}/>
+            <li className='flex flex-col justify-center items-center hover:bg-gray-400/10 py-[0.15rem] px-1 rounded-md' onClick={() => setIsTask(!isTask)}>
+                <PencilLine color='white' size={20} />
                 <p className='text-white text-[0.8rem] font-semibold font-system'>Task</p>
             </li>
 

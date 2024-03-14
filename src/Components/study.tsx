@@ -8,6 +8,11 @@ import { UseMyContext } from "../Context/context"
 import { MenuDialog } from "./menu-dialog"
 import { UpdateImage } from "./updateImage"
 import { MenuAside } from "./menu-aside"
+import TaskFrame from "./task-frame"
+
+// draggable 
+import { Rnd } from "react-rnd"
+
 
 // import Firebase
 import { database } from "../Services/FirebaseConnection"
@@ -17,7 +22,7 @@ import { getDoc, doc } from "firebase/firestore"
 import { user } from "../Store/store"
 
 // imports lucide
-import { Maximize2} from 'lucide-react'
+import { Maximize2 } from 'lucide-react'
 
 // import window from tauri
 import { appWindow } from '@tauri-apps/api/window'
@@ -27,6 +32,7 @@ export const Study = () => {
     // Context
     const { isFullscreen, setIsFullscreen } = UseMyContext()
     const { resizable, setResizable } = UseMyContext()
+    const { isTask } = UseMyContext()
 
     // store
     const setUserData = user(state => state.setUserData)
@@ -121,7 +127,11 @@ export const Study = () => {
 
                 {/* Wallpaper */}
                 <div className="bg-slate-900 w-full">
-
+                    {isTask && (
+                        <Rnd bounds="window" enableResizing={false}>
+                            <TaskFrame/>
+                        </Rnd>
+                    )}
                 </div>
             </div>
         </main>
