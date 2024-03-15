@@ -1,5 +1,5 @@
 // import react
-import { FormEvent, useState } from "react"
+import { ChangeEvent, FormEvent, useState } from "react"
 
 // import lucide-icons
 import { CircleFadingPlus } from 'lucide-react'
@@ -23,6 +23,19 @@ export default function TaskFrame(){
         // Limpando state
         setTaskText('')
     }
+
+    // taskComplete
+    function taskComplete(e:ChangeEvent){
+        if(e.target instanceof HTMLInputElement){
+            if(e.target.checked === true){
+                e.target.nextElementSibling?.classList.add('line-through')
+            } else{
+                e.target.nextElementSibling?.classList.remove('line-through')
+            }
+
+        }
+    }
+
     return(
         <div className="bg-slate-600 py-3 px-5 rounded-sm text-white">
             <form className="flex items-center gap-2">
@@ -35,7 +48,10 @@ export default function TaskFrame(){
             <ul className="mt-3 flex flex-col gap-2">
                 {task.map((item, idx) => {
                     return(
-                        <li key={idx} className="border-2 py-1 px-2 rounded-md w-[330px]">{item}</li>
+                        <li key={idx} className="border-2 py-1 px-2 rounded-md w-[330px] flex items-center gap-2">
+                            <input type="checkbox" onChange={taskComplete}/>
+                            <span>{item}</span>
+                        </li>
                     )
                 })}
             </ul>
