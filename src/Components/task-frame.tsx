@@ -17,11 +17,13 @@ export default function TaskFrame(){
         // Cancelado evento do formulario
         e.preventDefault()
 
-        // Adicionando task ao state task
-        setTask([...task,taskText])
+        if(taskText !== ''){
+            // Adicionando task ao state task
+            setTask([...task,taskText])
 
-        // Limpando state
-        setTaskText('')
+            // Limpando state
+            setTaskText('')
+        }
     }
 
     // taskComplete
