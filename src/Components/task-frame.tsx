@@ -1,5 +1,5 @@
 // import react
-import { ChangeEvent, FormEvent, useState } from "react"
+import { ChangeEvent, FormEvent, useState, useEffect } from "react"
 
 // import lucide-icons
 import { CircleFadingPlus } from 'lucide-react'
@@ -36,6 +36,12 @@ export default function TaskFrame(){
             }
 
         }
+    }
+
+    // deleteTask
+    function deleteTask(idx:number){
+
+        setTask(task.filter((item, index) => index !== idx && item))
     }
 
     return(
