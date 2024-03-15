@@ -45,16 +45,18 @@ export default function TaskFrame(){
             </form>
 
             {/* minhas tarefas*/}
-            <ul className="mt-3 flex flex-col gap-2">
-                {task.map((item, idx) => {
-                    return(
-                        <li key={idx} className="border-2 py-1 px-2 rounded-md w-[330px] flex items-center gap-2">
-                            <input type="checkbox" onChange={taskComplete}/>
-                            <span>{item}</span>
-                        </li>
-                    )
-                })}
-            </ul>
+            {task.length > 0 &&(
+                <ul className="mt-3 flex flex-col gap-2">
+                    {task.map((item, idx) => {
+                        return(
+                            <li key={idx} className="border-2 py-1 px-2 rounded-md w-[330px] flex items-center gap-2">
+                                <input type="checkbox" onChange={taskComplete}/>
+                                <span>{item}</span>
+                            </li>
+                        )
+                    })}
+                </ul>
+            )}
         </div>
     )
 }
