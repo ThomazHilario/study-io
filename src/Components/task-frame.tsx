@@ -50,8 +50,8 @@ export default function TaskFrame(){
                     {task.map((item, idx) => {
                         return(
                             <li key={idx} className="border-2 py-1 px-2 rounded-md w-[330px] flex items-center gap-2">
-                                <input type="checkbox" onChange={taskComplete}/>
-                                <span>{item}</span>
+                                <input className="min-h-4 min-w-4" type="checkbox" onChange={taskComplete}/>
+                                <span className="text-justify text-wrap break-words tracking-tighter">{item}</span>
                             </li>
                         )
                     })}

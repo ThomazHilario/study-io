@@ -128,7 +128,7 @@ export const Study = () => {
                 {/* Wallpaper */}
                 <div className="bg-slate-900 w-full">
                     {isTask && (
-                        <Rnd bounds="window" enableResizing={false}>
+                        <Rnd bounds="window" enableResizing={false} default={{x:10, y:65, height:'', width:''}}>
                             <TaskFrame/>
                         </Rnd>
                     )}
