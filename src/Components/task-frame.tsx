@@ -4,10 +4,20 @@ import { ChangeEvent, FormEvent, useState, useEffect } from "react"
 // import lucide-icons
 import { CircleFadingPlus, MenuIcon } from 'lucide-react'
 
+// store
+import { user } from '../Store/store'
+
+// firebase
+import { database } from '../Services/FirebaseConnection'
+import { doc, updateDoc } from 'firebase/firestore'
+
 // import dialog
 import * as Dialog from '@radix-ui/react-dialog'
 
 export default function TaskFrame(){
+
+    // store
+    const userData = user(state => state.user)
 
     // state - taskText
     const [taskText, setTaskText] = useState<string>('')
@@ -42,9 +52,22 @@ export default function TaskFrame(){
     }
 
     // deleteTask
-    function deleteTask(idx:number){
+    async function deleteTask(idx:number){
+        try {
+            // Filtrando array sem o elemento especifico
+            setTask(task.filter((item, index) => index !== idx && item))
 
-        setTask(task.filter((item, index) => index !== idx && item))
+            // docref
+            const docRef = doc(database,'users',userData?.id as string)
+
+            // Atualizando array no banco de dados
+            await updateDoc(docRef,{
+                task
+            })
+
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return(
