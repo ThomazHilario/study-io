@@ -71,7 +71,9 @@ export const Register = () => {
                     username:data.username,
                     email:data.email,
                     img:null,
-                }
+                },
+                task:[],
+                notes:[]
             })
 
             // Salvando uid na localStorage
