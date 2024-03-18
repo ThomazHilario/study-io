@@ -26,16 +26,28 @@ export default function TaskFrame(){
     const [task, setTask] = useState<string[]>([])
 
     // addTask
-    function addTask(e:FormEvent){
-        // Cancelado evento do formulario
-        e.preventDefault()
+    async function addTask(e:FormEvent){
+        try {
+            // Cancelado evento do formulario
+            e.preventDefault()
 
-        if(taskText !== ''){
-            // Adicionando task ao state task
-            setTask([...task,taskText])
+            if(taskText !== ''){
+                // Adicionando task ao state task
+                setTask([...task,taskText])
 
-            // Limpando state
-            setTaskText('')
+                // docref
+                const docRef = doc(database,'users',userData?.id as string)
+
+                // Atualizando array no banco de dados
+                await updateDoc(docRef,{
+                    task:[...task,taskText]
+                })
+
+                // Limpando state
+                setTaskText('')
+            }
+        } catch (error) {
+            console.log(error)
         }
     }
 
@@ -55,14 +67,17 @@ export default function TaskFrame(){
     async function deleteTask(idx:number){
         try {
             // Filtrando array sem o elemento especifico
-            setTask(task.filter((item, index) => index !== idx && item))
+            const newTaskList = task.filter((item, index) => index !== idx && item)
+
+            // Salvando na state task a nova lista de task
+            setTask(newTaskList)
 
             // docref
             const docRef = doc(database,'users',userData?.id as string)
 
             // Atualizando array no banco de dados
             await updateDoc(docRef,{
-                task
+                task:newTaskList
             })
 
         } catch (error) {
@@ -72,10 +87,10 @@ export default function TaskFrame(){
 
     return(
         <div className="bg-slate-600 py-3 px-5 rounded-sm text-white cursor-default">
-            <form className="flex items-center gap-2">
+            <form className="flex items-center gap-2" onSubmit={addTask}>
                 <input className="w-[300px] h-7 rounded-sm outline-none pl-2 font-syste bg-black/10" type="text" value={taskText} placeholder='Add task' onChange={(e) => setTaskText(e.target.value)} />
 
-                <button onClick={addTask}><CircleFadingPlus color="white"/></button>
+                <button type="submit"><CircleFadingPlus color="white"/></button>
             </form>
 
             {/* minhas tarefas*/}
