@@ -46,6 +46,7 @@ export default function TaskFrame(){
             }
         }
 
+        // Executando loadTask
         loadTask()
     },[])
 
