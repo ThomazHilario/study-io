@@ -9,7 +9,7 @@ import { user } from '../Store/store'
 
 // firebase
 import { database } from '../Services/FirebaseConnection'
-import { doc, updateDoc } from 'firebase/firestore'
+import { doc, updateDoc, getDoc } from 'firebase/firestore'
 
 // import dialog
 import * as Dialog from '@radix-ui/react-dialog'
@@ -24,6 +24,30 @@ export default function TaskFrame(){
 
     // state - task
     const [task, setTask] = useState<string[]>([])
+
+    useEffect(() => {
+
+        // Buscando task
+        async function loadTask(){
+            try {
+
+                // docRef
+                const docRef = doc(database, 'users', userData?.id as string)
+
+                // Buscando task
+                const data = await getDoc(docRef)
+
+                if(data.exists()){
+                    // Setando as task do banco de dados na state task
+                    setTask(data.data().task)
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        loadTask()
+    },[])
 
     // addTask
     async function addTask(e:FormEvent){
@@ -98,7 +122,7 @@ export default function TaskFrame(){
                 <ul className="mt-3 flex flex-col gap-2">
                     {task.map((item, idx) => {
                         return(
-                            <li key={idx} className="group flex gap-4 border-2 py-1 px-2 rounded-md w-[330px]">
+                            <li key={idx} className="group flex gap-4 border-2 py-1 px-2 rounded-md w-[330px] justify-between">
                                 <div className="flex items-center gap-2">
                                     <input className="min-h-4 min-w-4" type="checkbox" onChange={taskComplete}/>
                                     <span className="text-justify whitespace-break-spaces">{item}</span>
