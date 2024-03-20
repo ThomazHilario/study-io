@@ -1,12 +1,16 @@
 // import react
 import { FormEvent, useState } from 'react'
 
+// dialog react
+import * as Dialog from '@radix-ui/react-dialog'
+
 // import rnd
 import { Rnd } from 'react-rnd'
 
 // import type
 import { NotesProps } from '../interfaces/notesType'
 
+// import date-fns
 import { formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 
@@ -67,15 +71,27 @@ export const NotesFrame = () => {
                         <div className='mt-2 flex flex-col'>
                             {notesList.map((item, idx) => {
                                 return(
-                                    <button key={idx} className='p-1 bg-slate-900/30 rounded-sm text-white'>
-                                        <p className=' px-1 text-justify h-6 overflow-hidden'>
-                                            {item.item}
-                                        </p>
+                                    <Dialog.Root>
+                                        <Dialog.Trigger key={idx} className='p-1 bg-slate-900/30 rounded-sm text-white'>
+                                            <p className=' px-1 text-justify h-6 overflow-hidden'>
+                                                {item.item}
+                                            </p>
 
-                                        <p className='text-start rounded-sm px-1 text-sm'>
-                                            Criado há {formatDistanceToNow(item.date,{locale:ptBR})}
-                                        </p>
-                                    </button>
+                                            <p className='text-start rounded-sm px-1 text-sm'>
+                                                Criado há {formatDistanceToNow(item.date,{locale:ptBR})}
+                                            </p>
+                                        </Dialog.Trigger>
+
+                                        <Dialog.Portal>
+                                            <Dialog.Content className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
+                                                <div className='bg-slate-700 p-2 rounded-sm text-white text-justify w-[20vw]'>
+                                                    {item.item}
+                                                    <br />
+                                                    <span className='mt-1'>Criado há {formatDistanceToNow(item.date,{locale:ptBR})}</span>
+                                                </div>
+                                            </Dialog.Content>
+                                        </Dialog.Portal>
+                                    </Dialog.Root>
                                 )
                             })}
                         </div>
