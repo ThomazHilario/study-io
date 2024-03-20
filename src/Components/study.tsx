@@ -9,6 +9,7 @@ import { MenuDialog } from "./menu-dialog"
 import { UpdateImage } from "./updateImage"
 import { MenuAside } from "./menu-aside"
 import TaskFrame from "./task-frame"
+import { NotesFrame } from "./notes-frame"
 
 // draggable 
 import { Rnd } from "react-rnd"
@@ -132,6 +133,8 @@ export const Study = () => {
                             <TaskFrame/>
                         </Rnd>
                     )}
+
+                    
                 </div>
             </div>
         </main>

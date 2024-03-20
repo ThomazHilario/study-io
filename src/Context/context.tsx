@@ -19,8 +19,11 @@ export const UserData = ({children}:ChildrenType) => {
     // isTask
     const [isTask, setIsTask] = useState<boolean>(false)
 
+    // isNotes
+    const [isNotes, setIsNotes] = useState<boolean>(false)
+
     return(
-        <Context.Provider value={{isFullscreen, setIsFullscreen, resizable, setResizable, isTask, setIsTask}}>
+        <Context.Provider value={{isFullscreen, setIsFullscreen, resizable, setResizable, isTask, setIsTask, isNotes, setIsNotes}}>
             {children}
         </Context.Provider>
     )

@@ -6,7 +6,9 @@ export interface FullScreenProps{
     resizable:boolean,
     setResizable:React.Dispatch<React.SetStateAction<boolean>>,
     isTask:boolean,
-    setIsTask: React.Dispatch<React.SetStateAction<boolean>>
+    setIsTask: React.Dispatch<React.SetStateAction<boolean>>,
+    isNotes:boolean,
+    setIsNotes:React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export interface ChildrenType{

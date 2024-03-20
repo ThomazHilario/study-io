@@ -1,11 +1,17 @@
+import { Rnd } from 'react-rnd'
+
 export const NotesFrame = () => {
     return(
-        <div>
-            <form></form>
+        <Rnd>
+            <div className='bg-slate-700'>
+                <form>
+                    
+                </form>
 
-            <ul>
-                
-            </ul>
-        </div>
+                <ul>
+                    
+                </ul>
+            </div>
+        </Rnd>
     )
 }
