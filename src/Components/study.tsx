@@ -33,7 +33,7 @@ export const Study = () => {
     // Context
     const { isFullscreen, setIsFullscreen } = UseMyContext()
     const { resizable, setResizable } = UseMyContext()
-    const { isTask } = UseMyContext()
+    const { isTask, isNotes } = UseMyContext()
 
     // store
     const setUserData = user(state => state.setUserData)
@@ -134,7 +134,7 @@ export const Study = () => {
                         </Rnd>
                     )}
 
-                    
+                    {isNotes && <NotesFrame/>}
                 </div>
             </div>
         </main>
