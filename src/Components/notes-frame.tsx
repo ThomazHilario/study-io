@@ -91,6 +91,7 @@ export const NotesFrame = () => {
                 <div className='flex items-center justify-end px-3 mb-2'>
                     <MinusIcon color='white' onClick={() => setIsNotes(false)}/>
                 </div>
+                
                 {isAddNote ? (
                     <form className='px-2 flex flex-col items-center gap-2'>
                         <textarea 

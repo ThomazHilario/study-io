@@ -4,6 +4,11 @@ import { ChangeEvent, FormEvent, useState, useEffect } from "react"
 // import lucide-icons
 import { CircleFadingPlus, MenuIcon } from 'lucide-react'
 
+// import Context
+import { UseMyContext } from "../Context/context"
+
+import { MinusIcon } from "lucide-react"
+
 // store
 import { user } from '../Store/store'
 
@@ -15,6 +20,9 @@ import { doc, updateDoc, getDoc } from 'firebase/firestore'
 import * as Dialog from '@radix-ui/react-dialog'
 
 export default function TaskFrame(){
+
+    // Context
+    const { setIsTask } = UseMyContext()
 
     // store
     const userData = user(state => state.user)
@@ -111,7 +119,11 @@ export default function TaskFrame(){
     }
 
     return(
-        <div className="bg-slate-600 py-3 px-5 rounded-sm text-white cursor-default">
+        <div className="bg-slate-700 py-3 px-5 rounded-sm text-white cursor-default">
+            <div className='flex items-center justify-end px-3 mb-2'>
+                    <MinusIcon className="cursor-pointer" color='white' onClick={() => setIsTask(false)}/>
+            </div>
+
             <form className="flex items-center gap-2" onSubmit={addTask}>
                 <input className="w-[300px] h-7 rounded-sm outline-none pl-2 font-syste bg-black/10" type="text" value={taskText} placeholder='Add task' onChange={(e) => setTaskText(e.target.value)} />
 
