@@ -4,6 +4,13 @@ import { FormEvent, useState } from 'react'
 // import context
 import { UseMyContext } from '../Context/context'
 
+// import firebase
+import { database } from '../Services/FirebaseConnection'
+import { doc, updateDoc } from 'firebase/firestore'
+
+// import store
+import { user } from '../Store/store'
+
 // dialog react
 import * as Dialog from '@radix-ui/react-dialog'
 
@@ -25,6 +32,9 @@ export const NotesFrame = () => {
     // context
     const { setIsNotes } = UseMyContext()
 
+    // store
+    const userData = user(state => state.user)
+
     // state - notesList
     const [notesList, setNotesList] = useState<NotesProps[]>([])
 
@@ -41,21 +51,36 @@ export const NotesFrame = () => {
     const [isEditNote, setIsEditNote] = useState<boolean>(false)
 
     // addNotes
-    function addNotes(e:FormEvent){
+    async function addNotes(e:FormEvent){
         // Cancelando envio do formulario
         e.preventDefault()
 
-        if(note !== ''){
-            // Alterando o valor do isAddNote
-            setIsAddNote(!isAddNote)
+        try {
+            if(note !== ''){
+                // Alterando o valor do isAddNote
+                setIsAddNote(!isAddNote)
+    
+                setNotesList([...notesList, {
+                    item:note,
+                    date: new Date()
+                }])
 
-            setNotesList([...notesList, {
-                item:note,
-                date: new Date()
-            }])
+                // docRef
+                const docRef = doc(database, 'users', userData?.id as string)
 
-            // Limpando state
-            setNote('')
+                // Salvando notas no banco de dados
+                await updateDoc(docRef,{
+                    notes:[...notesList, {
+                        item:note,
+                        date: new Date()
+                    }]
+                })
+
+                // Limpando state
+                setNote('')
+            }
+        } catch (error) {
+            console.log(error)
         }
 
         
@@ -91,7 +116,7 @@ export const NotesFrame = () => {
                 <div className='flex items-center justify-end px-3 mb-2'>
                     <MinusIcon color='white' onClick={() => setIsNotes(false)}/>
                 </div>
-                
+
                 {isAddNote ? (
                     <form className='px-2 flex flex-col items-center gap-2'>
                         <textarea 
