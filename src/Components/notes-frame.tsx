@@ -1,12 +1,12 @@
 // import react
-import { FormEvent, useState } from 'react'
+import { FormEvent, useState, useEffect } from 'react'
 
 // import context
 import { UseMyContext } from '../Context/context'
 
 // import firebase
 import { database } from '../Services/FirebaseConnection'
-import { doc, updateDoc } from 'firebase/firestore'
+import { doc, updateDoc, getDoc } from 'firebase/firestore'
 
 // import store
 import { user } from '../Store/store'
@@ -38,6 +38,29 @@ export const NotesFrame = () => {
     // state - notesList
     const [notesList, setNotesList] = useState<NotesProps[]>([])
 
+    useEffect(() => {
+        // Buscando notas
+        async function seachNotesInFirebase(){
+            try {
+                // docRef
+                const docRef = doc(database, 'users', userData?.id as string)
+
+                // Buscando dados do banco de dados
+                const db = await getDoc(docRef)
+
+                if(db.exists()){
+                    setNotesList(db.data().notes)
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        // Executando seachNotesInFirebase
+        seachNotesInFirebase()
+        
+    },[])
+
     // state - note
     const [note, setNote] = useState<string>('')
 
@@ -62,7 +85,7 @@ export const NotesFrame = () => {
     
                 setNotesList([...notesList, {
                     item:note,
-                    date: new Date()
+                    date: Date.now()
                 }])
 
                 // docRef
@@ -72,7 +95,7 @@ export const NotesFrame = () => {
                 await updateDoc(docRef,{
                     notes:[...notesList, {
                         item:note,
-                        date: new Date()
+                        date: Date.now()
                     }]
                 })
 
@@ -139,7 +162,7 @@ export const NotesFrame = () => {
                         <div className='mt-2 flex flex-col gap-2'>
                             {notesList.map((item, idx) => {
                                 return(
-                                    <Dialog.Root>
+                                    <Dialog.Root key={idx}>
                                         <Dialog.Trigger key={idx} className='p-1 bg-slate-900/30 rounded-sm text-white'>
                                             <p className=' px-1 text-justify h-6 overflow-hidden'>
                                                 {item.item}
