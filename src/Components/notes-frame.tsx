@@ -67,6 +67,15 @@ export const NotesFrame = () => {
         setIsEditNote(false)
     }
 
+    // deleteNote
+    function deleteNote(idx:number){
+        // Filtrando nota por meio do indice
+        const newNotesList = notesList.filter((item,index) => index !== idx && item)
+
+        // Salvando novo array de notas
+        setNotesList(newNotesList)
+    }
+
     return(
         <Rnd bounds="window" enableResizing={false}>
             <div className='bg-slate-700 rounded-sm w-full cursor-pointer py-2'>
@@ -117,9 +126,9 @@ export const NotesFrame = () => {
                                                             <button className='bg-green-500 px-2' onClick={() => editNotes(idx)}>Editar</button>
                                                         ) : (
                                                             <>
-                                                                <button className='bg-red-500 px-2 rounded-sm'>
+                                                                <Dialog.Close className='bg-red-500 px-2 rounded-sm' onClick={() => deleteNote(idx)}>
                                                                     Delete
-                                                                </button>
+                                                                </Dialog.Close>
                                                                 <button className='bg-green-500 px-2' onClick={() => setIsEditNote(!isEditNote)}>
                                                                     Editar
                                                                 </button>
