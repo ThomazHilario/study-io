@@ -1,6 +1,9 @@
 // import react
 import { FormEvent, useState } from 'react'
 
+// import context
+import { UseMyContext } from '../Context/context'
+
 // dialog react
 import * as Dialog from '@radix-ui/react-dialog'
 
@@ -14,7 +17,13 @@ import { NotesProps } from '../interfaces/notesType'
 import { formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 
+// import lucide-icons
+import { MinusIcon } from 'lucide-react'
+
 export const NotesFrame = () => {
+
+    // context
+    const { setIsNotes } = UseMyContext()
 
     // state - notesList
     const [notesList, setNotesList] = useState<NotesProps[]>([])
@@ -79,6 +88,9 @@ export const NotesFrame = () => {
     return(
         <Rnd bounds="window" enableResizing={false}>
             <div className='bg-slate-700 rounded-sm w-full cursor-pointer py-2'>
+                <div className='flex items-center justify-end px-3 mb-2'>
+                    <MinusIcon color='white' onClick={() => setIsNotes(false)}/>
+                </div>
                 {isAddNote ? (
                     <form className='px-2 flex flex-col items-center gap-2'>
                         <textarea 
