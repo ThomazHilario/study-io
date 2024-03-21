@@ -22,8 +22,14 @@ export const NotesFrame = () => {
     // state - note
     const [note, setNote] = useState<string>('')
 
+    // state - editNote
+    const [editNote, setEditNote] = useState<string>('')
+
     // state isNote
     const [isAddNote, setIsAddNote] = useState<boolean>(false)
+
+    // state - isEditNote
+    const [isEditNote, setIsEditNote] = useState<boolean>(false)
 
     // addNotes
     function addNotes(e:FormEvent){
@@ -44,6 +50,21 @@ export const NotesFrame = () => {
         }
 
         
+    }
+
+    // editNote
+    function editNotes(idx:number){
+        // Buscando nota por meio do indice
+        const seachNote = notesList[idx]
+
+        // Editando a nota do item
+        seachNote.item = editNote
+
+        // Salvando a lista com o novo item editado
+        setNotesList([...notesList])
+
+        // Saindo do modo editar
+        setIsEditNote(false)
     }
 
     return(
@@ -68,7 +89,7 @@ export const NotesFrame = () => {
                     onClick={() => setIsAddNote(!isAddNote)}>Add note</button>
 
                     {notesList.length > 0 && (
-                        <div className='mt-2 flex flex-col'>
+                        <div className='mt-2 flex flex-col gap-2'>
                             {notesList.map((item, idx) => {
                                 return(
                                     <Dialog.Root>
@@ -85,9 +106,32 @@ export const NotesFrame = () => {
                                         <Dialog.Portal>
                                             <Dialog.Content className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
                                                 <div className='bg-slate-700 p-2 rounded-sm text-white text-justify w-[20vw]'>
-                                                    {item.item}
-                                                    <br />
-                                                    <span className='mt-1'>Criado há {formatDistanceToNow(item.date,{locale:ptBR})}</span>
+                                                    {isEditNote ? (
+                                                        <textarea className='text-black' rows={3} cols={38} value={editNote} onChange={(e) => setEditNote(e.target.value)}/>
+                                                    ) : 
+                                                        <div className='bg-black/40 p-2'><span>{item.item}</span></div>
+                                                    }
+
+                                                    <div className='mb-4 mt-4 flex gap-3'>
+                                                        {isEditNote ? (
+                                                            <button className='bg-green-500 px-2' onClick={() => editNotes(idx)}>Editar</button>
+                                                        ) : (
+                                                            <>
+                                                                <button className='bg-red-500 px-2 rounded-sm'>
+                                                                    Delete
+                                                                </button>
+                                                                <button className='bg-green-500 px-2' onClick={() => setIsEditNote(!isEditNote)}>
+                                                                    Editar
+                                                                </button>
+                                                            </>
+                                                        )}
+                                                    </div>
+
+                                                    {!isEditNote && (
+                                                        <span>
+                                                            Criado há {formatDistanceToNow(item.date,{locale:ptBR})}
+                                                        </span>
+                                                    )}
                                                 </div>
                                             </Dialog.Content>
                                         </Dialog.Portal>
