@@ -19,7 +19,10 @@ import { doc, updateDoc, getDoc } from 'firebase/firestore'
 // import dialog
 import * as Dialog from '@radix-ui/react-dialog'
 
-export default function TaskFrame(){
+// import interface
+import { TaskProps } from '../interfaces/notes-frames-type'
+
+export default function TaskFrame({task,setTask}:TaskProps){
 
     // Context
     const { setIsTask } = UseMyContext()
@@ -29,9 +32,6 @@ export default function TaskFrame(){
 
     // state - taskText
     const [taskText, setTaskText] = useState<string>('')
-
-    // state - task
-    const [task, setTask] = useState<string[]>([])
 
     useEffect(() => {
 

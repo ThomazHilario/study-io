@@ -42,6 +42,9 @@ export const Study = () => {
     const setUserData = user(state => state.setUserData)
     const userData = user(state => state.user)
 
+    // state - task
+    const [task, setTask] = useState<string[]>([])
+
     // state - notesList
     const [notesList, setNotesList] = useState<NotesProps[]>([])
 
@@ -63,12 +66,16 @@ export const Study = () => {
                 const data = await getDoc(docRef)
 
                 if(data.exists()){
+
                     // Inserindo dados na store
                     setUserData(id, 
                     data.data().dataUser.username, 
                     data.data().dataUser.email, 
                     data.data().dataUser.img
                     )
+
+                    // Salvando task
+                    setTask(data.data().task)
 
                     // Salvando notas
                     setNotesList(data.data().notes)
@@ -138,7 +145,7 @@ export const Study = () => {
                 <div className="bg-slate-900 w-full">
                     {isTask && (
                         <Rnd bounds="window" enableResizing={false} default={{x:10, y:65, height:'', width:''}}>
-                            <TaskFrame/>
+                            <TaskFrame task={task} setTask={setTask}/>
                         </Rnd>
                     )}
 
