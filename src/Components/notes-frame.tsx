@@ -1,12 +1,12 @@
 // import react
-import { FormEvent, useState, useEffect } from 'react'
+import { FormEvent, useState } from 'react'
 
 // import context
 import { UseMyContext } from '../Context/context'
 
 // import firebase
 import { database } from '../Services/FirebaseConnection'
-import { doc, updateDoc, getDoc } from 'firebase/firestore'
+import { doc, updateDoc } from 'firebase/firestore'
 
 // import store
 import { user } from '../Store/store'
@@ -17,49 +17,21 @@ import * as Dialog from '@radix-ui/react-dialog'
 // import rnd
 import { Rnd } from 'react-rnd'
 
-// import type
-import { NotesProps } from '../interfaces/notesType'
-
 // import date-fns
 import { formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 
 // import lucide-icons
 import { MinusIcon } from 'lucide-react'
+import { NotesFrameProps } from '../interfaces/notes-frames-type'
 
-export const NotesFrame = () => {
+export const NotesFrame = ({notesList, setNotesList}:NotesFrameProps) => {
 
     // context
     const { setIsNotes } = UseMyContext()
 
     // store
     const userData = user(state => state.user)
-
-    // state - notesList
-    const [notesList, setNotesList] = useState<NotesProps[]>([])
-
-    useEffect(() => {
-        // Buscando notas
-        async function seachNotesInFirebase(){
-            try {
-                // docRef
-                const docRef = doc(database, 'users', userData?.id as string)
-
-                // Buscando dados do banco de dados
-                const db = await getDoc(docRef)
-
-                if(db.exists()){
-                    setNotesList(db.data().notes)
-                }
-            } catch (error) {
-                console.log(error)
-            }
-        }
-
-        // Executando seachNotesInFirebase
-        seachNotesInFirebase()
-        
-    },[])
 
     // state - note
     const [note, setNote] = useState<string>('')

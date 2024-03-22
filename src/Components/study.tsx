@@ -1,8 +1,11 @@
 // import react
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 // import Context
 import { UseMyContext } from "../Context/context"
+
+// interface
+import { NotesProps } from '../interfaces/notesType'
 
 // Components
 import { MenuDialog } from "./menu-dialog"
@@ -39,6 +42,9 @@ export const Study = () => {
     const setUserData = user(state => state.setUserData)
     const userData = user(state => state.user)
 
+    // state - notesList
+    const [notesList, setNotesList] = useState<NotesProps[]>([])
+
     useEffect(() => {
 
         // localStorage
@@ -64,6 +70,8 @@ export const Study = () => {
                     data.data().dataUser.img
                     )
 
+                    // Salvando notas
+                    setNotesList(data.data().notes)
                 }
             } catch (error) {
                 console.log(error)
@@ -134,7 +142,7 @@ export const Study = () => {
                         </Rnd>
                     )}
 
-                    {isNotes && <NotesFrame/>}
+                    {isNotes && <NotesFrame notesList={notesList} setNotesList={setNotesList}/>}
                 </div>
             </div>
         </main>
