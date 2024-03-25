@@ -109,12 +109,24 @@ export const NotesFrame = ({notesList, setNotesList}:NotesFrameProps) => {
     }
 
     // deleteNote
-    function deleteNote(idx:number){
-        // Filtrando nota por meio do indice
-        const newNotesList = notesList.filter((item,index) => index !== idx && item)
+    async function deleteNote(idx:number){
+        try {
+            // Filtrando nota por meio do indice
+            const newNotesList = notesList.filter((item,index) => index !== idx && item)
 
-        // Salvando novo array de notas
-        setNotesList(newNotesList)
+            // Criando referencia do banco de dados
+            const docRef = doc(database, 'users', userData?.id as string)
+
+            // Atualizando banco de dados com a nova lista de notas
+            await updateDoc(docRef, {
+                notes: newNotesList
+            })
+
+            // Salvando novo array de notas
+            setNotesList(newNotesList)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return(
