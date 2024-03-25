@@ -33,6 +33,15 @@ export default function TaskFrame({task,setTask}:TaskProps){
     // state - taskText
     const [taskText, setTaskText] = useState<string>('')
 
+    // state - isEditTask
+    const [isEditTask, setIsEditTask] = useState<boolean>(false)
+
+    // state - editTaskText
+    const [editTaskText, setEditTaskText] = useState<string>('')
+
+    // state - editIndex
+    const [editIndex, setEditIndex] = useState<number | null>(null)
+
     useEffect(() => {
 
         // Buscando task
@@ -118,20 +127,63 @@ export default function TaskFrame({task,setTask}:TaskProps){
         }
     }
 
+    // activeEdit
+    function activeEdit(idx:number){
+
+        // Alterando o valor da state isEditask
+        setIsEditTask(!isEditTask)
+
+        // state editTaskText recebe o valor da task no qual sera editada
+        setEditTaskText(task[idx])
+
+        // Passando o index para a state editIndex
+        setEditIndex(idx)
+    }
+
+    // editTask
+    async function editingTask(){
+        try {
+            // Editando tarefa especifica
+            task[editIndex as number] = editTaskText
+
+            // Setando as alterações da state
+            setTask([...task])
+
+            // Referencia com o banco de dados
+            const docRef = doc(database, 'users', userData?.id as string)
+
+            // Atualizando as task do banco de dados
+            await updateDoc(docRef, {
+                task:[...task]
+            })
+
+            // Alterando valor boleano da state isEditTask
+            setIsEditTask(!isEditTask)
+
+            // Limpando state de edição
+            setEditTaskText('')
+
+            // Alterando index
+            setEditIndex(null)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return(
         <div className="bg-slate-700 py-3 px-5 rounded-sm text-white cursor-default">
             <div className='flex items-center justify-end px-3 mb-2'>
                     <MinusIcon className="cursor-pointer" color='white' onClick={() => setIsTask(false)}/>
             </div>
 
-            <form className="flex items-center gap-2" onSubmit={addTask}>
+            {!isEditTask && <form className="flex items-center gap-2" onSubmit={addTask}>
                 <input className="w-[300px] h-7 rounded-sm outline-none pl-2 font-syste bg-black/10" type="text" value={taskText} placeholder='Add task' onChange={(e) => setTaskText(e.target.value)} />
 
                 <button type="submit"><CircleFadingPlus color="white"/></button>
-            </form>
+            </form>}
 
             {/* minhas tarefas*/}
-            {task.length > 0 &&(
+            {isEditTask === false && task.length > 0 &&(
                 <ul className="mt-3 flex flex-col gap-2">
                     {task.map((item, idx) => {
                         return(
@@ -150,7 +202,7 @@ export default function TaskFrame({task,setTask}:TaskProps){
                                         
                                         <Dialog.Content className="absolute -right-5">
                                             <div className="bg-slate-800 w-32 flex flex-col">
-                                                <button className="py-2 px-2">Edit</button>
+                                                <button className="py-2 px-2" onClick={() => activeEdit(idx)}>Editar</button>
                                                 <Dialog.Close className="py-2 px-2" onClick={() => deleteTask(idx)}>
                                                     Delete
                                                 </Dialog.Close>
@@ -163,6 +215,21 @@ export default function TaskFrame({task,setTask}:TaskProps){
                         )
                     })}
                 </ul>
+            )} 
+            {isEditTask &&(
+                <div className="flex flex-col gap-2">
+                    <textarea className="resize-none text-black" rows={3} cols={38} value={editTaskText} onChange={(e) => setEditTaskText((e.target.value))}/>
+
+                    <div className="flex gap-2">
+                        <button className="bg-green-500 px-2 rounded-sm" onClick={editingTask}>
+                            Editar
+                        </button>
+
+                        <button className="bg-slate-800 px-2 rounded-sm" onClick={() => setIsEditTask(!isEditTask)}>
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
             )}
         </div>
     )
