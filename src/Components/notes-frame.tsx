@@ -82,18 +82,30 @@ export const NotesFrame = ({notesList, setNotesList}:NotesFrameProps) => {
     }
 
     // editNote
-    function editNotes(idx:number){
-        // Buscando nota por meio do indice
-        const seachNote = notesList[idx]
+    async function editNotes(idx:number){
+        try {
+            // Buscando nota por meio do indice
+            const seachNote = notesList[idx]
 
-        // Editando a nota do item
-        seachNote.item = editNote
+            // Editando a nota do item
+            seachNote.item = editNote
 
-        // Salvando a lista com o novo item editado
-        setNotesList([...notesList])
+            // Salvando a lista com o novo item editado
+            setNotesList([...notesList])
 
-        // Saindo do modo editar
-        setIsEditNote(false)
+            // Criando referencia do banco de dados
+            const docRef = doc(database, 'users', userData?.id as string)
+
+            // Atualizando notas no banco de dados
+            await updateDoc(docRef,{
+                notes:[...notesList]
+            })
+
+            // Saindo do modo editar
+            setIsEditNote(false)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     // deleteNote
@@ -156,13 +168,21 @@ export const NotesFrame = ({notesList, setNotesList}:NotesFrameProps) => {
 
                                                     <div className='mb-4 mt-4 flex gap-3'>
                                                         {isEditNote ? (
-                                                            <button className='bg-green-500 px-2' onClick={() => editNotes(idx)}>Editar</button>
+                                                            <>
+                                                                <button className='bg-green-500 px-2 rounded-sm' onClick={() => editNotes(idx)}>
+                                                                    Editar
+                                                                </button>
+
+                                                                <button className='bg-slate-800 px-2 rounded-sm' onClick={() => setIsEditNote(!isEditNote)}>
+                                                                    Cancel
+                                                                </button>
+                                                            </>
                                                         ) : (
                                                             <>
                                                                 <Dialog.Close className='bg-red-500 px-2 rounded-sm' onClick={() => deleteNote(idx)}>
                                                                     Delete
                                                                 </Dialog.Close>
-                                                                <button className='bg-green-500 px-2' onClick={() => setIsEditNote(!isEditNote)}>
+                                                                <button className='bg-green-500 px-2 rounded-sm' onClick={() => setIsEditNote(!isEditNote)}>
                                                                     Editar
                                                                 </button>
                                                             </>
