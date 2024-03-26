@@ -130,7 +130,7 @@ export const NotesFrame = ({notesList, setNotesList}:NotesFrameProps) => {
     }
 
     return(
-        <Rnd bounds="window" enableResizing={false}>
+        <Rnd bounds="window" enableResizing={false} default={{x:10, y:125, height:'', width:''}}>
             <div className='bg-slate-700 rounded-sm w-full cursor-pointer py-3'>
                 <div className='flex items-center justify-end px-3 mb-2'>
                     <MinusIcon color='white' onClick={() => setIsNotes(false)}/>
