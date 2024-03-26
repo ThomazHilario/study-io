@@ -218,7 +218,7 @@ export default function TaskFrame({task,setTask}:TaskProps){
             )} 
             {isEditTask &&(
                 <div className="flex flex-col gap-2">
-                    <textarea className="resize-none text-black" rows={3} cols={38} value={editTaskText} onChange={(e) => setEditTaskText((e.target.value))}/>
+                    <textarea className="resize-none p-1 bg-black/20 outline-none" rows={3} cols={38} value={editTaskText} onChange={(e) => setEditTaskText((e.target.value))}/>
 
                     <div className="flex gap-2">
                         <button className="bg-green-500 px-2 rounded-sm" onClick={editingTask}>
