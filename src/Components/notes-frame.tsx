@@ -139,8 +139,8 @@ export const NotesFrame = ({notesList, setNotesList}:NotesFrameProps) => {
                 {isAddNote ? (
                     <form className='px-2 flex flex-col items-center gap-2'>
                         <textarea 
-                        className='resize-none rounded-sm' 
-                        cols={35} 
+                        className='resize-none outline-none p-1 bg-black/20 w-full text-white rounded-sm'
+                        cols={38}
                         rows={3} 
                         value={note}
                         onChange={(e) => setNote(e.target.value)}
@@ -173,7 +173,7 @@ export const NotesFrame = ({notesList, setNotesList}:NotesFrameProps) => {
                                             <Dialog.Content className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
                                                 <div className='bg-slate-700 p-2 rounded-sm text-white text-justify w-[20vw]'>
                                                     {isEditNote ? (
-                                                        <textarea className='text-black' rows={3} cols={38} value={editNote} onChange={(e) => setEditNote(e.target.value)}/>
+                                                        <textarea className='p-1 resize-none outline-none bg-black/20 w-full rounded-sm' rows={3} value={editNote} onChange={(e) => setEditNote(e.target.value)}/>
                                                     ) : 
                                                         <div className='bg-black/40 p-2'><span>{item.item}</span></div>
                                                     }
