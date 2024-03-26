@@ -13,6 +13,7 @@ import { UpdateImage } from "./updateImage"
 import { MenuAside } from "./menu-aside"
 import TaskFrame from "./task-frame"
 import { NotesFrame } from "./notes-frame"
+import { Timer } from './timer'
 
 // draggable 
 import { Rnd } from "react-rnd"
@@ -36,7 +37,7 @@ export const Study = () => {
     // Context
     const { isFullscreen, setIsFullscreen } = UseMyContext()
     const { resizable, setResizable } = UseMyContext()
-    const { isTask, isNotes } = UseMyContext()
+    const { isTask, isNotes, isTimer } = UseMyContext()
 
     // store
     const setUserData = user(state => state.setUserData)
@@ -143,12 +144,17 @@ export const Study = () => {
 
                 {/* Wallpaper */}
                 <div className="bg-slate-900 w-full">
+                    {/* Timer */}
+                    {isTimer && <Timer/>}
+                    
+                    {/* Task */}
                     {isTask && (
                         <Rnd bounds="window" enableResizing={false} default={{x:10, y:65, height:'', width:''}}>
                             <TaskFrame task={task} setTask={setTask}/>
                         </Rnd>
                     )}
 
+                    {/* Notes */}
                     {isNotes && <NotesFrame notesList={notesList} setNotesList={setNotesList}/>}
                 </div>
             </div>
