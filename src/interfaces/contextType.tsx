@@ -8,7 +8,9 @@ export interface FullScreenProps{
     isTask:boolean,
     setIsTask: React.Dispatch<React.SetStateAction<boolean>>,
     isNotes:boolean,
-    setIsNotes:React.Dispatch<React.SetStateAction<boolean>>
+    setIsNotes:React.Dispatch<React.SetStateAction<boolean>>,
+    isTimer:boolean,
+    setIsTimer:React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export interface ChildrenType{
