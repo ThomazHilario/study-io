@@ -25,7 +25,7 @@ export const Timer = () => {
     const [shortBreak, setShortBreak] = useState<boolean>(true)
 
     // state - minutes
-    const [minutes, setMinutes] = useState<number>(1)
+    const [minutes, setMinutes] = useState<number>(20)
 
     // state - seconds
     const [seconds, setSeconds] = useState<number>(0)
