@@ -4,6 +4,10 @@ import { useEffect, useMemo, useState } from "react"
 // import context
 import { UseMyContext } from "../Context/context"
 
+// Audio
+import pause from '../assets/audio/pause.mp3'
+import unpause from '../assets/audio/unpause.mp3'
+
 // import Rnd
 import { Rnd } from "react-rnd"
 
@@ -51,6 +55,9 @@ export const Timer = () => {
 
                     // Caso o minuto seja menor 1 e o shortBreak seja true
                     if(shortBreak && minutes < 1){
+                        // audio de pause
+                        new Audio(pause).play()
+
                         // Alterando o valor de minutes para 4
                         setMinutes(4)
 
@@ -60,6 +67,9 @@ export const Timer = () => {
 
                     // Caso o minuto seja menor que 1 e o shortBreak seja falso
                     if(shortBreak === false && minutes < 1){
+                        // audio de unpause
+                        new Audio(unpause).play()
+
                         // Alterando o valor de minutes para 19
                         setMinutes(19)
 
