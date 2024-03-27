@@ -16,6 +16,8 @@ import { MinusIcon } from "lucide-react"
 import { RotateCcw } from 'lucide-react'
 import { DraggableEvent } from "react-draggable"
 
+import DragStopType from "../interfaces/dragType"
+
 export const Timer = () => {
 
     // Default position Timer drag
@@ -109,12 +111,14 @@ export const Timer = () => {
     const minuteMemorize = useMemo(() => minutes < 10 ? '0' + minutes : minutes,[minutes])
     const secondsMemorize = useMemo(() => seconds < 10 ? '0' + seconds : seconds,[seconds])
 
-    function saveDragTimerPosition(mouse, drag){
-        localStorage.setItem('timerDrag', JSON.stringify({
-            mouse:mouse,
-            x:drag.x,
-            y:drag.y
-        }))
+    
+    function saveDragTimerPosition(mouse:DraggableEvent, drag:DragStopType){
+            localStorage.setItem('timerDrag', JSON.stringify({
+                mouse:mouse,
+                x:drag.x,
+                y:drag.y
+            }))
+        
     }
 
     return(
