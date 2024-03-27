@@ -111,7 +111,7 @@ export const Timer = () => {
     const minuteMemorize = useMemo(() => minutes < 10 ? '0' + minutes : minutes,[minutes])
     const secondsMemorize = useMemo(() => seconds < 10 ? '0' + seconds : seconds,[seconds])
 
-    
+    // Salvando valores x e y do Timer na localStorage
     function saveDragTimerPosition(mouse:DraggableEvent, drag:DragStopType){
             console.log(drag)
             localStorage.setItem('timerDrag', JSON.stringify({
