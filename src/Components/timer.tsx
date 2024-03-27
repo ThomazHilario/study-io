@@ -14,8 +14,13 @@ import { Rnd } from "react-rnd"
 // import from lucide-icons
 import { MinusIcon } from "lucide-react"
 import { RotateCcw } from 'lucide-react'
+import { DraggableEvent } from "react-draggable"
 
 export const Timer = () => {
+
+    // Default position Timer drag
+    const timerPositionX = localStorage.getItem('timerDrag') !== null ? JSON.parse(localStorage.getItem('timerDrag') as string).x : 10
+    const timerPositionY = localStorage.getItem('timerDrag') !== null ? JSON.parse(localStorage.getItem('timerDrag') as string).y : 10
 
     // Context
     const {setIsTimer} = UseMyContext()
@@ -104,9 +109,19 @@ export const Timer = () => {
     const minuteMemorize = useMemo(() => minutes < 10 ? '0' + minutes : minutes,[minutes])
     const secondsMemorize = useMemo(() => seconds < 10 ? '0' + seconds : seconds,[seconds])
 
+    function saveDragTimerPosition(mouse, drag){
+        localStorage.setItem('timerDrag', JSON.stringify({
+            mouse:mouse,
+            x:drag.x,
+            y:drag.y
+        }))
+    }
 
     return(
-        <Rnd bounds='window' enableResizing={false} default={{x:10, y: 10, height:'', width:''}}>
+        <Rnd bounds='window'
+         enableResizing={false}
+          default={{x:timerPositionX, y:timerPositionY, height:'', width:''}}
+          onDragStop={saveDragTimerPosition}>
             <div className="bg-slate-700 rounded-sm w-full cursor-pointer py-2">
                 <div className='flex items-center justify-end px-3 mb-2 border-b-[1px]'>
                     <MinusIcon color='white' onClick={() => setIsTimer(false)}/>
