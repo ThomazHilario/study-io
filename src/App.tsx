@@ -2,7 +2,15 @@ import { PhysicalSize, appWindow } from '@tauri-apps/api/window'
 appWindow.setMinSize(new PhysicalSize(1450,900))
 
 // Ao redimensionar a tela
+appWindow.onResized(() => {
 
+  const timerDrag = localStorage.getItem('timerDrag') !== null && JSON.parse(localStorage.getItem('timerDrag') as string)
+
+  timerDrag.x = timerDrag.x > 812 ? 800 : timerDrag.x
+  timerDrag.y = timerDrag.y > 546 ? 540 : timerDrag.y
+
+  localStorage.setItem('timerDrag',JSON.stringify(timerDrag))
+})
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
