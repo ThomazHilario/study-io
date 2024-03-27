@@ -113,6 +113,7 @@ export const Timer = () => {
 
     
     function saveDragTimerPosition(mouse:DraggableEvent, drag:DragStopType){
+            console.log(drag)
             localStorage.setItem('timerDrag', JSON.stringify({
                 mouse:mouse,
                 x:drag.x,
@@ -125,7 +126,7 @@ export const Timer = () => {
         <Rnd bounds='window'
          enableResizing={false}
           default={{x:timerPositionX, y:timerPositionY, height:'', width:''}}
-          onDragStop={saveDragTimerPosition}>
+          >
             <div className="bg-slate-700 rounded-sm w-full cursor-pointer py-2">
                 <div className='flex items-center justify-end px-3 mb-2 border-b-[1px]'>
                     <MinusIcon color='white' onClick={() => setIsTimer(false)}/>

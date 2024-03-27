@@ -1,5 +1,9 @@
 import { PhysicalSize, appWindow } from '@tauri-apps/api/window'
 appWindow.setMinSize(new PhysicalSize(1450,900))
+
+// Ao redimensionar a tela
+
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 // import window header 
