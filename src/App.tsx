@@ -1,4 +1,6 @@
 import { PhysicalSize, appWindow } from '@tauri-apps/api/window'
+
+// Aplicando valor minimo da tela de desktop
 appWindow.setMinSize(new PhysicalSize(1450,900))
 
 // Ao redimensionar a tela
