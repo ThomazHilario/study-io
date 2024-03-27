@@ -9,6 +9,7 @@ import { Rnd } from "react-rnd"
 
 // import from lucide-icons
 import { MinusIcon } from "lucide-react"
+import { RotateCcw } from 'lucide-react'
 
 export const Timer = () => {
 
@@ -95,7 +96,7 @@ export const Timer = () => {
 
 
     return(
-        <Rnd bounds='window' enableResizing={false}>
+        <Rnd bounds='window' enableResizing={false} default={{x:10, y: 10, height:'', width:''}}>
             <div className="bg-slate-700 rounded-sm w-full cursor-pointer py-2">
                 <div className='flex items-center justify-end px-3 mb-2 border-b-[1px]'>
                     <MinusIcon color='white' onClick={() => setIsTimer(false)}/>
@@ -106,7 +107,7 @@ export const Timer = () => {
 
                     <button className="bg-black/20 rounded-md py-2 px-5" onClick={() => setIsStartTimer(!isStartTimer)}>{!isStartTimer ? 'Start' : 'Pause'}</button>
 
-                    <button className="bg-black/20 rounded-md py-2 px-5" onClick={() => setIsRestartTimer(!isRestartTimer)}>Restart</button>
+                    <RotateCcw color="white" onClick={() => setIsRestartTimer(!isRestartTimer)} />
                 </div>
             </div>
         </Rnd>
