@@ -34,6 +34,12 @@ export const MenuDialog = () => {
             // Retirando id da localStorage
             localStorage.removeItem('@DataId')
 
+            // Removendo o timerDrag da localStorage
+            localStorage.removeItem('timerDrag')
+
+            // Removendo o TaskFrameDrag da localStorage
+            localStorage.removeItem('TaskFrameDrag')
+
             // Navegando a rota inicial
             navigate('/')
         } catch (error) {
