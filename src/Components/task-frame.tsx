@@ -7,6 +7,7 @@ import { CircleFadingPlus, MenuIcon } from 'lucide-react'
 // import Context
 import { UseMyContext } from "../Context/context"
 
+// import lucide-icons
 import { MinusIcon } from "lucide-react"
 
 // store
