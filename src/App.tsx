@@ -23,7 +23,7 @@ appWindow.onResized(() => {
 
   // Buscando valores x e y na localStorage
   const TaskFrameDrag = localStorage.getItem('TaskFrameDrag') !== null && JSON.parse(localStorage.getItem('TaskFrameDrag') as string)
-  console.log(TaskFrameDrag)
+  
   // Alterando valores x e y de acordo com a condição
   TaskFrameDrag.x = TaskFrameDrag.x > 812 ? 730 : TaskFrameDrag.x
   TaskFrameDrag.y = TaskFrameDrag.y > 546 ? 540 : TaskFrameDrag.y

@@ -15,10 +15,6 @@ import TaskFrame from "./task-frame"
 import { NotesFrame } from "./notes-frame"
 import { Timer } from './timer'
 
-// draggable 
-import { Rnd } from "react-rnd"
-
-
 // import Firebase
 import { database } from "../Services/FirebaseConnection"
 import { getDoc, doc } from "firebase/firestore"
