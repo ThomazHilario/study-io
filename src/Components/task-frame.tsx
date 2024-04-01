@@ -26,6 +26,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 // import interface
 import { TaskProps } from '../interfaces/notes-frames-type'
 import DragStopType from "../interfaces/dragType"
+import { DraggableEvent } from "react-draggable"
 
 export default function TaskFrame({task,setTask}:TaskProps){
 
@@ -176,7 +177,7 @@ export default function TaskFrame({task,setTask}:TaskProps){
     }
 
     // savingPositionComponentTask
-    function savingPositionComponentTask(mouse:MouseEvent,position:DragStopType){
+    function savingPositionComponentTask(mouse:DraggableEvent,position:DragStopType){
         // Salvando valaores x e y na localStorage
         localStorage.setItem('TaskFrameDrag',JSON.stringify({
             mouse,
