@@ -25,6 +25,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 
 // import interface
 import { TaskProps } from '../interfaces/notes-frames-type'
+import DragStopType from "../interfaces/dragType"
 
 export default function TaskFrame({task,setTask}:TaskProps){
 
@@ -174,8 +175,21 @@ export default function TaskFrame({task,setTask}:TaskProps){
         }
     }
 
+    // savingPositionComponentTask
+    function savingPositionComponentTask(mouse:MouseEvent,position:DragStopType){
+        // Salvando valaores x e y na localStorage
+        localStorage.setItem('TaskFrameDrag',JSON.stringify({
+            mouse,
+            x:position.x,
+            y:position.y
+        }))
+    }
+
     return(
-        <Rnd bounds="window" enableResizing={false} default={{x:10, y:65, height:'', width:''}}>
+        <Rnd bounds="window" 
+        enableResizing={false} 
+        default={{x:10, y:65, height:'', width:''}}
+        onDragStop={savingPositionComponentTask}>
             <div className="bg-slate-700 py-3 px-5 rounded-sm text-white cursor-default">
                 <div className='flex items-center justify-end px-3 mb-2'>
                         <MinusIcon className="cursor-pointer" color='white' onClick={() => setIsTask(false)}/>
