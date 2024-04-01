@@ -1,5 +1,5 @@
 // import Lucide-icons
-import { AlarmClock, PencilLine, NotebookPen, CalendarDays } from 'lucide-react'
+import { AlarmClock, PencilLine, NotebookPen, WallpaperIcon,CalendarDays } from 'lucide-react'
 
 // context
 import { UseMyContext } from '../Context/context'
@@ -26,6 +26,11 @@ export const MenuAside = () => {
             <li className={`flex flex-col justify-center items-center ${isNotes && 'bg-gray-400/10'} hover:bg-gray-400/10 py-[0.15rem] px-1 rounded-md`} onClick={() => setIsNotes(!isNotes)}>
                 <NotebookPen color='white' size={20}/>
                 <p className='text-white text-[0.8rem] font-semibold font-system'>Notes</p>
+            </li>
+
+            <li className='flex flex-col justify-center items-center hover:bg-gray-400/10 py-[0.15rem] px-1 rounded-md'>
+                <WallpaperIcon color='white' size={20}/>
+                <p className='text-white text-[0.75rem] font-semibold font-system'>Themes</p>
             </li>
 
             <li className='flex flex-col justify-center items-center hover:bg-gray-400/10 py-[0.15rem] px-1 rounded-md'>
