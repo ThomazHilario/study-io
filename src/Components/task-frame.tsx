@@ -7,6 +7,9 @@ import { CircleFadingPlus, MenuIcon } from 'lucide-react'
 // import Context
 import { UseMyContext } from "../Context/context"
 
+// import rnd
+import { Rnd } from "react-rnd"
+
 // import lucide-icons
 import { MinusIcon } from "lucide-react"
 
@@ -172,66 +175,68 @@ export default function TaskFrame({task,setTask}:TaskProps){
     }
 
     return(
-        <div className="bg-slate-700 py-3 px-5 rounded-sm text-white cursor-default">
-            <div className='flex items-center justify-end px-3 mb-2'>
-                    <MinusIcon className="cursor-pointer" color='white' onClick={() => setIsTask(false)}/>
-            </div>
-
-            {!isEditTask && <form className="flex items-center gap-2" onSubmit={addTask}>
-                <input className="w-[300px] h-7 rounded-sm outline-none pl-2 font-syste bg-black/10" type="text" value={taskText} placeholder='Add task' onChange={(e) => setTaskText(e.target.value)} />
-
-                <button type="submit"><CircleFadingPlus color="white"/></button>
-            </form>}
-
-            {/* minhas tarefas*/}
-            {isEditTask === false && task.length > 0 &&(
-                <ul className="mt-3 flex flex-col gap-2">
-                    {task.map((item, idx) => {
-                        return(
-                            <li key={idx} className="group flex gap-4 border-2 py-1 px-2 rounded-md w-[330px] justify-between">
-                                <div className="flex items-center gap-2">
-                                    <input className="min-h-4 min-w-4" type="checkbox" onChange={taskComplete}/>
-                                    <span className="text-justify whitespace-break-spaces">{item}</span>
-                                </div>
-
-                                <div className="w-7">
-                                    <Dialog.Root>
-                                        <Dialog.Trigger>
-                                            <MenuIcon className="hidden group-hover:block cursor-pointer" size={15}/>
-                                        </Dialog.Trigger>
-
-                                        
-                                        <Dialog.Content className="absolute -right-5">
-                                            <div className="bg-slate-800 w-32 flex flex-col">
-                                                <button className="py-2 px-2" onClick={() => activeEdit(idx)}>Editar</button>
-                                                <Dialog.Close className="py-2 px-2" onClick={() => deleteTask(idx)}>
-                                                    Delete
-                                                </Dialog.Close>
-                                            </div>
-                                        </Dialog.Content>
-                                        
-                                    </Dialog.Root>
-                                </div>
-                            </li>
-                        )
-                    })}
-                </ul>
-            )} 
-            {isEditTask &&(
-                <div className="flex flex-col gap-2">
-                    <textarea className="resize-none p-1 bg-black/20 outline-none" rows={3} cols={38} value={editTaskText} onChange={(e) => setEditTaskText((e.target.value))}/>
-
-                    <div className="flex gap-2">
-                        <button className="bg-green-500 px-2 rounded-sm" onClick={editingTask}>
-                            Editar
-                        </button>
-
-                        <button className="bg-slate-800 px-2 rounded-sm" onClick={() => setIsEditTask(!isEditTask)}>
-                            Cancelar
-                        </button>
-                    </div>
+        <Rnd bounds="window" enableResizing={false} default={{x:10, y:65, height:'', width:''}}>
+            <div className="bg-slate-700 py-3 px-5 rounded-sm text-white cursor-default">
+                <div className='flex items-center justify-end px-3 mb-2'>
+                        <MinusIcon className="cursor-pointer" color='white' onClick={() => setIsTask(false)}/>
                 </div>
-            )}
-        </div>
+
+                {!isEditTask && <form className="flex items-center gap-2" onSubmit={addTask}>
+                    <input className="w-[300px] h-7 rounded-sm outline-none pl-2 font-syste bg-black/10" type="text" value={taskText} placeholder='Add task' onChange={(e) => setTaskText(e.target.value)} />
+
+                    <button type="submit"><CircleFadingPlus color="white"/></button>
+                </form>}
+
+                {/* minhas tarefas*/}
+                {isEditTask === false && task.length > 0 &&(
+                    <ul className="mt-3 flex flex-col gap-2">
+                        {task.map((item, idx) => {
+                            return(
+                                <li key={idx} className="group flex gap-4 border-2 py-1 px-2 rounded-md w-[330px] justify-between">
+                                    <div className="flex items-center gap-2">
+                                        <input className="min-h-4 min-w-4" type="checkbox" onChange={taskComplete}/>
+                                        <span className="text-justify whitespace-break-spaces">{item}</span>
+                                    </div>
+
+                                    <div className="w-7">
+                                        <Dialog.Root>
+                                            <Dialog.Trigger>
+                                                <MenuIcon className="hidden group-hover:block cursor-pointer" size={15}/>
+                                            </Dialog.Trigger>
+
+                                            
+                                            <Dialog.Content className="absolute -right-5">
+                                                <div className="bg-slate-800 w-32 flex flex-col">
+                                                    <button className="py-2 px-2" onClick={() => activeEdit(idx)}>Editar</button>
+                                                    <Dialog.Close className="py-2 px-2" onClick={() => deleteTask(idx)}>
+                                                        Delete
+                                                    </Dialog.Close>
+                                                </div>
+                                            </Dialog.Content>
+                                            
+                                        </Dialog.Root>
+                                    </div>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                )} 
+                {isEditTask &&(
+                    <div className="flex flex-col gap-2">
+                        <textarea className="resize-none p-1 bg-black/20 outline-none" rows={3} cols={38} value={editTaskText} onChange={(e) => setEditTaskText((e.target.value))}/>
+
+                        <div className="flex gap-2">
+                            <button className="bg-green-500 px-2 rounded-sm" onClick={editingTask}>
+                                Editar
+                            </button>
+
+                            <button className="bg-slate-800 px-2 rounded-sm" onClick={() => setIsEditTask(!isEditTask)}>
+                                Cancelar
+                            </button>
+                        </div>
+                    </div>
+                )}
+            </div>
+        </Rnd>    
     )
 }

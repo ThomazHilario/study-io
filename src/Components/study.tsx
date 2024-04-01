@@ -148,11 +148,7 @@ export const Study = () => {
                     {isTimer && <Timer/>}
                     
                     {/* Task */}
-                    {isTask && (
-                        <Rnd bounds="window" enableResizing={false} default={{x:10, y:65, height:'', width:''}}>
-                            <TaskFrame task={task} setTask={setTask}/>
-                        </Rnd>
-                    )}
+                    {isTask &&   <TaskFrame task={task} setTask={setTask}/>  }
 
                     {/* Notes */}
                     {isNotes && <NotesFrame notesList={notesList} setNotesList={setNotesList}/>}
