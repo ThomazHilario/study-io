@@ -113,7 +113,7 @@ export const Timer = () => {
 
     // Salvando valores x e y do Timer na localStorage
     function saveDragTimerPosition(mouse:DraggableEvent, drag:DragStopType){
-            console.log(drag)
+            // Salvando os valores x e y do componente na localStorage
             localStorage.setItem('timerDrag', JSON.stringify({
                 mouse:mouse,
                 x:drag.x,
