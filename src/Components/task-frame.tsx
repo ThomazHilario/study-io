@@ -33,6 +33,11 @@ export default function TaskFrame({task,setTask}:TaskProps){
     // Context
     const { setIsTask } = UseMyContext()
 
+    // variaveis x e y
+    const positionXTaskFrame = localStorage.getItem('TaskFrameDrag') !== null ? JSON.parse(localStorage.getItem('TaskFrameDrag') as string).x : 10
+
+    const positionYTaskFrame = localStorage.getItem('TaskFrameDrag') !== null ? JSON.parse(localStorage.getItem('TaskFrameDrag') as string).y : 65
+
     // store
     const userData = user(state => state.user)
 
@@ -189,7 +194,7 @@ export default function TaskFrame({task,setTask}:TaskProps){
     return(
         <Rnd bounds="window" 
         enableResizing={false} 
-        default={{x:10, y:65, height:'', width:''}}
+        default={{x:positionXTaskFrame, y:positionYTaskFrame, height:'', width:''}}
         onDragStop={savingPositionComponentTask}>
             <div className="bg-slate-700 py-3 px-5 rounded-sm text-white cursor-default">
                 <div className='flex items-center justify-end px-3 mb-2'>
