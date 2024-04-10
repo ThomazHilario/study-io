@@ -25,7 +25,14 @@ import { ptBR } from 'date-fns/locale'
 import { MinusIcon } from 'lucide-react'
 import { NotesFrameProps } from '../interfaces/notes-frames-type'
 
+// import interfaces
+import { DraggableData, DraggableEvent } from 'react-draggable'
+
 export const NotesFrame = ({notesList, setNotesList}:NotesFrameProps) => {
+
+    // Valores x e y
+    const xDrag = localStorage.getItem('notesDrag') ? JSON.parse(localStorage.getItem('notesDrag') as string).x : 10
+    const yDrag = localStorage.getItem('notesDrag') ? JSON.parse(localStorage.getItem('notesDrag') as string).y : 125
 
     // context
     const { setIsNotes } = UseMyContext()
@@ -129,8 +136,20 @@ export const NotesFrame = ({notesList, setNotesList}:NotesFrameProps) => {
         }
     }
 
+    // savePositionNotesDrag
+    function savePositionNotesDrag(mouse:DraggableEvent,drag:DraggableData){
+        localStorage.setItem('notesDrag',JSON.stringify({
+            x:drag.x,
+            y:drag.y,
+            mouse
+        }))
+    }
+
     return(
-        <Rnd bounds="window" enableResizing={false} default={{x:10, y:125, height:'', width:''}}>
+        <Rnd bounds="window" 
+        enableResizing={false} 
+        default={{x:xDrag, y:yDrag, height:'', width:''}}
+        onDragStop={savePositionNotesDrag}>
             <div className='bg-slate-700 rounded-sm w-full cursor-pointer py-3'>
                 <div className='flex items-center justify-end px-3 mb-2'>
                     <MinusIcon color='white' onClick={() => setIsNotes(false)}/>
