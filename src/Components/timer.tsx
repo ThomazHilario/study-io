@@ -14,9 +14,7 @@ import { Rnd } from "react-rnd"
 // import from lucide-icons
 import { MinusIcon } from "lucide-react"
 import { RotateCcw } from 'lucide-react'
-import { DraggableEvent } from "react-draggable"
-
-import DragStopType from "../interfaces/dragType"
+import { DraggableData, DraggableEvent } from "react-draggable"
 
 export const Timer = () => {
 
@@ -112,7 +110,7 @@ export const Timer = () => {
     const secondsMemorize = useMemo(() => seconds < 10 ? '0' + seconds : seconds,[seconds])
 
     // Salvando valores x e y do Timer na localStorage
-    function saveDragTimerPosition(mouse:DraggableEvent, drag:DragStopType){
+    function saveDragTimerPosition(mouse:DraggableEvent, drag:DraggableData){
             // Salvando os valores x e y do componente na localStorage
             localStorage.setItem('timerDrag', JSON.stringify({
                 mouse:mouse,
