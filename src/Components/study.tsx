@@ -34,7 +34,7 @@ export const Study = () => {
     // Context
     const { isFullscreen, setIsFullscreen } = UseMyContext()
     const { resizable, setResizable } = UseMyContext()
-    const { isTask, isNotes, isTimer } = UseMyContext()
+    const { isTask, isNotes, isTimer, isThemes } = UseMyContext()
 
     // store
     const setUserData = user(state => state.setUserData)
@@ -149,6 +149,9 @@ export const Study = () => {
 
                     {/* Notes */}
                     {isNotes && <NotesFrame notesList={notesList} setNotesList={setNotesList}/>}
+
+                    {/* Themes */}
+                    {isThemes && <Themes/>}
                 </div>
             </div>
         </main>

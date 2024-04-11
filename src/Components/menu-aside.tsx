@@ -10,6 +10,7 @@ export const MenuAside = () => {
     const {isTimer, setIsTimer} = UseMyContext()
     const {isTask, setIsTask} = UseMyContext()
     const {isNotes, setIsNotes} = UseMyContext()
+    const {isThemes, setIsThemes} = UseMyContext()
 
     return(
         <menu className='mt-4 flex flex-col gap-3 *:cursor-pointer'>
@@ -28,7 +29,7 @@ export const MenuAside = () => {
                 <p className='text-white text-[0.8rem] font-semibold font-system'>Notes</p>
             </li>
 
-            <li className='flex flex-col justify-center items-center hover:bg-gray-400/10 py-[0.15rem] px-1 rounded-md'>
+            <li className={`flex flex-col justify-center items-center ${isThemes && 'bg-gray-400/10'} hover:bg-gray-400/10 py-[0.15rem] px-1 rounded-md`} onClick={() => setIsThemes(!isThemes)}>
                 <WallpaperIcon color='white' size={20}/>
                 <p className='text-white text-[0.75rem] font-semibold font-system'>Themes</p>
             </li>
