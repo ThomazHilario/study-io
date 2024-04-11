@@ -14,6 +14,7 @@ import { MenuAside } from "./menu-aside"
 import TaskFrame from "./task-frame"
 import { NotesFrame } from "./notes-frame"
 import { Timer } from './timer'
+import { Themes } from "./themes"
 
 // import Firebase
 import { database } from "../Services/FirebaseConnection"

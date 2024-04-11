@@ -10,7 +10,9 @@ export interface FullScreenProps{
     isNotes:boolean,
     setIsNotes:React.Dispatch<React.SetStateAction<boolean>>,
     isTimer:boolean,
-    setIsTimer:React.Dispatch<React.SetStateAction<boolean>>
+    setIsTimer:React.Dispatch<React.SetStateAction<boolean>>,
+    isThemes:boolean,
+    setIsThemes:React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export interface ChildrenType{
