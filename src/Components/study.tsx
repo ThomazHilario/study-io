@@ -29,6 +29,9 @@ import { Maximize2 } from 'lucide-react'
 // import window from tauri
 import { appWindow } from '@tauri-apps/api/window'
 
+// import theme
+import video from '../assets/themes/lofi-boy-chilling-with-cat-moewalls-com.mp4'
+
 export const Study = () => {
 
     // Context
@@ -111,7 +114,7 @@ export const Study = () => {
     return(
         <main className="flex flex-col bg-slate-900 h-screen">
             {/* header */}
-            <header className={`flex items-center justify-between px-2 bg-[#202224] basis-12 ${isFullscreen ? 'mt-5 pt-1' : 'mt-0'} border-b-[1px] border-b-gray-600`}>
+            <header className={`flex items-center justify-between px-2 bg-[#202224] basis-13 ${isFullscreen ? 'mt-5 pt-1' : 'mt-0'} border-b-[1px] border-b-gray-600`}>
                 {/*  what user using app */}
                 <div className={`flex gap-2 items-center`}>
                     {userData?.img !== null ? (
@@ -141,6 +144,9 @@ export const Study = () => {
 
                 {/* Wallpaper */}
                 <div className="bg-slate-900 w-full">
+                    <video className="w-full h-full max-h-full max-w-full object-cover" autoPlay loop>
+                        <source src={video}/>
+                    </video>
                     {/* Timer */}
                     {isTimer && <Timer/>}
                     
@@ -152,6 +158,8 @@ export const Study = () => {
 
                     {/* Themes */}
                     {isThemes && <Themes/>}
+
+                    
                 </div>
             </div>
         </main>
