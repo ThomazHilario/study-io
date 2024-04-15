@@ -29,9 +29,6 @@ import { Maximize2 } from 'lucide-react'
 // import window from tauri
 import { appWindow } from '@tauri-apps/api/window'
 
-// import theme
-import video from '../assets/themes/lofi-boy-chilling-with-cat-moewalls-com.mp4'
-
 export const Study = () => {
 
     // Context
@@ -145,7 +142,7 @@ export const Study = () => {
                 {/* Wallpaper */}
                 <div className="bg-slate-900 w-full">
                     <video className="w-full h-full object-cover" autoPlay loop>
-                        <source src={video}/>
+                        <source src="https://res.cloudinary.com/dseywnx5i/video/upload/f_auto:video,q_auto/rry7vq8padzg2tqeinz3"/>
                     </video>
                     {/* Timer */}
                     {isTimer && <Timer/>}
