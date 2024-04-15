@@ -166,12 +166,12 @@ export const NotesFrame = ({notesList, setNotesList}:NotesFrameProps) => {
                         />
 
                         <button className='border-2 w-full text-white' 
-                        type='submit' onClick={addNotes}>Add note</button>
+                        type='submit' onClick={addNotes}>Adicionar nota</button>
                     </form>
                 ) : 
                 <div className='px-2 w-[330px]'>
                     <button className='w-full rounded-sm border-2 text-center text-white'  
-                    onClick={() => setIsAddNote(!isAddNote)}>Add note</button>
+                    onClick={() => setIsAddNote(!isAddNote)}>Adicionar nota</button>
 
                     {notesList.length > 0 && (
                         <div className='mt-2 flex flex-col gap-2'>
