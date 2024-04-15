@@ -14,6 +14,11 @@ export const Themes = () => {
             <div className="p-6 flex justify-end items-center">
                 <Minus className="cursor-pointer" color="white" onClick={() => setIsThemes(false)}/>
             </div>
+
+            {/* Container Themes */}
+            <div>
+                <img src="https://res.cloudinary.com/dseywnx5i/video/upload/v1713217730/Themes/boyTheme/p1urxw8smjx5gc3bfcnr.mp4" alt="img do theme" />
+            </div>
         </div>
     )
 }
