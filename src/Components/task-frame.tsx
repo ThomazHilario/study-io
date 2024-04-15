@@ -43,6 +43,9 @@ export default function TaskFrame({task,setTask}:TaskProps){
     // state - taskText
     const [taskText, setTaskText] = useState<string>('')
 
+    // state - isAddTask
+    const [isAddTask, setIsAddTask] = useState<boolean>(false)
+
     // state - isEditTask
     const [isEditTask, setIsEditTask] = useState<boolean>(false)
 
@@ -84,6 +87,9 @@ export default function TaskFrame({task,setTask}:TaskProps){
             e.preventDefault()
 
             if(taskText !== ''){
+                // Alterando o valor do isAddTask
+                setIsAddTask(!isAddTask)
+
                 // Adicionando task ao state task
                 setTask([...task,taskText])
 
@@ -195,23 +201,29 @@ export default function TaskFrame({task,setTask}:TaskProps){
         enableResizing={false} 
         default={{x:positionXTaskFrame, y:positionYTaskFrame, height:'', width:''}}
         onDragStop={savingPositionComponentTask}>
-            <div className="bg-slate-700 py-3 px-5 rounded-sm text-white cursor-default">
-                <div className='flex items-center justify-end px-3 mb-2'>
+            <div className="bg-slate-700 py-3 px-2 rounded-sm text-white cursor-default w-[330px]">
+                <div className='flex items-center justify-end mb-2'>
                         <MinusIcon className="cursor-pointer" color='white' onClick={() => setIsTask(false)}/>
                 </div>
 
-                {!isEditTask && <form className="flex items-center gap-2" onSubmit={addTask}>
-                    <input className="w-[300px] h-7 rounded-sm outline-none pl-2 font-syste bg-black/10" type="text" value={taskText} placeholder='Add task' onChange={(e) => setTaskText(e.target.value)} />
-
-                    <button type="submit"><CircleFadingPlus color="white"/></button>
-                </form>}
+                {isAddTask && (
+                    <form onSubmit={addTask}>
+                        <textarea className="resize-none bg-black/40 rounded-sm w-full" id="" rows={3} value={taskText} onChange={(e) => setTaskText(e.target.value)}></textarea>
+                        <button className="w-full text-center rounded-sm border-2">Adicionar Task</button>
+                    </form>
+                )}
+                {!isAddTask && !isEditTask &&(
+                    <button className="text-center w-full border-2 rounded-sm" onClick={() => setIsAddTask(!isAddTask)}>
+                        Adicionar Task
+                    </button>
+                )}
 
                 {/* minhas tarefas*/}
                 {isEditTask === false && task.length > 0 &&(
                     <ul className="mt-3 flex flex-col gap-2">
                         {task.map((item, idx) => {
                             return(
-                                <li key={idx} className="group flex gap-4 border-2 py-1 px-2 rounded-md w-[330px] justify-between">
+                                <li key={idx} className="group flex gap-4 border-2 py-1 px-2 rounded-md w-full justify-between">
                                     <div className="flex items-center gap-2">
                                         <input className="min-h-4 min-w-4" type="checkbox" onChange={taskComplete}/>
                                         <span className="text-justify whitespace-break-spaces">{item}</span>

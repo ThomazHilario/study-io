@@ -144,7 +144,7 @@ export const Study = () => {
 
                 {/* Wallpaper */}
                 <div className="bg-slate-900 w-full">
-                    <video className="w-full h-full max-h-full max-w-full object-cover" autoPlay loop>
+                    <video className="w-full h-full object-cover" autoPlay loop>
                         <source src={video}/>
                     </video>
                     {/* Timer */}
