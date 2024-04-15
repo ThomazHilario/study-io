@@ -2,7 +2,7 @@
 import { ChangeEvent, FormEvent, useState, useEffect } from "react"
 
 // import lucide-icons
-import { CircleFadingPlus, MenuIcon } from 'lucide-react'
+import { MenuIcon } from 'lucide-react'
 
 // import Context
 import { UseMyContext } from "../Context/context"
