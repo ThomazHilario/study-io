@@ -10,7 +10,7 @@ export const Themes = () => {
     const { isFullscreen, setIsThemes } = UseMyContext()
 
     return(
-        <div className={`absolute h-[88%] w-[20vw] left-[4rem] top-3/4 ${isFullscreen ? '-translate-y-[74%]' : '-translate-y-[75%]'} bg-slate-800 rounded-md p-5`}>
+        <div className={`absolute h-[88%] w-[310px] left-[4rem] top-3/4 ${isFullscreen ? '-translate-y-[74%]' : '-translate-y-[75%]'} bg-slate-800 rounded-md p-5`}>
             <div className="p-1 flex justify-end items-center">
                 <Minus className="cursor-pointer" color="white" onClick={() => setIsThemes(false)}/>
             </div>
