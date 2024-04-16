@@ -142,7 +142,7 @@ export const Study = () => {
                 {/* Wallpaper */}
                 <div className="bg-slate-900 w-full">
                     <video className="w-full h-full object-cover" autoPlay loop>
-                        <source src="https://res.cloudinary.com/dseywnx5i/video/upload/f_auto:video,q_auto/rry7vq8padzg2tqeinz3"/>
+                        <source src="https://res.cloudinary.com/dseywnx5i/video/upload/v1713217730/Themes/boyTheme/p1urxw8smjx5gc3bfcnr.mp4"/>
                     </video>
                     {/* Timer */}
                     {isTimer && <Timer/>}

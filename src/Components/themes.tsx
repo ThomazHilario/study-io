@@ -4,6 +4,9 @@ import { UseMyContext } from "../Context/context"
 // import lucide-icons
 import { Minus } from 'lucide-react'
 
+// import cloudinary
+import { cloudinary } from "../Services/cloudinary"
+
 export const Themes = () => {
     
     // Context
@@ -20,13 +23,11 @@ export const Themes = () => {
 
             {/* Container Themes */}
             <div className=" flex flex-wrap gap-[0.85rem]">
-                <img className="h-20 w-20 object-cover rounded-md cursor-pointer" src="https://res.cloudinary.com/dseywnx5i/image/upload/v1713218220/Themes/boyTheme/gtnl9e4aoxm5s594epps.png" alt="img do theme" />
-
-                <img className="h-20 w-20 object-cover rounded-md cursor-pointer" src="https://res.cloudinary.com/dseywnx5i/image/upload/v1713218220/Themes/boyTheme/gtnl9e4aoxm5s594epps.png" alt="img do theme" />
-
-                <img className="h-20 w-20 object-cover rounded-md cursor-pointer" src="https://res.cloudinary.com/dseywnx5i/image/upload/v1713218220/Themes/boyTheme/gtnl9e4aoxm5s594epps.png" alt="img do theme" />
-
-                <img className="h-20 w-20 object-cover rounded-md cursor-pointer" src="https://res.cloudinary.com/dseywnx5i/image/upload/v1713218220/Themes/boyTheme/gtnl9e4aoxm5s594epps.png" alt="img do theme" />
+                {cloudinary.map((item, idx) => {
+                    return(
+                        <img className="h-20 w-20 object-cover rounded-md cursor-pointer" key={idx} src={item.link} alt="imagem do wallpaper" />
+                    )
+                })}
             </div>
         </div>
     )
