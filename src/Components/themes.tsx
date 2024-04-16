@@ -25,7 +25,7 @@ export const Themes = () => {
             <div className=" flex flex-wrap gap-[0.85rem]">
                 {cloudinary.map((item, idx) => {
                     return(
-                        <img className="h-20 w-20 object-cover rounded-md cursor-pointer" key={idx} src={item.link} alt="imagem do wallpaper" />
+                        <img className="h-20 w-20 object-cover rounded-md cursor-pointer" key={idx} src={item.img} alt="imagem do wallpaper" />
                     )
                 })}
             </div>
