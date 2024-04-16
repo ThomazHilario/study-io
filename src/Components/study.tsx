@@ -111,11 +111,11 @@ export const Study = () => {
     return(
         <main className="flex flex-col bg-slate-900 h-screen">
             {/* header */}
-            <header className={`flex items-center justify-between px-2 bg-[#202224] basis-13 ${isFullscreen ? 'mt-5 pt-1' : 'mt-0'} border-b-[1px] border-b-gray-600`}>
+            <header className={`flex items-center justify-between py-1 px-2 bg-[#202224] basis-13 ${isFullscreen ? 'mt-6 pt-1' : 'mt-0'} border-b-[1px] border-b-gray-600`}>
                 {/*  what user using app */}
                 <div className={`flex gap-2 items-center`}>
                     {userData?.img !== null ? (
-                    <img className="h-8 w-8 rounded-full object-fill" src={userData?.img as string}/>
+                    <img className="h-8 w-8 rounded-full object-cover" src={userData?.img as string}/>
                     ) : (
                         <UpdateImage/>
                     )}
