@@ -12,6 +12,13 @@ export const Themes = () => {
     // Context
     const { isFullscreen, setIsThemes } = UseMyContext()
 
+    // updateTheme
+    function updateTheme(value:string){
+        const video = document.querySelector('video') as HTMLVideoElement
+
+        video.src = value
+    }
+
     return(
         <div className={`absolute h-[88%] w-[310px] left-[4rem] top-3/4 ${isFullscreen ? '-translate-y-[74%]' : '-translate-y-[75%]'} bg-slate-800 rounded-md p-5`}>
             <div className="p-1 flex justify-end items-center">
@@ -25,7 +32,7 @@ export const Themes = () => {
             <div className=" flex flex-wrap gap-[0.85rem]">
                 {cloudinary.map((item, idx) => {
                     return(
-                        <img className="h-20 w-20 object-cover rounded-md cursor-pointer" key={idx} src={item.img} alt="imagem do wallpaper" />
+                        <img className="h-20 w-20 object-cover rounded-md cursor-pointer" key={idx} src={item.img} alt="imagem do wallpaper" onClick={() => updateTheme(item.video_theme)}/>
                     )
                 })}
             </div>
