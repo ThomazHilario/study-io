@@ -145,6 +145,17 @@ export const NotesFrame = ({notesList, setNotesList}:NotesFrameProps) => {
         }))
     }
 
+    // cancelTask
+    function cancelTask(){
+        // Alterando o valor da state isAddNote
+        setIsAddNote(false)
+
+        // Limpando o input caso tenha algo
+        if(note !== ''){
+            setNote('')
+        }
+    }
+
     return(
         <Rnd bounds="window" 
         enableResizing={false} 
@@ -156,18 +167,21 @@ export const NotesFrame = ({notesList, setNotesList}:NotesFrameProps) => {
                 </div>
 
                 {isAddNote ? (
-                    <form className='px-2 flex flex-col items-center gap-2'>
-                        <textarea 
-                        className='resize-none outline-none p-1 bg-black/20 w-full text-white rounded-sm'
-                        cols={38}
-                        rows={3} 
-                        value={note}
-                        onChange={(e) => setNote(e.target.value)}
-                        />
+                    <div className='px-2'>
+                        <form className='flex flex-col items-center gap-2'>
+                            <textarea 
+                            className='resize-none outline-none p-1 bg-black/20 w-full text-white rounded-sm'
+                            cols={38}
+                            rows={3} 
+                            value={note}
+                            onChange={(e) => setNote(e.target.value)}
+                            />
 
-                        <button className='border-2 w-full text-white' 
-                        type='submit' onClick={addNotes}>Adicionar nota</button>
-                    </form>
+                            <button className='border-2 w-full text-white' 
+                            type='submit' onClick={addNotes}>Adicionar nota</button>
+                        </form>
+                        <button className="w-full bg-red-500 rounded-sm mt-1 text-white" onClick={cancelTask}>Cancelar</button>
+                    </div>
                 ) : 
                 <div className='px-2 w-[330px]'>
                     <button className='w-full rounded-sm border-2 text-center text-white'  
