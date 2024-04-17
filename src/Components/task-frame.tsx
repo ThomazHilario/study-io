@@ -186,6 +186,17 @@ export default function TaskFrame({task,setTask}:TaskProps){
         }
     }
 
+    // cancelTask
+    function cancelTask(){
+        // Alterando o valor da state isAddTask
+        setIsAddTask(false)
+
+        // Limpando input caso esteja com algum valor
+        if(taskText !== ''){
+            setTaskText('')
+        }
+    }
+
     // savingPositionComponentTask
     function savingPositionComponentTask(mouse:DraggableEvent,position:DraggableData){
         // Salvando valaores x e y na localStorage
@@ -207,10 +218,13 @@ export default function TaskFrame({task,setTask}:TaskProps){
                 </div>
 
                 {isAddTask && (
-                    <form onSubmit={addTask}>
-                        <textarea className="resize-none bg-black/40 rounded-sm w-full" id="" rows={3} value={taskText} onChange={(e) => setTaskText(e.target.value)}></textarea>
-                        <button className="w-full text-center rounded-sm border-2">Adicionar Task</button>
-                    </form>
+                    <div>
+                        <form onSubmit={addTask}>
+                            <textarea className="resize-none bg-black/40 rounded-sm w-full p-2" id="" rows={3} value={taskText} onChange={(e) => setTaskText(e.target.value)}></textarea>
+                            <button className="w-full text-center rounded-sm border-2">Adicionar Task</button>
+                        </form>
+                        <button className="w-full bg-red-500 rounded-sm mt-1" onClick={cancelTask}>Cancelar</button>
+                    </div>
                 )}
                 {!isAddTask && !isEditTask &&(
                     <button className="text-center w-full border-2 rounded-sm" onClick={() => setIsAddTask(!isAddTask)}>
