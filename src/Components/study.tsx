@@ -120,7 +120,7 @@ export const Study = () => {
                         <UpdateImage/>
                     )}
 
-                    <p className="bg-neutral-300/20 rounded-sm text-white py-[2px] px-3">
+                    <p className="bg-neutral-200/5 rounded-sm text-white py-[2px] px-3">
                         {userData?.username}'s Room
                     </p>
                 </div>
