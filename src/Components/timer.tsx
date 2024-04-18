@@ -102,6 +102,7 @@ export const Timer = () => {
                 // Alterando o valor da state isRestartTimer para false
                 setIsRestartTimer(false)
             }
+
         }
     },[seconds, isStartTimer])
 
@@ -120,6 +121,16 @@ export const Timer = () => {
         
     }
 
+    // clearIntervalTimer
+    function clearIntervalTimer(){
+        if(isStartTimer){
+            setIsRestartTimer(true)
+        }else{
+            setIsStartTimer(true)
+            setIsRestartTimer(true)
+        }
+    }
+
     return(
         <Rnd bounds='window'
          enableResizing={false}
@@ -135,7 +146,7 @@ export const Timer = () => {
 
                     <button className="bg-black/20 rounded-md py-2 px-5" onClick={() => setIsStartTimer(!isStartTimer)}>{!isStartTimer ? 'Start' : 'Pause'}</button>
 
-                    <RotateCcw color="white" onClick={() => setIsRestartTimer(!isRestartTimer)} />
+                    <RotateCcw color="white" onClick={clearIntervalTimer} />
                 </div>
             </div>
         </Rnd>
