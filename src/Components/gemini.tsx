@@ -1,6 +1,9 @@
 // import react
 import { useState } from 'react'
 
+// import radix
+import * as ScrollArea from '@radix-ui/react-scroll-area'
+
 // import gemini
 import { GoogleGenerativeAI } from '@google/generative-ai'
 
@@ -37,13 +40,28 @@ export const Gemini = () => {
     }
 
     return(
-        <div className='w-[500px] top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 absolute bg-slate-800 flex flex-col justify-between p-2 text-white rounded-sm'>
+        <div className='w-[500px] top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 absolute bg-slate-800 flex flex-col gap-3 justify-between p-2 text-white rounded-sm'>
             <div className='flex justify-end'>
                 <span className='py-1 px-3 bg-black/20 rounded-sm'>Beta</span>
             </div>
-            <div>
-                {response !== '' ? <p>Gemini:{response}</p> : <h1 className='text-3xl'>Ola eu sou a Gemini!!</h1>}
-            </div>
+            <ScrollArea.Root className="p-3 text-justify w-full h-[100px] rounded overflow-hidden bg-black/20">
+                <ScrollArea.Viewport className="w-full h-full rounded">
+                    {response !== '' ? <p>Gemini: {response}</p> : <h1 className='text-3xl'>Ola eu sou a Gemini!!</h1>}
+                </ScrollArea.Viewport>
+                <ScrollArea.Scrollbar
+                className="flex select-none touch-none p-0.5 bg-blackA3 transition-colors duration-[160ms] ease-out hover:bg-blackA5 data-[orientation=vertical]:w-2.5 data-[orientation=horizontal]:flex-col data-[orientation=horizontal]:h-2.5"
+                orientation="vertical"
+                >
+                <ScrollArea.Thumb className="flex-1 bg-mauve10 rounded-[10px] relative before:content-[''] before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-full before:h-full before:min-w-[44px] before:min-h-[44px]" />
+                </ScrollArea.Scrollbar>
+                <ScrollArea.Scrollbar
+                className="flex select-none touch-none p-0.5 bg-blackA3 transition-colors duration-[160ms] ease-out hover:bg-blackA5 data-[orientation=vertical]:w-2.5 data-[orientation=horizontal]:flex-col data-[orientation=horizontal]:h-2.5"
+                orientation="horizontal"
+                >
+                <ScrollArea.Thumb className="flex-1 bg-mauve10 rounded-[10px] relative before:content-[''] before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-full before:h-full before:min-w-[44px] before:min-h-[44px]" />
+                </ScrollArea.Scrollbar>
+                <ScrollArea.Corner className="bg-blackA5" />
+            </ScrollArea.Root>
 
             <div className='flex gap-2'>
                 <textarea className='w-full resize-none bg-black/20 outline-none p-2 overflow-y-hidden rounded-sm' value={question}  rows={1} onChange={(e) => setQuestion(e.target.value)}></textarea>
@@ -53,3 +71,6 @@ export const Gemini = () => {
         </div>
     )
 }
+/*
+  
+ */
