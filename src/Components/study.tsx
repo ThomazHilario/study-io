@@ -15,6 +15,7 @@ import TaskFrame from "./task-frame"
 import { NotesFrame } from "./notes-frame"
 import { Timer } from './timer'
 import { Themes } from "./themes"
+import { Gemini } from "./gemini"
 
 // import Firebase
 import { database } from "../Services/FirebaseConnection"
@@ -156,7 +157,7 @@ export const Study = () => {
                     {/* Themes */}
                     {isThemes && <Themes/>}
 
-                    
+                    <Gemini/>
                 </div>
             </div>
         </main>
