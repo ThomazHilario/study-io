@@ -58,7 +58,7 @@ export const Gemini = () => {
                     </div>
 
                     {/* Chat adaptdo a scroll area */}
-                    <ScrollArea.Root className="p-3 text-justify w-full h-[100px] rounded overflow-hidden bg-black/20">
+                    <ScrollArea.Root className="p-3 text-justify w-full h-[65vh] rounded overflow-hidden bg-black/20">
                         <ScrollArea.Viewport className="w-full h-full rounded">
                             {response !== '' ? <p>Gemini: {response}</p> : <h1 className='text-3xl'>Ola eu sou a Gemini!!</h1>}
                         </ScrollArea.Viewport>
