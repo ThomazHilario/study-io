@@ -25,7 +25,9 @@ export const Gemini = () => {
     const [question, setQuestion] = useState('')
 
     //state - response
-    const [response, setResponse] = useState('')
+    const [responseList, setResponseList] = useState<string[]>([
+        'Olá eu sou a Gemini, Como posso Ajudar ?'
+    ])
 
     // questionUser
     async function questionUser(){
@@ -34,7 +36,7 @@ export const Gemini = () => {
             const result = await model.generateContent(question)
 
             // Salvando resposta na state response
-            setResponse(result.response.text())
+            setResponseList([...responseList, question, result.response.text()])
 
             // limpando o input
             setQuestion('')
@@ -58,9 +60,15 @@ export const Gemini = () => {
                     </div>
 
                     {/* Chat adaptdo a scroll area */}
-                    <ScrollArea.Root className="p-3 text-justify w-full h-[65vh] rounded overflow-hidden bg-black/20">
+                    <ScrollArea.Root className="p-2 text-justify w-full h-[65vh] rounded overflow-hidden bg-black/20">
                         <ScrollArea.Viewport className="w-full h-full rounded">
-                            {response !== '' ? <p>Gemini: {response}</p> : <h1 className='text-3xl'>Ola eu sou a Gemini!!</h1>}
+                            {responseList.map((item, idx) => {
+                                return(
+                                    <div className={idx % 2 === 0 ? 'flex justify-start' : 'flex justify-end'}>
+                                        <p className={`w-[450px] p-2 rounded-sm flex ${idx % 2 !== 0 && 'w-[400px]'} my-1 mb-3 bg-black/10`}>{idx % 2 === 0 ? `Gemini: ${item}` : `Voce: ${item}`}</p>
+                                    </div>
+                                )
+                            })}
                         </ScrollArea.Viewport>
                         <ScrollArea.Scrollbar
                         className="flex select-none touch-none p-0.5 bg-blackA3 transition-colors duration-[160ms] ease-out hover:bg-blackA5 data-[orientation=vertical]:w-2.5 data-[orientation=horizontal]:flex-col data-[orientation=horizontal]:h-2.5"
