@@ -8,7 +8,7 @@ import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { GoogleGenerativeAI } from '@google/generative-ai'
 
 // import icon
-import { SendHorizonal, Sparkle } from 'lucide-react'
+import { SendHorizonal, Sparkle, Minus } from 'lucide-react'
 
 export const Gemini = () => {
 
@@ -47,9 +47,17 @@ export const Gemini = () => {
         <div className={`top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 absolute bg-slate-800 flex flex-col justify-center items-center p-2 text-white ${isQuestion ? 'rounded-sm' : 'rounded-full'}`}>
             {isQuestion ? (
                 <div className='w-[500px] flex flex-col gap-3'>
+                    {/* Sair do chat */}
+                    <div className='flex justify-end'>
+                        <Minus className='cursor-pointer' onClick={() => setIsQuestion(false)}/>
+                    </div>
+
+                    {/* Div indicando que esta funcionalidade e um beta */}
                     <div className='flex justify-end'>
                         <span className='py-1 px-3 bg-black/20 rounded-sm'>Beta</span>
                     </div>
+
+                    {/* Chat adaptdo a scroll area */}
                     <ScrollArea.Root className="p-3 text-justify w-full h-[100px] rounded overflow-hidden bg-black/20">
                         <ScrollArea.Viewport className="w-full h-full rounded">
                             {response !== '' ? <p>Gemini: {response}</p> : <h1 className='text-3xl'>Ola eu sou a Gemini!!</h1>}
