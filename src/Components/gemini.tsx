@@ -44,7 +44,7 @@ export const Gemini = () => {
     }
 
     return(
-        <div className={`top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 absolute bg-slate-800 flex flex-col justify-center items-center p-2 text-white ${isQuestion ? 'rounded-sm' : 'rounded-full'}`}>
+        <div className={`bottom-5 right-5 absolute bg-slate-800 flex flex-col justify-center items-center p-2 text-white ${isQuestion ? 'rounded-sm' : 'rounded-full'}`}>
             {isQuestion ? (
                 <div className='w-[500px] flex flex-col gap-3'>
                     {/* Sair do chat */}
