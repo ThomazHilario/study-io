@@ -4,6 +4,8 @@ import { useState } from 'react'
 // import radix
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 
+import { Skeleton } from '@radix-ui/themes'
+
 // import gemini
 import { GoogleGenerativeAI } from '@google/generative-ai'
 
@@ -22,7 +24,10 @@ export const Gemini = () => {
     const [isQuestion, setIsQuestion] = useState<boolean>(false)
 
     // state - question
-    const [question, setQuestion] = useState('')
+    const [question, setQuestion] = useState<string>('')
+
+    // state  isLoading
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
     //state - response
     const [responseList, setResponseList] = useState<string[]>([
@@ -32,6 +37,9 @@ export const Gemini = () => {
     // questionUser
     async function questionUser(){
         try {
+            // Alterando o valor do isLoading para true
+            setIsLoading(true)
+
             // Buscando resultado
             const result = await model.generateContent(question)
 
@@ -42,6 +50,9 @@ export const Gemini = () => {
             setQuestion('')
         } catch (e) {
             console.log(e)
+        } finally{
+            // Alterando o valor do isLoading para false
+            setIsLoading(false)
         }
     }
 
@@ -64,7 +75,7 @@ export const Gemini = () => {
                         <ScrollArea.Viewport className="w-full h-full rounded">
                             {responseList.map((item, idx) => {
                                 return(
-                                    <div className={idx % 2 === 0 ? 'flex justify-start' : 'flex justify-end'}>
+                                    <div key={idx} className={idx % 2 === 0 ? 'flex justify-start' : 'flex justify-end'}>
                                         <p className={`w-[450px] p-2 rounded-sm flex ${idx % 2 !== 0 && 'w-[400px]'} my-1 mb-3 bg-black/10`}>{idx % 2 === 0 ? `Gemini: ${item}` : `Voce: ${item}`}</p>
                                     </div>
                                 )
@@ -86,9 +97,11 @@ export const Gemini = () => {
                     </ScrollArea.Root>
 
                     <div className='flex gap-2'>
-                        <textarea className='w-full resize-none bg-black/20 outline-none p-2 overflow-y-hidden rounded-sm' value={question}  rows={1} onChange={(e) => setQuestion(e.target.value)}></textarea>
+                        <Skeleton loading={isLoading} className='w-full'>
+                            <textarea className='w-full resize-none bg-black/20 outline-none p-2 overflow-y-hidden rounded-sm' value={question} placeholder='Faça uma pergunta...'  rows={1} onChange={(e) => setQuestion(e.target.value)}></textarea>
 
-                        <button onClick={questionUser}><SendHorizonal/></button>
+                            <button onClick={questionUser}><SendHorizonal/></button>
+                        </Skeleton>
                     </div>
                 </div>
             ) : <Sparkle size={40} onClick={() => setIsQuestion(true)}/>}
