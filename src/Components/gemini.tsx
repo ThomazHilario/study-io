@@ -98,7 +98,7 @@ export const Gemini = () => {
 
                     <div className='flex gap-2'>
                         <Skeleton loading={isLoading} className='w-full'>
-                            <textarea className='w-full resize-none bg-black/20 outline-none p-2 overflow-y-hidden rounded-sm' value={question} placeholder='Faça uma pergunta...'  rows={1} onChange={(e) => setQuestion(e.target.value)}></textarea>
+                            <textarea className='w-full resize-none bg-black/20 outline-none p-2 overflow-y-hidden rounded-sm' value={question} placeholder='Faça uma pergunta...' autoFocus rows={1} onChange={(e) => setQuestion(e.target.value)}></textarea>
 
                             <button onClick={questionUser}><SendHorizonal/></button>
                         </Skeleton>
