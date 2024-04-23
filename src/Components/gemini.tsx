@@ -72,14 +72,19 @@ export const Gemini = () => {
 
                     {/* Chat adaptdo a scroll area */}
                     <ScrollArea.Root className="p-2 text-justify w-full h-[65vh] rounded overflow-hidden bg-black/20">
-                        <ScrollArea.Viewport className="w-full h-full rounded">
-                            {responseList.map((item, idx) => {
+                        <ScrollArea.Viewport className={`w-full h-full rounded ${isLoading && 'flex justify-center items-center'}`}>
+                            {!isLoading ? responseList.map((item, idx) => {
                                 return(
                                     <div key={idx} className={idx % 2 === 0 ? 'flex justify-start' : 'flex justify-end'}>
                                         <p className={`w-[450px] p-2 rounded-sm flex ${idx % 2 !== 0 && 'w-[400px]'} my-1 mb-3 bg-black/10`}>{idx % 2 === 0 ? `Gemini: ${item}` : `Voce: ${item}`}</p>
                                     </div>
                                 )
-                            })}
+                            }) : (
+                                <div className='flex justify-center items-center'>
+                                    <svg className=" rounded-full animate-spin h-10 w-10 mr-3 border-[10px] border-dotted" viewBox="0 0 24 24"/>
+                                    <span className='text-2xl'>Processando a sua pergunta...</span>
+                                </div>
+                            )}
                         </ScrollArea.Viewport>
                         <ScrollArea.Scrollbar
                         className="flex select-none touch-none p-0.5 bg-blackA3 transition-colors duration-[160ms] ease-out hover:bg-blackA5 data-[orientation=vertical]:w-2.5 data-[orientation=horizontal]:flex-col data-[orientation=horizontal]:h-2.5"
