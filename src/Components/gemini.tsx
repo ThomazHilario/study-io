@@ -1,6 +1,9 @@
 // import react
 import { useState } from 'react'
 
+// import toast
+import { toast } from 'sonner'
+
 // import radix
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 
@@ -37,17 +40,25 @@ export const Gemini = () => {
     // questionUser
     async function questionUser(){
         try {
-            // Alterando o valor do isLoading para true
-            setIsLoading(true)
+            if(question !== ''){
+                // Alterando o valor do isLoading para true
+                setIsLoading(true)
 
-            // Buscando resultado
-            const result = await model.generateContent(question)
+                // Buscando resultado
+                const result = await model.generateContent(question)
 
-            // Salvando resposta na state response
-            setResponseList([...responseList, question, result.response.text()])
+                // Salvando resposta na state response
+                setResponseList([...responseList, question, result.response.text()])
 
-            // limpando o input
-            setQuestion('')
+                // limpando o input
+                setQuestion('')
+            } else {
+                toast.info('Faça alguma pergunta!',{style:{
+                    backgroundColor:'rgb(30 41 59)',
+                    color:'white',
+                    border:'0'
+                }})
+            }
         } catch (e) {
             console.log(e)
         } finally{
