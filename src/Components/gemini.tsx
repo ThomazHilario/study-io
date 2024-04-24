@@ -68,7 +68,7 @@ export const Gemini = () => {
     }
 
     return(
-        <div className={`bottom-5 right-5 absolute bg-slate-800 flex flex-col justify-center items-center p-2 text-white ${isQuestion ? 'rounded-sm' : 'rounded-full cursor-pointer'}`}>
+        <div className={`bottom-5 right-5 absolute bg-slate-800 flex flex-col justify-center items-center p-2 text-white ${isQuestion ? 'rounded-sm' : 'bg-transparent'}`}>
             {isQuestion ? (
                 <div className='w-[500px] flex flex-col gap-3'>
                     {/* Sair do chat */}
@@ -120,7 +120,9 @@ export const Gemini = () => {
                         </Skeleton>
                     </div>
                 </div>
-            ) : <Sparkle size={40} onClick={() => setIsQuestion(true)}/>}
+            ) : <div className='cursor-pointer p-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full' onClick={() => setIsQuestion(true)}>
+                    <Sparkle size={60}/>
+                </div>}
         </div>
     )
 }
