@@ -1,5 +1,5 @@
 // import react
-import { ChangeEvent, FormEvent, useState, useEffect } from "react"
+import { ChangeEvent, FormEvent, useState, useEffect, memo } from "react"
 
 // import lucide-icons
 import { MenuIcon } from 'lucide-react'
@@ -27,7 +27,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { TaskProps } from '../interfaces/notes-frames-type'
 import { DraggableData, DraggableEvent } from "react-draggable"
 
-export default function TaskFrame({task,setTask}:TaskProps){
+function TaskFrame({task,setTask}:TaskProps){
 
     // Context
     const { setIsTask } = UseMyContext()
@@ -285,3 +285,5 @@ export default function TaskFrame({task,setTask}:TaskProps){
         </Rnd>    
     )
 }
+
+export default memo(TaskFrame)
