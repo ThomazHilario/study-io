@@ -1,5 +1,5 @@
 // import react
-import { FormEvent, useState } from 'react'
+import { FormEvent, useState, memo } from 'react'
 
 // import context
 import { UseMyContext } from '../Context/context'
@@ -28,7 +28,7 @@ import { NotesFrameProps } from '../interfaces/notes-frames-type'
 // import interfaces
 import { DraggableData, DraggableEvent } from 'react-draggable'
 
-export const NotesFrame = ({notesList, setNotesList}:NotesFrameProps) => {
+export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
 
     // Valores x e y
     const xDrag = localStorage.getItem('notesDrag') ? JSON.parse(localStorage.getItem('notesDrag') as string).x : 10
@@ -252,4 +252,4 @@ export const NotesFrame = ({notesList, setNotesList}:NotesFrameProps) => {
             </div>
         </Rnd>
     )
-}
+})
