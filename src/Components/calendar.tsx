@@ -1,6 +1,3 @@
-// import Rnd
-import { Rnd } from "react-rnd";
-
 // import datefns
 import { format } from "date-fns";
 
@@ -10,8 +7,6 @@ import { DayPicker } from 'react-day-picker'
 export const Calendar = () => {
 
     return(
-        <Rnd>
-            <DayPicker mode="single"/>
-        </Rnd>
+        <DayPicker className="absolute top-10" mode="single"/>
     )
 }
