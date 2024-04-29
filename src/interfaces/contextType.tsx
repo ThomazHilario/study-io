@@ -12,7 +12,9 @@ export interface FullScreenProps{
     isTimer:boolean,
     setIsTimer:React.Dispatch<React.SetStateAction<boolean>>,
     isThemes:boolean,
-    setIsThemes:React.Dispatch<React.SetStateAction<boolean>>
+    setIsThemes:React.Dispatch<React.SetStateAction<boolean>>,
+    isCalendar:boolean,
+    setIsCalendar:React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export interface ChildrenType{
