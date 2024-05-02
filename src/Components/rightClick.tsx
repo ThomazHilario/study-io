@@ -7,14 +7,18 @@ export const RightClick = ({children}:ChildrenType) => {
             <ContextMenu.Trigger>
                 {children}
             </ContextMenu.Trigger>
-        <ContextMenu.Content color="indigo">
+            <ContextMenu.Content color="indigo">
             
             <ContextMenu.Item>Refresh</ContextMenu.Item>
 
             <ContextMenu.Separator />
 
-            <ContextMenu.Item shortcut="⌘" color="red">
-            Delete
+            <ContextMenu.Item shortcut="⌘" color="violet">
+                Add Task
+            </ContextMenu.Item>
+
+            <ContextMenu.Item shortcut="⌘" color="violet">
+                Add Notes
             </ContextMenu.Item>
             
         </ContextMenu.Content>
