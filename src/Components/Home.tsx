@@ -3,6 +3,9 @@ import { useState, useEffect } from 'react'
 // imports react-router-dom
 import { Link, useNavigate } from 'react-router-dom'
 
+// import Context
+import { UseMyContext } from '../Context/context'
+
 // imports firebase
 import { auth } from '../Services/FirebaseConnection'
 import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
@@ -34,8 +37,12 @@ export const Home = () => {
 
     // navigate
     const navigate = useNavigate()
+
     // state - loading
     const [loading, setLoading] = useState(true)
+
+    // Context
+    const { setIsLogged } = UseMyContext()
 
     // Verificando se o usuario logado
     useEffect(() => {
@@ -46,6 +53,9 @@ export const Home = () => {
 
                     // Alterando o loading para false
                     setLoading(false)
+
+                    // Alterando o valor de isLoged para true
+                    setIsLogged(true)
                 }
 
                 // Alterando o loading para false

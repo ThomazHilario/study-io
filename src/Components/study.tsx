@@ -8,6 +8,7 @@ import { UseMyContext } from "../Context/context"
 import { NotesProps } from '../interfaces/notesType'
 
 // Components
+import { RightClick } from "./rightClick"
 import { MenuDialog } from "./menu-dialog"
 import { UpdateImage } from "./updateImage"
 import { MenuAside } from "./menu-aside"
@@ -111,59 +112,61 @@ export const Study = () => {
     }
 
     return(
-        <main className="flex flex-col bg-slate-900 h-screen">
-            {/* header */}
-            <header className={`flex items-center justify-between py-1 px-2 bg-[#202224] basis-13 ${isFullscreen ? 'mt-6 pt-1' : 'mt-0'} border-b-[1px] border-b-gray-600`}>
-                {/*  what user using app */}
-                <div className={`flex gap-2 items-center`}>
-                    {userData?.img !== null ? (
-                    <img className="h-8 w-8 rounded-full object-cover" src={userData?.img as string}/>
-                    ) : (
-                        <UpdateImage/>
-                    )}
+        <RightClick>
+            <main className="flex flex-col bg-slate-900 h-screen">
+                {/* header */}
+                <header className={`flex items-center justify-between py-1 px-2 bg-[#202224] basis-13 ${isFullscreen ? 'mt-6 pt-1' : 'mt-0'} border-b-[1px] border-b-gray-600`}>
+                    {/*  what user using app */}
+                    <div className={`flex gap-2 items-center`}>
+                        {userData?.img !== null ? (
+                        <img className="h-8 w-8 rounded-full object-cover" src={userData?.img as string}/>
+                        ) : (
+                            <UpdateImage/>
+                        )}
 
-                    <p className="bg-neutral-200/5 rounded-sm text-white py-[2px] px-3">
-                        {userData?.username}'s Room
-                    </p>
+                        <p className="bg-neutral-200/5 rounded-sm text-white py-[2px] px-3">
+                            {userData?.username}'s Room
+                        </p>
+                    </div>
+
+                    {/* Account config */}
+                    <div className="flex gap-2 mt-1">
+                        <Maximize2 className="cursor-pointer" size={18} color="white" onClick={() => changeFullScreen()}/>
+                        
+                        <MenuDialog/>
+                    </div>
+                </header>
+
+                {/* area de trabalho */}
+                <div className='flex basis-full'>
+                    <aside className="bg-[#202224] w-14 border-r-gray-600 border-r-[1px] flex justify-center">
+                        <MenuAside/>
+                    </aside>
+
+                    {/* Wallpaper */}
+                    <div className="bg-slate-900 w-full">
+                        <video className="w-full h-full object-cover" autoPlay muted loop>
+                            <source src="https://res.cloudinary.com/dseywnx5i/video/upload/v1713217730/Themes/boyTheme/p1urxw8smjx5gc3bfcnr.mp4"/>
+                        </video>
+                        {/* Timer */}
+                        {isTimer && <Timer/>}
+                        
+                        {/* Task */}
+                        {isTask &&   <TaskFrame task={task} setTask={setTask}/>  }
+
+                        {/* Notes */}
+                        {isNotes && <NotesFrame notesList={notesList} setNotesList={setNotesList}/>}
+
+                        {/* Themes */}
+                        {isThemes && <Themes/>}
+
+                        <Gemini/>
+
+                        {/* Calendar */}
+                        {isCalendar && <Calendar/>}
+                    </div>
                 </div>
-
-                {/* Account config */}
-                <div className="flex gap-2 mt-1">
-                    <Maximize2 className="cursor-pointer" size={18} color="white" onClick={() => changeFullScreen()}/>
-                    
-                    <MenuDialog/>
-                </div>
-            </header>
-
-            {/* area de trabalho */}
-            <div className='flex basis-full'>
-                <aside className="bg-[#202224] w-14 border-r-gray-600 border-r-[1px] flex justify-center">
-                    <MenuAside/>
-                </aside>
-
-                {/* Wallpaper */}
-                <div className="bg-slate-900 w-full">
-                    <video className="w-full h-full object-cover" autoPlay muted loop>
-                        <source src="https://res.cloudinary.com/dseywnx5i/video/upload/v1713217730/Themes/boyTheme/p1urxw8smjx5gc3bfcnr.mp4"/>
-                    </video>
-                    {/* Timer */}
-                    {isTimer && <Timer/>}
-                    
-                    {/* Task */}
-                    {isTask &&   <TaskFrame task={task} setTask={setTask}/>  }
-
-                    {/* Notes */}
-                    {isNotes && <NotesFrame notesList={notesList} setNotesList={setNotesList}/>}
-
-                    {/* Themes */}
-                    {isThemes && <Themes/>}
-
-                    <Gemini/>
-
-                    {/* Calendar */}
-                    {isCalendar && <Calendar/>}
-                </div>
-            </div>
-        </main>
+            </main>
+        </RightClick>
     )
 }
