@@ -37,7 +37,7 @@ export const Study = () => {
     // Context
     const { isFullscreen, setIsFullscreen } = UseMyContext()
     const { resizable, setResizable } = UseMyContext()
-    const { isTask, isNotes, isTimer, isThemes, isCalendar } = UseMyContext()
+    const { isTask, isNotes, isTimer, isThemes, isCalendar, setIsLogged } = UseMyContext()
 
     // store
     const setUserData = user(state => state.setUserData)
@@ -56,6 +56,9 @@ export const Study = () => {
 
         // verificando id na localStorage
         const id = Storage !== null ? Storage : false
+
+        // Alterando o valor do contexto isLogged
+        setIsLogged(true)
 
         // Inserindo dados na store do zustand
         async function loadUserData(){
