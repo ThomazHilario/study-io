@@ -15,8 +15,6 @@ export const RightClick = ({children}:ChildrenType) => {
                 {children}
             </ContextMenu.Trigger>
             <ContextMenu.Content color="indigo">
-            
-            {isLogged && <ContextMenu.Separator />}
 
             {isLogged ? (
                 <>
