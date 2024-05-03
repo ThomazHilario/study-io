@@ -7,7 +7,7 @@ import { UseMyContext } from '../Context/context'
 export const RightClick = ({children}:ChildrenType) => {
 
     // Context
-    const { isLogged, setIsTask, setIsNotes } = UseMyContext()
+    const { isLogged, setIsTask, setIsNotes, setIsTimer } = UseMyContext()
 
     return(
         <ContextMenu.Root>
@@ -18,12 +18,16 @@ export const RightClick = ({children}:ChildrenType) => {
 
             {isLogged ? (
                 <>
-                <ContextMenu.Item shortcut="⌘" color="violet">
+                <ContextMenu.Item shortcut="⌘" color="violet" onClick={() => setIsTask(true)}>
                     Add Task
                 </ContextMenu.Item>
 
-                <ContextMenu.Item shortcut="⌘" color="violet">
+                <ContextMenu.Item shortcut="⌘" color="violet" onClick={() => setIsNotes(true)}>
                     Add Notes
+                </ContextMenu.Item>
+
+                <ContextMenu.Item shortcut='⌘' color="violet" onClick={() => setIsTimer(true)}>
+                    Open Timer
                 </ContextMenu.Item>
                 </>
             ) : (
