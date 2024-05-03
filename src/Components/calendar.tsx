@@ -29,7 +29,7 @@ export const Calendar = () => {
             locale={ptBR}
             modifiersStyles={{
                 today: {
-                    backgroundColor: 'rgba(59, 130, 246, 1)',
+                    backgroundColor: '#724fc3',
                     color: 'white',
                 },
             }}
