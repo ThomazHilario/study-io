@@ -240,7 +240,7 @@ function TaskFrame({task,setTask}:TaskProps){
 
                 {/* Seach */}
                 {task.length > 4 && (
-                    <input className="w-full mt-2 bg-black/20 pl-1 rounded-sm" type="text" value={seach} onChange={(e) => setSeach(e.target.value)}/>
+                    <input className="w-full mt-2 outline-none bg-black/20 pl-1 rounded-sm" type="text" value={seach} onChange={(e) => setSeach(e.target.value)}/>
                 )}
 
                 {/* minhas tarefas*/}
