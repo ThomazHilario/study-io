@@ -55,6 +55,12 @@ function TaskFrame({task,setTask}:TaskProps){
     // state - editIndex
     const [editIndex, setEditIndex] = useState<number | null>(null)
 
+    // state - seach
+    const [seach, setSeach] = useState('')
+
+    // taskFilterList
+    const taskFilterList = seach !== '' ? task.filter(item => item.toLowerCase().includes(seach.toLocaleLowerCase())) : task
+
     useEffect(() => {
 
         // Buscando task
@@ -232,10 +238,15 @@ function TaskFrame({task,setTask}:TaskProps){
                     </button>
                 )}
 
+                {/* Seach */}
+                {task.length > 4 && (
+                    <input className="w-full mt-2 bg-black/20 pl-1 rounded-sm" type="text" value={seach} onChange={(e) => setSeach(e.target.value)}/>
+                )}
+
                 {/* minhas tarefas*/}
                 {isEditTask === false && task.length > 0 &&(
                     <ul className="mt-3 flex flex-col gap-2">
-                        {task.map((item, idx) => {
+                        {taskFilterList.map((item, idx) => {
                             return(
                                 <li key={idx} className="group flex gap-4 border-2 py-1 px-2 rounded-md w-full justify-between">
                                     <div className="flex items-center gap-2">
