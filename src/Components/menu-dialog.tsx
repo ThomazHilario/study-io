@@ -40,6 +40,9 @@ export const MenuDialog = () => {
             // Removendo o TaskFrameDrag da localStorage
             localStorage.removeItem('TaskFrameDrag')
 
+            // Removendo a url do video da localStorage
+            localStorage.removeItem('videoUrl')
+
             // Navegando a rota inicial
             navigate('/')
         } catch (error) {
