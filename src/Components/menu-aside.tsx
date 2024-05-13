@@ -1,5 +1,5 @@
 // import Lucide-icons
-import { AlarmClock, PencilLine, NotebookPen, WallpaperIcon,CalendarDays } from 'lucide-react'
+import { AlarmClock, PencilLine, NotebookPen, WallpaperIcon, CalendarDays, Kanban } from 'lucide-react'
 
 // context
 import { UseMyContext } from '../Context/context'
@@ -40,6 +40,10 @@ export const MenuAside = () => {
                 <p className='text-white text-[0.8rem] font-semibold font-system'>Cal</p>
             </li>
 
+            <li className='flex flex-col justify-center items-center hover:bg-gray-200/10 py-[0.15rem] px-1 rounded-md'>
+                <Kanban color='white' size={20}/>
+                <p className='text-white text-[0.8rem] font-semibold font-system'>Kanban</p>
+            </li>
         </menu>
     )
 }
