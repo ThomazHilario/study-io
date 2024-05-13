@@ -49,6 +49,8 @@ export const Study = () => {
     // state - notesList
     const [notesList, setNotesList] = useState<NotesProps[]>([])
 
+    const videoUrl = localStorage.getItem('videoUrl') != null ? JSON.parse(localStorage.getItem('videoUrl') as string) : "https://res.cloudinary.com/dseywnx5i/video/upload/v1713217730/Themes/boyTheme/p1urxw8smjx5gc3bfcnr.mp4"
+
     useEffect(() => {
 
         // localStorage
@@ -56,14 +58,6 @@ export const Study = () => {
 
         // verificando id na localStorage
         const id = Storage !== null ? Storage : false
-
-        if(localStorage.getItem('videoUrl') != null){
-            // Buscando a tag video
-            const video = document.querySelector('video') as HTMLVideoElement
-            
-            // Caso tenha uma url de video na localStorage
-            video.src = localStorage.getItem('videoUrl') != undefined && JSON.parse(localStorage.getItem('videoUrl') as string)
-        }
 
         // Alterando o valor do contexto isLogged
         setIsLogged(true)
@@ -157,7 +151,7 @@ export const Study = () => {
                     {/* Wallpaper */}
                     <div className="bg-slate-900 w-full">
                         <video className="w-full h-full object-cover" autoPlay muted loop>
-                            <source src="https://res.cloudinary.com/dseywnx5i/video/upload/v1713217730/Themes/boyTheme/p1urxw8smjx5gc3bfcnr.mp4"/>
+                            <source src={videoUrl}/>
                         </video>
                         {/* Timer */}
                         {isTimer && <Timer/>}
