@@ -14,9 +14,14 @@ export const Themes = () => {
 
     // updateTheme
     function updateTheme(value:string){
+        // Buscando tag video
         const video = document.querySelector('video') as HTMLVideoElement
 
+        // Adicionando nova source
         video.src = value
+
+        // Salvando na localStorage
+        localStorage.setItem('videoUrl', JSON.stringify(value))
     }
 
     return(

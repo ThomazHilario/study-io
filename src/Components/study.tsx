@@ -57,6 +57,14 @@ export const Study = () => {
         // verificando id na localStorage
         const id = Storage !== null ? Storage : false
 
+        if(localStorage.getItem('videoUrl') != null){
+            // Buscando a tag video
+            const video = document.querySelector('video') as HTMLVideoElement
+            
+            // Caso tenha uma url de video na localStorage
+            video.src = localStorage.getItem('videoUrl') != undefined && JSON.parse(localStorage.getItem('videoUrl') as string)
+        }
+
         // Alterando o valor do contexto isLogged
         setIsLogged(true)
 
