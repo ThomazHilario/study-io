@@ -18,6 +18,7 @@ import { Timer } from './timer'
 import { Themes } from "./themes"
 import { Gemini } from "./gemini"
 import { Calendar } from "./calendar"
+import { Kanban } from "./kanban"
 
 // import Firebase
 import { database } from "../Services/FirebaseConnection"
@@ -169,6 +170,8 @@ export const Study = () => {
 
                         {/* Calendar */}
                         {isCalendar && <Calendar/>}
+
+                        <Kanban/>
                     </div>
                 </div>
             </main>
