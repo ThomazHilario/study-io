@@ -156,6 +156,9 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
         }
     }
 
+    // notesListisEmpty
+    const notesListisEmpty = notesList.length > 0
+
     return(
         <Rnd bounds="window" 
         enableResizing={false} 
@@ -187,7 +190,7 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
                     <button className='w-full rounded-sm border-2 text-center text-white'  
                     onClick={() => setIsAddNote(!isAddNote)}>Adicionar nota</button>
 
-                    {notesList.length > 0 && (
+                    {notesListisEmpty && (
                         <div className='mt-2 flex flex-col gap-2'>
                             {notesList.map((item, idx) => {
                                 return(
