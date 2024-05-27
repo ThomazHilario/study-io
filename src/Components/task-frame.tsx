@@ -213,6 +213,15 @@ function TaskFrame({task,setTask}:TaskProps){
         }))
     }
 
+    // isTaskEmptyAndEditIsFalse
+    const isTaskEmptyAndEditIsFalse = !isEditTask && task.length > 0
+
+    // isAddTaskAndEditTaskisFalse
+    const isAddTaskAndEditTaskisFalse = !isAddTask && !isEditTask
+
+    // numberOfTaskIsGreaterThanFour
+    const numberOfTaskIsGreaterThanFour = task.length > 4
+
     return(
         <Rnd bounds="window" 
         enableResizing={false} 
@@ -232,19 +241,19 @@ function TaskFrame({task,setTask}:TaskProps){
                         <button className="w-full bg-red-500 rounded-sm mt-1" onClick={cancelTask}>Cancelar</button>
                     </div>
                 )}
-                {!isAddTask && !isEditTask &&(
+                {isAddTaskAndEditTaskisFalse &&(
                     <button className="text-center w-full border-2 rounded-sm" onClick={() => setIsAddTask(!isAddTask)}>
                         Adicionar Task
                     </button>
                 )}
 
                 {/* Seach */}
-                {task.length > 4 && (
-                    <input className="w-full mt-2 outline-none bg-black/20 pl-1 rounded-sm" type="text" value={seach} onChange={(e) => setSeach(e.target.value)}/>
+                {numberOfTaskIsGreaterThanFour && (
+                    <input className="w-full mt-2 outline-none bg-black/20 pl-1 rounded-sm" type="text" value={seach} onChange={(e) => setSeach(e.target.value)} placeholder="Seach for task..."/>
                 )}
 
                 {/* minhas tarefas*/}
-                {isEditTask === false && task.length > 0 &&(
+                {isTaskEmptyAndEditIsFalse &&(
                     <ul className="mt-3 flex flex-col gap-2">
                         {taskFilterList.map((item, idx) => {
                             return(
