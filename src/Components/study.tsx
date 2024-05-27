@@ -171,6 +171,8 @@ export const Study = () => {
                         {/* Calendar */}
                         {isCalendar && <Calendar/>}
 
+                        <Kanban/>
+
                     </div>
                 </div>
             </main>
