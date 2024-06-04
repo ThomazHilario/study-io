@@ -1,15 +1,24 @@
 // React-dnd
-import { useState } from "react"
+import { Draggable } from "@hello-pangea/dnd"
 
-// Interface CardKanbanProps
-interface CardKanbanProps{
-    index:number,
-    text:string
-}
+// Interface
+import { CardKanbanProps } from "../interfaces/kanbanTypes"
 
-export const CardKanban = ({index, text}:CardKanbanProps) => {
+export const CardKanban = ({index, task}:CardKanbanProps) => {
 
    return(
-        <div className={`cursor-pointer w-[200px] p-1 rounded-md bg-gray-700 border-2 border-transparent hover:border-cyan-400`}>{text}</div>
+        <Draggable draggableId={task.id} index={index}>
+            {(provider) => 
+                (
+                    <div 
+                    ref={provider.innerRef} 
+                    {...provider.dragHandleProps} 
+                    {...provider.draggableProps} 
+                    className={`cursor-pointer w-[200px] p-1 rounded-md bg-gray-700 border-2 border-transparent hover:border-cyan-400 mt-2`}>
+                        {task.name}
+                    </div>
+                )
+            }
+        </Draggable>
    ) 
 }
