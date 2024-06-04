@@ -16,12 +16,15 @@ export const Kanban = () => {
                 <h1 className='mb-2'>Tarefas a fazer</h1>
                 {task.map((task, index) => <CardKanban key={index} text={task.name} />)}
             </div>
+
             <div className='h-min w-[290px] bg-slate-900/90 rounded-sm px-5 py-2 text-white'>
                 <h1 className='mb-2'>Desenvolvimento</h1>
             </div>
+
             <div className='h-min w-[290px] bg-slate-900/90 rounded-sm px-5 py-2 text-white'>
                 <h1 className='mb-2'>Pausado / Cansado</h1>
             </div>
+
             <div className='h-min w-[290px] bg-slate-900/90 rounded-sm px-5 py-2 text-white'>
                 <h1 className='mb-2'>Concluido</h1>
             </div>

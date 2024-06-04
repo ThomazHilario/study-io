@@ -1,6 +1,9 @@
 // import react
 import { useEffect, useState } from "react"
 
+import { DndProvider } from "react-dnd"
+import { HTML5Backend } from "react-dnd-html5-backend"
+
 // import Context
 import { UseMyContext } from "../Context/context"
 
@@ -171,7 +174,9 @@ export const Study = () => {
                         {/* Calendar */}
                         {isCalendar && <Calendar/>}
 
-                        <Kanban/>
+                        <DndProvider backend={HTML5Backend}>
+                            <Kanban/>
+                        </DndProvider>
 
                     </div>
                 </div>
