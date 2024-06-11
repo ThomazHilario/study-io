@@ -8,13 +8,9 @@ export interface TaskProps{
 //ColumnKanbanProps
 export interface ColumnsKanbanProps{
     task:TaskProps[],
-    setTask:React.Dispatch<React.SetStateAction<TaskProps[]>>,
     devTask:TaskProps[],
-    setDevTask:React.Dispatch<React.SetStateAction<TaskProps[]>>,
     pauseTask:TaskProps[],
-    setPauseTask:React.Dispatch<React.SetStateAction<TaskProps[]>>,
-    completeTask:TaskProps[],
-    setCompleteTask: React.Dispatch<React.SetStateAction<TaskProps[]>>
+    completeTask:TaskProps[]
 }
 
 // CardKanbanProps
