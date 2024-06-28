@@ -64,14 +64,14 @@ export const Kanban = () => {
 
     return(
         <DragDropContext onDragEnd={handleDragEnd} >
-            <div className="absolute top-[50%] left-[52%] -translate-x-1/2 -translate-y-[45%]  w-[90vw] h-[80vh] bg-black/30 rounded-sm p-1">
+            <section className="absolute top-[50%] left-[52%] -translate-x-1/2 -translate-y-[45%]  w-[90vw] h-[80vh] bg-black/30 rounded-sm p-1">
                 <ColumnsKanban 
                     task={task} 
                     devTask={devTask}
                     pauseTask={pauseTask}
                     completeTask={completeTask}
                 />
-            </div>
+            </section>
         </DragDropContext>
     )
 }

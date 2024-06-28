@@ -11,13 +11,13 @@ export const ColumnsKanban = ({task, devTask, pauseTask, completeTask}:ColumnsKa
             <Droppable droppableId="fazer" direction="vertical">
                 {(provider) => {
                     return(
-                        <div ref={provider.innerRef} {...provider.droppableProps} className='h-min w-[290px] bg-slate-900/90 rounded-sm px-5 py-2 text-white'>
+                        <section ref={provider.innerRef} {...provider.droppableProps} className='h-min w-[290px] bg-slate-900/90 rounded-sm px-5 py-2 text-white'>
                             <h1 className='mb-2'>Tarefas a fazer:</h1>
 
                             {task.map((taskUser,index) => <CardKanban key={index} index={index} task={taskUser} />)}
 
                             {provider.placeholder}
-                        </div>    
+                        </section>    
                     )   
                 }}
             </Droppable>
@@ -25,7 +25,7 @@ export const ColumnsKanban = ({task, devTask, pauseTask, completeTask}:ColumnsKa
             <Droppable droppableId="desenvolvendo" direction="vertical">
                 {(provider) => {
                     return(
-                        <div ref={provider.innerRef} {...provider.droppableProps} className='h-min w-[290px] bg-slate-900/90 rounded-sm px-5 py-2 text-white'>
+                        <section ref={provider.innerRef} {...provider.droppableProps} className='h-min w-[290px] bg-slate-900/90 rounded-sm px-5 py-2 text-white'>
                             <h1 className='mb-2'>Em desenvolvendo:</h1>
 
                             {devTask.length > 0 && devTask.map((task, index) => (
@@ -33,7 +33,7 @@ export const ColumnsKanban = ({task, devTask, pauseTask, completeTask}:ColumnsKa
                             ))}
 
                             {provider.placeholder}
-                        </div>    
+                        </section>    
                     )   
                 }}
             </Droppable>
@@ -41,7 +41,7 @@ export const ColumnsKanban = ({task, devTask, pauseTask, completeTask}:ColumnsKa
             <Droppable droppableId="pausado" direction="vertical">
                 {(provider) => {
                     return(
-                        <div 
+                        <section 
                         ref={provider.innerRef} 
                         {...provider.droppableProps} 
                         className='h-min w-[290px] bg-slate-900/90 rounded-sm px-5 py-2 text-white'>
@@ -52,7 +52,7 @@ export const ColumnsKanban = ({task, devTask, pauseTask, completeTask}:ColumnsKa
                             ))}
 
                             {provider.placeholder}
-                        </div>    
+                        </section>    
                     )   
                 }}
             </Droppable>
@@ -60,7 +60,7 @@ export const ColumnsKanban = ({task, devTask, pauseTask, completeTask}:ColumnsKa
             <Droppable droppableId="concluido" direction="vertical">
                 {(provider) => {
                     return(
-                        <div ref={provider.innerRef} {...provider.droppableProps} className='h-min w-[290px] bg-slate-900/90 rounded-sm px-5 py-2 text-white'>
+                        <section ref={provider.innerRef} {...provider.droppableProps} className='h-min w-[290px] bg-slate-900/90 rounded-sm px-5 py-2 text-white'>
                             <h1 className='mb-2'>Concluido:</h1>
 
                             {completeTask.length > 0 && completeTask.map((task,index) => (
@@ -68,7 +68,7 @@ export const ColumnsKanban = ({task, devTask, pauseTask, completeTask}:ColumnsKa
                             ))}
 
                             {provider.placeholder}
-                        </div>    
+                        </section>    
                     )   
                 }}
             </Droppable>

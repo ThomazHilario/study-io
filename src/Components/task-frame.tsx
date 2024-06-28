@@ -233,13 +233,13 @@ function TaskFrame({task,setTask}:TaskProps){
                 </div>
 
                 {isAddTask && (
-                    <div>
+                    <section>
                         <form onSubmit={addTask}>
                             <textarea className="resize-none bg-black/20 rounded-sm w-full p-2" id="" rows={3} value={taskText} onChange={(e) => setTaskText(e.target.value)}></textarea>
                             <button className="w-full text-center rounded-sm border-2">Adicionar Task</button>
                         </form>
                         <button className="w-full bg-red-500 rounded-sm mt-1" onClick={cancelTask}>Cancelar</button>
-                    </div>
+                    </section>
                 )}
                 {isAddTaskAndEditTaskisFalse &&(
                     <button className="text-center w-full border-2 rounded-sm" onClick={() => setIsAddTask(!isAddTask)}>
@@ -263,7 +263,7 @@ function TaskFrame({task,setTask}:TaskProps){
                                         <span className="text-justify whitespace-break-spaces">{item}</span>
                                     </div>
 
-                                    <div className="w-7">
+                                    <section className="w-7">
                                         <Dialog.Root>
                                             <Dialog.Trigger>
                                                 <MenuIcon className="hidden group-hover:block cursor-pointer" size={15}/>
@@ -271,16 +271,16 @@ function TaskFrame({task,setTask}:TaskProps){
 
                                             
                                             <Dialog.Content className="absolute -right-5">
-                                                <div className="bg-slate-800 w-32 flex flex-col">
+                                                <section className="bg-slate-800 w-32 flex flex-col">
                                                     <button className="py-2 px-2" onClick={() => activeEdit(idx)}>Editar</button>
                                                     <Dialog.Close className="py-2 px-2" onClick={() => deleteTask(idx)}>
                                                         Delete
                                                     </Dialog.Close>
-                                                </div>
+                                                </section>
                                             </Dialog.Content>
                                             
                                         </Dialog.Root>
-                                    </div>
+                                    </section>
                                 </li>
                             )
                         })}

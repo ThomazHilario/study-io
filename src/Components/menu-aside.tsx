@@ -7,11 +7,12 @@ import { UseMyContext } from '../Context/context'
 export const MenuAside = () => {
 
     // Context
-    const {isTimer, setIsTimer} = UseMyContext()
-    const {isTask, setIsTask} = UseMyContext()
-    const {isNotes, setIsNotes} = UseMyContext()
-    const {isThemes, setIsThemes} = UseMyContext()
+    const { isTimer, setIsTimer } = UseMyContext()
+    const { isTask, setIsTask } = UseMyContext()
+    const { isNotes, setIsNotes } = UseMyContext()
+    const { isThemes, setIsThemes } = UseMyContext()
     const { isCalendar, setIsCalendar } = UseMyContext()
+    const { isKanban, setIsKanban } = UseMyContext()
 
     return(
         <menu className='mt-4 flex flex-col gap-3 *:cursor-pointer'>
@@ -40,7 +41,7 @@ export const MenuAside = () => {
                 <p className='text-white text-[0.8rem] font-semibold font-system'>Cal</p>
             </li>
 
-            <li className='flex flex-col justify-center items-center hover:bg-gray-200/10 py-[0.15rem] px-1 rounded-md'>
+            <li className='flex flex-col justify-center items-center hover:bg-gray-200/10 py-[0.15rem] px-1 rounded-md' onClick={() => setIsKanban(!isKanban)}>
                 <Kanban color='white' size={20}/>
                 <p className='text-white text-[0.8rem] font-semibold font-system'>Kanban</p>
             </li>

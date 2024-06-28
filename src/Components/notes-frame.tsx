@@ -164,13 +164,13 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
         enableResizing={false} 
         default={{x:xDrag, y:yDrag, height:'', width:''}}
         onDragStop={savePositionNotesDrag}>
-            <div className='bg-slate-700 rounded-sm w-full cursor-pointer py-3'>
+            <section className='bg-slate-700 rounded-sm w-full cursor-pointer py-3'>
                 <div className='flex items-center justify-end px-3 mb-2'>
                     <MinusIcon color='white' onClick={() => setIsNotes(false)}/>
                 </div>
 
                 {isAddNote ? (
-                    <div className='px-2'>
+                    <section className='px-2'>
                         <form className='flex flex-col items-center gap-2'>
                             <textarea 
                             className='resize-none outline-none p-1 bg-black/20 w-full text-white rounded-sm'
@@ -184,9 +184,9 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
                             type='submit' onClick={addNotes}>Adicionar nota</button>
                         </form>
                         <button className="w-full bg-red-500 rounded-sm mt-1 text-white" onClick={cancelTask}>Cancelar</button>
-                    </div>
+                    </section>
                 ) : 
-                <div className='px-2 w-[330px]'>
+                <section className='px-2 w-[330px]'>
                     <button className='w-full rounded-sm border-2 text-center text-white'  
                     onClick={() => setIsAddNote(!isAddNote)}>Adicionar nota</button>
 
@@ -207,14 +207,14 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
 
                                         <Dialog.Portal>
                                             <Dialog.Content className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
-                                                <div className='bg-slate-700 p-2 rounded-sm text-white text-justify w-[20vw]'>
+                                                <section className='bg-slate-700 p-2 rounded-sm text-white text-justify w-[20vw]'>
                                                     {isEditNote ? (
                                                         <textarea className='p-1 resize-none outline-none bg-black/20 w-full rounded-sm' rows={3} value={editNote} onChange={(e) => setEditNote(e.target.value)}/>
                                                     ) : 
-                                                        <div className='bg-black/40 p-2'><span>{item.item}</span></div>
+                                                        <article className='bg-black/40 p-2'><p>{item.item}</p></article>
                                                     }
 
-                                                    <div className='mb-4 mt-4 flex gap-3'>
+                                                    <article className='mb-4 mt-4 flex gap-3'>
                                                         {isEditNote ? (
                                                             <>
                                                                 <button className='bg-green-500 px-2 rounded-sm' onClick={() => editNotes(idx)}>
@@ -235,14 +235,14 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
                                                                 </button>
                                                             </>
                                                         )}
-                                                    </div>
+                                                    </article>
 
                                                     {!isEditNote && (
                                                         <span>
                                                             Criado há {formatDistanceToNow(item.date,{locale:ptBR})}
                                                         </span>
                                                     )}
-                                                </div>
+                                                </section>
                                             </Dialog.Content>
                                         </Dialog.Portal>
                                     </Dialog.Root>
@@ -250,9 +250,9 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
                             })}
                         </div>
                     )}
-                </div>
+                </section>
                 }
-            </div>
+            </section>
         </Rnd>
     )
 })

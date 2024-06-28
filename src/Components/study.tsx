@@ -38,7 +38,7 @@ export const Study = () => {
     // Context
     const { isFullscreen, setIsFullscreen } = UseMyContext()
     const { resizable, setResizable } = UseMyContext()
-    const { isTask, isNotes, isTimer, isThemes, isCalendar, setIsLogged } = UseMyContext()
+    const { isTask, isNotes, isTimer, isThemes, isCalendar, isKanban ,setIsLogged } = UseMyContext()
 
     // store
     const setUserData = user(state => state.setUserData)
@@ -144,13 +144,13 @@ export const Study = () => {
                 </header>
 
                 {/* area de trabalho */}
-                <div className='flex basis-full'>
+                <section className='flex basis-full'>
                     <aside className="bg-[#202224] w-14 border-r-gray-600 border-r-[1px] flex justify-center">
                         <MenuAside/>
                     </aside>
 
                     {/* Wallpaper */}
-                    <div className="bg-slate-900 w-full">
+                    <section className="bg-slate-900 w-full">
                         <video className="w-full h-full object-cover" autoPlay muted loop>
                             <source src={videoUrl}/>
                         </video>
@@ -171,12 +171,11 @@ export const Study = () => {
                         {/* Calendar */}
                         {isCalendar && <Calendar/>}
 
+                        {/* Kanban */}
+                        {isKanban && <Kanban/>}
                         
-                        <Kanban/>
-                        
-
-                    </div>
-                </div>
+                    </section>
+                </section>
             </main>
         </RightClick>
     )

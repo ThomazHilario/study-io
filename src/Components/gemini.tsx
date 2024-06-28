@@ -68,18 +68,18 @@ export const Gemini = () => {
     }
 
     return(
-        <div className={`bottom-5 right-5 absolute bg-slate-800 flex flex-col justify-center items-center p-2 text-white ${isQuestion ? 'rounded-sm' : 'bg-transparent'}`}>
+        <section className={`bottom-5 right-5 absolute bg-slate-800 flex flex-col justify-center items-center p-2 text-white ${isQuestion ? 'rounded-sm' : 'bg-transparent'}`}>
             {isQuestion ? (
-                <div className='w-[500px] flex flex-col gap-3'>
+                <section className='w-[500px] flex flex-col gap-3'>
                     {/* Sair do chat */}
                     <div className='flex justify-end'>
                         <Minus className='cursor-pointer' onClick={() => setIsQuestion(false)}/>
                     </div>
 
                     {/* Div indicando que esta funcionalidade e um beta */}
-                    <div className='flex justify-end'>
-                        <span className='py-1 px-3 bg-black/20 rounded-sm'>Beta</span>
-                    </div>
+                    <article className='flex justify-end'>
+                        <p className='py-1 px-3 bg-black/20 rounded-sm'>Beta</p>
+                    </article>
 
                     {/* Chat adaptdo a scroll area */}
                     <ScrollArea.Root className="p-2 text-justify w-full h-[65vh] rounded overflow-hidden bg-black/20">
@@ -91,10 +91,10 @@ export const Gemini = () => {
                                     </div>
                                 )
                             }) : (
-                                <div className='flex justify-center items-center'>
+                                <article className='flex justify-center items-center'>
                                     <svg className=" rounded-full animate-spin h-10 w-10 mr-3 border-[10px] border-dotted" viewBox="0 0 24 24"/>
                                     <span className='text-2xl'>Processando a sua pergunta...</span>
-                                </div>
+                                </article>
                             )}
                         </ScrollArea.Viewport>
                         <ScrollArea.Scrollbar
@@ -112,18 +112,18 @@ export const Gemini = () => {
                         <ScrollArea.Corner className="bg-blackA5" />
                     </ScrollArea.Root>
 
-                    <div className='flex gap-2'>
+                    <article className='flex gap-2'>
                         <Skeleton loading={isLoading} className='w-full'>
                             <textarea className='overflow-hidden w-full resize-none bg-black/20 outline-none p-2 rounded-sm' value={question} placeholder='Faça uma pergunta...' autoFocus rows={1} onChange={(e) => setQuestion(e.target.value)}></textarea>
 
                             <button onClick={questionUser}><SendHorizonal/></button>
                         </Skeleton>
-                    </div>
-                </div>
+                    </article>
+                </section>
             ) : <div className='cursor-pointer p-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full' onClick={() => setIsQuestion(true)}>
                     <Sparkle size={60}/>
                 </div>}
-        </div>
+        </section>
     )
 }
 /*

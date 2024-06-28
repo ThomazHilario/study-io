@@ -49,7 +49,7 @@ export const AccountDialog = () => {
                 <Dialog.Overlay className='fixed inset-0 bg-black/50 transition-opacity'/>
 
                 <Dialog.Content className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
-                    <div className='bg-slate-800 h-[50vh] w-[40vw] p-5 rounded-md flex flex-col gap-5 text-white'>
+                    <section className='bg-slate-800 h-[50vh] w-[40vw] p-5 rounded-md flex flex-col gap-5 text-white'>
                         <form className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-1'>
                                 <label>Username:</label>
@@ -65,7 +65,7 @@ export const AccountDialog = () => {
                         <hr/>
 
                         {/* Button delete account */}
-                        <div className='w-[37vw]'>
+                        <section className='w-[37vw]'>
                             <p className='font-light mb-5'>Ao deletar sua conta suas informações armazenadas como as task, notes e kanban não podem ser recuperadas:</p>
                             
                             <Alert.Root>
@@ -82,21 +82,21 @@ export const AccountDialog = () => {
                                     Ao deletar sua conta suas informações armazenadas como as task, notes e kanban não podem ser recuperadas.
                                 </Alert.Description>
 
-                                <div className='flex gap-2'>
-                                    <button className='w-32 h-8 bg-gray-600 rounded-sm'>
+                                <article className='flex gap-2'>
+                                    <Alert.Cancel className='w-32 h-8 bg-gray-600 rounded-sm'>
                                         Cancel
-                                    </button>
+                                    </Alert.Cancel>
                                 
                                 
                                     <button className='w-32 h-8 bg-red-500 rounded-sm' onClick={deleteAccount}>
                                         Delete Account
                                     </button>
                                     
-                                </div>
+                                </article>
                               </Alert.Content>
                             </Alert.Root>
-                        </div>
-                    </div>
+                        </section>
+                    </section>
                 </Dialog.Content>
             </Dialog.Portal>
         </Dialog.Root>
