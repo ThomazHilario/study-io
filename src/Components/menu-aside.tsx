@@ -41,7 +41,7 @@ export const MenuAside = () => {
                 <p className='text-white text-[0.8rem] font-semibold font-system'>Cal</p>
             </li>
 
-            <li className='flex flex-col justify-center items-center hover:bg-gray-200/10 py-[0.15rem] px-1 rounded-md' onClick={() => setIsKanban(!isKanban)}>
+            <li className={`flex flex-col justify-center items-center hover:bg-gray-200/10 py-[0.15rem] px-1 rounded-md ${isKanban && 'bg-gray-400/10'}`} onClick={() => setIsKanban(!isKanban)}>
                 <Kanban color='white' size={20}/>
                 <p className='text-white text-[0.8rem] font-semibold font-system'>Kanban</p>
             </li>
