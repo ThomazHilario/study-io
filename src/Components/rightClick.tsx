@@ -18,7 +18,9 @@ export const RightClick = ({children}:ChildrenType) => {
         isNotes,
         isTimer,
         isThemes,
-        isCalendar 
+        isCalendar,
+        isKanban,
+        setIsKanban
     } = UseMyContext()
 
     return(
@@ -31,23 +33,27 @@ export const RightClick = ({children}:ChildrenType) => {
             {isLogged ? (
                 <>
                     <ContextMenu.Item shortcut="⌘" color="violet" onClick={() => setIsTask(!isTask)}>
-                        {isTask ? 'Close Task' : 'Add Task'}
+                        {`${isTask ? 'Close' : 'Add'} Task`}
                     </ContextMenu.Item>
 
                     <ContextMenu.Item shortcut="⌘" color="violet" onClick={() => setIsNotes(!isNotes)}>
-                        {isNotes ? 'Close Notes' : 'Add Notes'}
+                        {`${isNotes ? 'Close' : 'Add'} Notes`}
                     </ContextMenu.Item>
 
                     <ContextMenu.Item shortcut='⌘' color="violet" onClick={() => setIsTimer(!isTimer)}>
-                        {isTimer ? 'Close Timer' : 'Open Timer'}
+                        {`${isTimer ? 'Close' : 'Open'} Timer`}
                     </ContextMenu.Item>
 
                     <ContextMenu.Item shortcut='⌘' color="violet" onClick={() => setIsThemes(!isThemes)}>
-                        {isThemes ? 'Close Themes' : 'Open Themes'}
+                        {`${isThemes ? 'Close' : 'Open'} Themes`}
                     </ContextMenu.Item>
 
                     <ContextMenu.Item shortcut='⌘' color="violet" onClick={() => setIsCalendar(!isCalendar)}>
-                        {isCalendar ? 'Close Calendar' : 'Open Calendar'}
+                        {`${isCalendar ? 'Close' : 'Open'} Calendar`}
+                    </ContextMenu.Item>
+
+                    <ContextMenu.Item shortcut='⌘' color='violet' onClick={() => setIsKanban(!isKanban)}>
+                        {`${isKanban ? 'Close' : 'Open'} Kanban`}
                     </ContextMenu.Item>
                 </>
             ) : (
