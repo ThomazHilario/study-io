@@ -4,14 +4,11 @@ import { DragDropContext } from '@hello-pangea/dnd'
 
 // interface
 import { TaskProps } from '../interfaces/kanbanTypes'
-interface KanbanProps{
-    taskForUser:TaskProps[]
-}
 
 // Component
 import { ColumnsKanban } from './ColumnKanban'
 
-export const Kanban = ({taskForUser}:KanbanProps) => {
+export const Kanban = ( {taskForUser}:{taskForUser:TaskProps[]} ) => {
 
     const [task, setTask] = useState<TaskProps[]>(taskForUser)
 
