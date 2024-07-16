@@ -21,7 +21,7 @@ export const Gemini = () => {
     const geminiIa = new GoogleGenerativeAI('AIzaSyC2GQItzSVd2jlMQ9PQW2qrGU7gfZ2h6LY')
 
     // Modelo 
-    const model = geminiIa.getGenerativeModel({model:'gemini-pro'})
+    const model = geminiIa.getGenerativeModel({model:'gemini-1.5-flash'})
 
     // state- isQuestion
     const [isQuestion, setIsQuestion] = useState<boolean>(false)
