@@ -6,6 +6,7 @@ import { UseMyContext } from "../Context/context"
 
 // interface
 import { NotesProps } from '../interfaces/notesType'
+import { TaskProps } from "../interfaces/kanbanTypes"
 
 // Components
 import { RightClick } from "./rightClick"
@@ -45,7 +46,7 @@ export const Study = () => {
     const userData = user(state => state.user)
 
     // state - task
-    const [task, setTask] = useState<string[]>([])
+    const [task, setTask] = useState<TaskProps[]>([])
 
     // state - notesList
     const [notesList, setNotesList] = useState<NotesProps[]>([])
@@ -172,7 +173,7 @@ export const Study = () => {
                         {isCalendar && <Calendar/>}
 
                         {/* Kanban */}
-                        {isKanban && <Kanban/>}
+                        {isKanban && <Kanban taskForUser={task}/>}
                         
                     </section>
                 </section>
