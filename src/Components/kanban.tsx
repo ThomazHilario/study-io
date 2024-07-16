@@ -13,13 +13,11 @@ export const Kanban = () => {
     const [task, setTask] = useState<TaskProps[]>([
         {
             id:'1',
-            name:'Jogar valorant',
-            createIn:'28/05/2024'
+            name:'Jogar valorant'
         },
         {
             id:'2',
-            name:'Jogar ',
-            createIn:'28/05/2024'
+            name:'Jogar'
         }
     ])
 

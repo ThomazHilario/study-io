@@ -2,16 +2,13 @@
 import { ChangeEvent, FormEvent, useState, useEffect, memo } from "react"
 
 // import lucide-icons
-import { MenuIcon } from 'lucide-react'
+import { MenuIcon, MinusIcon } from 'lucide-react'
 
 // import Context
 import { UseMyContext } from "../Context/context"
 
 // import rnd
 import { Rnd } from "react-rnd"
-
-// import lucide-icons
-import { MinusIcon } from "lucide-react"
 
 // store
 import { user } from '../Store/store'
@@ -24,10 +21,10 @@ import { doc, updateDoc, getDoc } from 'firebase/firestore'
 import * as Dialog from '@radix-ui/react-dialog'
 
 // import interface
-import { TaskProps } from '../interfaces/notes-frames-type'
+import { TaskFrameProps } from '../interfaces/notes-frames-type'
 import { DraggableData, DraggableEvent } from "react-draggable"
 
-function TaskFrame({task,setTask}:TaskProps){
+function TaskFrame({task,setTask}:TaskFrameProps){
 
     // Context
     const { setIsTask } = UseMyContext()
@@ -59,7 +56,7 @@ function TaskFrame({task,setTask}:TaskProps){
     const [seach, setSeach] = useState('')
 
     // taskFilterList
-    const taskFilterList = seach !== '' ? task.filter(item => item.toLowerCase().includes(seach.toLocaleLowerCase())) : task
+    const taskFilterList = seach !== '' ? task.filter(task => task.name.toLowerCase().includes(seach.toLowerCase())) : task
 
     useEffect(() => {
 
@@ -97,14 +94,20 @@ function TaskFrame({task,setTask}:TaskProps){
                 setIsAddTask(!isAddTask)
 
                 // Adicionando task ao state task
-                setTask([...task,taskText])
+                setTask([...task,{
+                    id:crypto.randomUUID(),
+                    name:taskText
+                }])
 
                 // docref
                 const docRef = doc(database,'users',userData?.id as string)
 
                 // Atualizando array no banco de dados
                 await updateDoc(docRef,{
-                    task:[...task,taskText]
+                    task:[...task,{
+                        id:crypto.randomUUID(),
+                        name:taskText
+                    }]
                 })
 
                 // Limpando state
@@ -152,11 +155,14 @@ function TaskFrame({task,setTask}:TaskProps){
     // activeEdit
     function activeEdit(idx:number){
 
+        // Buscando a task do array de task
+        const taskForEditing = task[idx]
+
         // Alterando o valor da state isEditask
         setIsEditTask(!isEditTask)
 
         // state editTaskText recebe o valor da task no qual sera editada
-        setEditTaskText(task[idx])
+        setEditTaskText(taskForEditing.name)
 
         // Passando o index para a state editIndex
         setEditIndex(idx)
@@ -166,7 +172,7 @@ function TaskFrame({task,setTask}:TaskProps){
     async function editingTask(){
         try {
             // Editando tarefa especifica
-            task[editIndex as number] = editTaskText
+            task[editIndex as number].name = editTaskText
 
             // Setando as alterações da state
             setTask([...task])
@@ -255,12 +261,12 @@ function TaskFrame({task,setTask}:TaskProps){
                 {/* minhas tarefas*/}
                 {isTaskEmptyAndEditIsFalse &&(
                     <ul className="mt-3 flex flex-col gap-2">
-                        {taskFilterList.map((item, idx) => {
+                        {taskFilterList.map((task, idx) => {
                             return(
                                 <li key={idx} className="group flex gap-4 border-2 py-1 px-2 rounded-md w-full justify-between">
                                     <div className="flex items-center gap-2">
                                         <input className="min-h-4 min-w-4" type="checkbox" onChange={taskComplete}/>
-                                        <span className="text-justify whitespace-break-spaces">{item}</span>
+                                        <span className="text-justify whitespace-break-spaces">{task.name}</span>
                                     </div>
 
                                     <section className="w-7">

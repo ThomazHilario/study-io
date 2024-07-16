@@ -2,7 +2,6 @@
 export interface TaskProps{
     id:string,
     name:string,
-    createIn:string 
 }
 
 //ColumnKanbanProps
