@@ -19,6 +19,5 @@ export interface CardKanbanProps{
     task:{
         id:string,
         name:string,
-        createIn:string
     }
 }

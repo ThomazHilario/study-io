@@ -14,7 +14,13 @@ export const ColumnsKanban = ({task, devTask, pauseTask, completeTask}:ColumnsKa
                         <section ref={provider.innerRef} {...provider.droppableProps} className='h-min w-[290px] bg-slate-900/90 rounded-sm px-5 py-2 text-white'>
                             <h1 className='mb-2'>Tarefas a fazer:</h1>
 
-                            {task.map((taskUser,index) => <CardKanban key={index} index={index} task={taskUser} />)}
+                            {task.map((taskUser,index) => (
+                                <CardKanban 
+                                    key={index} 
+                                    index={index} 
+                                    task={taskUser} 
+                                />
+                            ))}
 
                             {provider.placeholder}
                         </section>    
@@ -29,7 +35,11 @@ export const ColumnsKanban = ({task, devTask, pauseTask, completeTask}:ColumnsKa
                             <h1 className='mb-2'>Em desenvolvendo:</h1>
 
                             {devTask.length > 0 && devTask.map((task, index) => (
-                                <CardKanban key={index} index={index} task={task}/>
+                                <CardKanban 
+                                    key={index} 
+                                    index={index} 
+                                    task={task}
+                                />
                             ))}
 
                             {provider.placeholder}
@@ -48,7 +58,11 @@ export const ColumnsKanban = ({task, devTask, pauseTask, completeTask}:ColumnsKa
                             <h1 className='mb-2'>Pausado:</h1>
 
                             {pauseTask.length > 0 && pauseTask.map((task, index) => (
-                                <CardKanban key={index} index={index} task={task}/>
+                                <CardKanban 
+                                    key={index} 
+                                    index={index} 
+                                    task={task}
+                                />
                             ))}
 
                             {provider.placeholder}
@@ -64,7 +78,11 @@ export const ColumnsKanban = ({task, devTask, pauseTask, completeTask}:ColumnsKa
                             <h1 className='mb-2'>Concluido:</h1>
 
                             {completeTask.length > 0 && completeTask.map((task,index) => (
-                                <CardKanban key={index} index={index} task={task}/>
+                                <CardKanban 
+                                    key={index} 
+                                    index={index} 
+                                    task={task}
+                                />
                             ))}
 
                             {provider.placeholder}

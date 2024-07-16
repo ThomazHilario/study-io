@@ -37,16 +37,70 @@ export const Kanban = ( {taskForUser}:{taskForUser:TaskProps[]} ) => {
         if(e.destination !== null){
             if(e.source.droppableId === 'fazer'){
                 // Buscado a task do array com base no index do evento
-                const taskUser = task[e.source.index]
-
-                // Retiro a task do array dele.
-                setTask(task.filter((item:TaskProps, index) => index !== e.source.index && item))
+                const taskUser = task.find((task, index) => index === e.source.index && task) as TaskProps
 
                 // Pego o destino / coluna em que a task ira ficar.
                 const destino:keyof typeof destinationObject = e.destination.droppableId
 
-                // de acordo com o destino / coluna, salvo as alterações no novo array.
-                destinationObject[destino](taskUser)
+                // Verificando se eu estou movendo para uma coluna diferente da que está
+                if(e.source.droppableId !== destino){
+                    // Retiro a task do array dele.
+                    setTask(task.filter((item:TaskProps, index) => index !== e.source.index && item))
+
+                    // de acordo com o destino / coluna, salvo as alterações no novo array.
+                    destinationObject[destino](taskUser)
+                }
+            }
+
+            if(e.source.droppableId === 'desenvolvendo'){
+                 // Buscado a task do array com base no index do evento
+                 const taskUser = devTask.find((task, index) => index === e.source.index && task) as TaskProps
+
+                 // Pego o destino / coluna em que a task ira ficar.
+                 const destino:keyof typeof destinationObject = e.destination.droppableId
+ 
+                 // Verificando se eu estou movendo para uma coluna diferente da que está
+                 if(e.source.droppableId !== destino){
+                     // Retiro a task do array dele.
+                     setDevTask(devTask.filter((task:TaskProps) => task.id !== taskUser.id))
+ 
+                     // de acordo com o destino / coluna, salvo as alterações no novo array.
+                     destinationObject[destino](taskUser)
+                 }
+            }
+
+            if(e.source.droppableId === 'pausado'){
+                // Buscado a task do array com base no index do evento
+                const taskUser = pauseTask.find((task, index) => index === e.source.index && task) as TaskProps
+
+                // Pego o destino / coluna em que a task ira ficar.
+                const destino:keyof typeof destinationObject = e.destination.droppableId
+
+                // Verificando se eu estou movendo para uma coluna diferente da que está
+                if(e.source.droppableId !== destino){
+                    // Retiro a task do array dele.
+                    setPauseTask(pauseTask.filter(task => task.id !== taskUser.id))
+
+                    // de acordo com o destino / coluna, salvo as alterações no novo array.
+                    destinationObject[destino](taskUser)
+                }
+            }
+
+            if(e.source.droppableId === 'concluido'){
+                // Buscado a task do array com base no index do evento
+                const taskUser = completeTask.find((task, index) => index === e.source.index && task) as TaskProps
+
+                // Pego o destino / coluna em que a task ira ficar.
+                const destino:keyof typeof destinationObject = e.destination.droppableId
+
+                // Verificando se eu estou movendo para uma coluna diferente da que está
+                if(e.source.droppableId !== destino){
+                    // Retiro a task do array dele.
+                    setCompleteTask(completeTask.filter(task => task.id !== taskUser.id))
+
+                    // de acordo com o destino / coluna, salvo as alterações no novo array.
+                    destinationObject[destino](taskUser)
+                }
             }
         }
     }
