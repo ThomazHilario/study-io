@@ -1,5 +1,7 @@
+// React
 import { useState } from 'react'
 
+// Hello pangea
 import { DragDropContext } from '@hello-pangea/dnd'
 
 // interface
@@ -103,8 +105,6 @@ export const Kanban = ( {taskForUser}:{taskForUser:TaskProps[]} ) => {
                 }
             }
         }
-
-        console.log(e)
     }
 
     return(
