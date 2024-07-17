@@ -1,5 +1,7 @@
+// Hello Pangea
 import { Droppable } from "@hello-pangea/dnd"
 
+// Components
 import { CardKanban } from "./CardKanban"
 
 // Interfaces
@@ -14,11 +16,11 @@ export const ColumnsKanban = ({task, devTask, pauseTask, completeTask}:ColumnsKa
                         <section ref={provider.innerRef} {...provider.droppableProps} className='h-min w-[290px] bg-slate-900/90 rounded-sm px-5 py-2 text-white'>
                             <h1 className='mb-2'>Tarefas a fazer:</h1>
 
-                            {task.map((taskUser,index) => (
+                            {task.map((task,index) => (
                                 <CardKanban 
-                                    key={index} 
+                                    key={task.id} 
                                     index={index} 
-                                    task={taskUser} 
+                                    task={task} 
                                 />
                             ))}
 
@@ -36,7 +38,7 @@ export const ColumnsKanban = ({task, devTask, pauseTask, completeTask}:ColumnsKa
 
                             {devTask.length > 0 && devTask.map((task, index) => (
                                 <CardKanban 
-                                    key={index} 
+                                    key={task.id} 
                                     index={index} 
                                     task={task}
                                 />
@@ -59,7 +61,7 @@ export const ColumnsKanban = ({task, devTask, pauseTask, completeTask}:ColumnsKa
 
                             {pauseTask.length > 0 && pauseTask.map((task, index) => (
                                 <CardKanban 
-                                    key={index} 
+                                    key={task.id} 
                                     index={index} 
                                     task={task}
                                 />
@@ -79,7 +81,7 @@ export const ColumnsKanban = ({task, devTask, pauseTask, completeTask}:ColumnsKa
 
                             {completeTask.length > 0 && completeTask.map((task,index) => (
                                 <CardKanban 
-                                    key={index} 
+                                    key={task.id} 
                                     index={index} 
                                     task={task}
                                 />
