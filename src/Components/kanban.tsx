@@ -1,5 +1,5 @@
-// React
-import { useState } from 'react'
+// Store
+import { user } from '../Store/store'
 
 // Hello pangea
 import { DragDropContext } from '@hello-pangea/dnd'
@@ -10,15 +10,18 @@ import { TaskProps } from '../interfaces/kanbanTypes'
 // Component
 import { ColumnsKanban } from './ColumnKanban'
 
-export const Kanban = ( {taskForUser}:{taskForUser:TaskProps[]} ) => {
+export const Kanban = () => {
 
-    const [task, setTask] = useState<TaskProps[]>(taskForUser)
-
-    const [devTask, setDevTask] = useState<TaskProps[]>([])
-
-    const [pauseTask, setPauseTask] = useState<TaskProps[]>([])
-
-    const [completeTask, setCompleteTask] = useState<TaskProps[]>([])
+    const {
+        task, 
+        setTask, 
+        devTask, 
+        setDevTask, 
+        pauseTask, 
+        setPauseTask, 
+        completeTask, 
+        setCompleteTask
+    } = user(state => state)
 
     const destinationObject = {
         fazer:(taskUser:TaskProps):void => {

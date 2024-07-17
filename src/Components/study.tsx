@@ -43,6 +43,7 @@ export const Study = () => {
 
     // store
     const setUserData = user(state => state.setUserData)
+    const setTaskStore = user(state => state.setTask)
     const userData = user(state => state.user)
 
     // state - task
@@ -84,6 +85,9 @@ export const Study = () => {
 
                     // Salvando task
                     setTask(data.data().task)
+
+                    // Adicionando as tasks as stores
+                    setTaskStore(data.data().task)
 
                     // Salvando notas
                     setNotesList(data.data().notes)
@@ -173,7 +177,7 @@ export const Study = () => {
                         {isCalendar && <Calendar/>}
 
                         {/* Kanban */}
-                        {isKanban && <Kanban taskForUser={task}/>}
+                        {isKanban && <Kanban/>}
                         
                     </section>
                 </section>

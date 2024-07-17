@@ -11,11 +11,11 @@ export interface StoreProps{
     user: null | UserProps,
     setUserData: (id:string, username:string, email:string, img:unknown) => void,
     task: TaskProps[],
-    setTask: (task:TaskProps) => void,
+    setTask: (task:TaskProps[]) => void,
     devTask: TaskProps[],
-    setDevTask: (task:TaskProps) => void,
+    setDevTask: (task:TaskProps[]) => void,
     pauseTask: TaskProps[],
-    setPauseTask: (task:TaskProps) => void,
+    setPauseTask: (task:TaskProps[]) => void,
     completeTask: TaskProps[],
-    setCompleteTask: (task:TaskProps) => void
+    setCompleteTask: (task:TaskProps[]) => void
 }

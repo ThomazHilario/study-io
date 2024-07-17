@@ -15,22 +15,22 @@ export const user = create<StoreProps>((set) => ({
         }
     }),
     task:[],
-    setTask:(task) => set((state) => ({
-        task:[...state.task,task]
+    setTask:(tasks) => set(({
+        task:tasks
     })),
 
     devTask:[],
-    setDevTask:(task) => set((state) => ({
-      devTask:[...state.devTask, task]  
+    setDevTask:(tasks) => set(({
+      devTask:tasks  
     })),
 
     pauseTask:[],
-    setPauseTask:(task) => set((state) => ({
-        pauseTask:[...state.pauseTask, task]
+    setPauseTask:(tasks) => set(({
+        pauseTask:tasks
     })),
 
     completeTask:[],
-    setCompleteTask: (task) => set((state) => ({
-        completeTask:[...state.completeTask, task]
+    setCompleteTask: (tasks) => set(({
+        completeTask:tasks
     }))
 }))
