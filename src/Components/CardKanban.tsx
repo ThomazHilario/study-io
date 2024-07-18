@@ -11,10 +11,10 @@ export const CardKanban = ({index, task}:CardKanbanProps) => {
             {(provider) => 
                 (
                     <article 
-                    ref={provider.innerRef} 
-                    {...provider.dragHandleProps} 
-                    {...provider.draggableProps} 
-                    className={`cursor-pointer w-full p-1 rounded-md bg-gray-700 border-2 border-transparent hover:border-cyan-400 mt-2`}>
+                        ref={provider.innerRef} 
+                        {...provider.dragHandleProps} 
+                        {...provider.draggableProps} 
+                        className={`cursor-pointer w-full p-1 rounded-md bg-gray-700 border-2 border-transparent hover:border-cyan-400 mt-2`}>
                         {task.name}
                     </article>
                 )

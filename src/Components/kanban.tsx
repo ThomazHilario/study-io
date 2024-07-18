@@ -1,3 +1,25 @@
+// React-hook-form
+import { useForm } from 'react-hook-form'
+
+// zod and zzodResolver
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+// SchemaKanbanProps
+interface SchemaKanbanProps{
+    column:string,
+    taskName:string
+}
+
+// schema
+const schema = z.object({
+    column:z.string(),
+    taskName:z.string().min(1,'Preencha o campo')
+}).required({
+    column:true,
+    taskName:true
+})
+
 // Store
 import { user } from '../Store/store'
 
@@ -11,6 +33,8 @@ import { TaskProps } from '../interfaces/kanbanTypes'
 import { ColumnsKanban } from './ColumnKanban'
 
 export const Kanban = () => {
+
+    const { register, handleSubmit, formState:{errors} } = useForm<SchemaKanbanProps>({resolver:zodResolver(schema)})
 
     const {
         task, 
@@ -38,6 +62,12 @@ export const Kanban = () => {
         }
     }
 
+    // handleTaskKanbanSubmit
+    function handleTaskKanbanSubmit({ column, taskName }:SchemaKanbanProps){
+
+    }
+
+    // handleDragEnd - mover uma task de uma coluna a outra
     function handleDragEnd(e:any){
         if(e.destination !== null){
             if(e.source.droppableId === 'fazer'){
@@ -112,7 +142,34 @@ export const Kanban = () => {
 
     return(
         <DragDropContext onDragEnd={handleDragEnd} >
-            <section className="absolute top-[50%] left-[52%] -translate-x-1/2 -translate-y-[45%]  w-[90vw] h-[80vh] bg-black/30 rounded-sm p-1">
+            <section className="absolute top-[50%] left-[52%] -translate-x-1/2 -translate-y-[45%]  w-[85vw] h-[80vh] bg-black/30 rounded-sm p-3">
+
+                {/* Formulario para a adicionar tarefas ao kanban */}
+                <form 
+                className='mb-3 flex gap-3 w- text-white' 
+                onSubmit={handleSubmit(handleTaskKanbanSubmit)}
+                >
+                    <select 
+                        className='bg-black/40 w-40 rounded-sm outline-none px-2'
+                        {...register('column')}
+                    >
+                        <option value="fazer">Fazer</option>
+                        <option value="desenvolvendo">Desenvolvendo</option>
+                        <option value="pausado">Pausado</option>
+                        <option value="concluido">Concluido</option>
+                    </select>
+
+                    <input 
+                        type="text" 
+                        className={`bg-black/40 ${errors.taskName && 'border-2 border-red-500 placeholder:text-red-500'} px-1 w-full rounded-sm outline-none`}
+                        placeholder={errors.taskName ? 'Preencha o campo' : 'Insira uma task...'}
+                        {...register('taskName')}
+                    />
+
+                    <button className='bg-black/80 w-24 rounded-sm h-7' type='submit'>Send</button>
+                </form>
+
+                {/* Colunas do kanban */}
                 <ColumnsKanban 
                     task={task} 
                     devTask={devTask}

@@ -93,21 +93,21 @@ function TaskFrame({task,setTask}:TaskFrameProps){
                 // Alterando o valor do isAddTask
                 setIsAddTask(!isAddTask)
 
-                // Adicionando task ao state task
-                setTask([...task,{
+                // Estrutura da task.
+                const taskCreated = {
                     id:crypto.randomUUID(),
                     name:taskText
-                }])
+                }
+
+                // Adicionando task ao state task
+                setTask([...task, taskCreated])
 
                 // docref
                 const docRef = doc(database,'users',userData?.id as string)
 
                 // Atualizando array no banco de dados
                 await updateDoc(docRef,{
-                    task:[...task,{
-                        id:crypto.randomUUID(),
-                        name:taskText
-                    }]
+                    task:[...task,taskCreated]
                 })
 
                 // Limpando state

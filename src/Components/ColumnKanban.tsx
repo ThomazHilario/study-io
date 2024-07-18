@@ -11,7 +11,7 @@ export const ColumnsKanban = ({task, devTask, pauseTask, completeTask}:ColumnsKa
     // sectionColumnStyle
     const sectionColumnStyle = 'h-min w-[290px] bg-slate-900/90 rounded-sm px-5 py-2 text-white'
     return(
-        <div className="flex gap-2 justify-around">
+        <div className="flex gap-2 justify-between">
             <Droppable droppableId="fazer" direction="vertical">
                 {(provider) => {
                     return(
