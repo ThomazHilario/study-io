@@ -34,7 +34,8 @@ import { ColumnsKanban } from './ColumnKanban'
 
 export const Kanban = () => {
 
-    const { register, handleSubmit, formState:{errors} } = useForm<SchemaKanbanProps>({resolver:zodResolver(schema)})
+    // Desestruturando o useForm
+    const { register, handleSubmit, formState:{errors}, reset } = useForm<SchemaKanbanProps>({resolver:zodResolver(schema)})
 
     const {
         task, 
@@ -64,7 +65,17 @@ export const Kanban = () => {
 
     // handleTaskKanbanSubmit
     function handleTaskKanbanSubmit({ column, taskName }:SchemaKanbanProps){
+        // Verificando se o valor do select é igual ao id de uma coluna do kanban.
+        if(column in destinationObject){
+            // Adicionando a task na coluna escolhida pelo usuário.
+            destinationObject[column as keyof typeof destinationObject]({
+                id:crypto.randomUUID(),
+                name:taskName
+            })
 
+            // Limando o input
+            reset({taskName:''})
+        }
     }
 
     // handleDragEnd - mover uma task de uma coluna a outra
