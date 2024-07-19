@@ -1,25 +1,3 @@
-// React-hook-form
-import { useForm } from 'react-hook-form'
-
-// zod and zzodResolver
-import { z } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
-
-// SchemaKanbanProps
-interface SchemaKanbanProps{
-    column:string,
-    taskName:string
-}
-
-// schema
-const schema = z.object({
-    column:z.string(),
-    taskName:z.string().min(1,'Preencha o campo')
-}).required({
-    column:true,
-    taskName:true
-})
-
 // Store
 import { user } from '../Store/store'
 
@@ -31,12 +9,11 @@ import { TaskProps } from '../interfaces/kanbanTypes'
 
 // Component
 import { ColumnsKanban } from './ColumnKanban'
+import { KanbanForm } from './kanban-form'
 
 export const Kanban = () => {
 
-    // Desestruturando o useForm
-    const { register, handleSubmit, formState:{errors}, reset } = useForm<SchemaKanbanProps>({resolver:zodResolver(schema)})
-
+    // Store
     const {
         task, 
         setTask, 
@@ -48,7 +25,8 @@ export const Kanban = () => {
         setCompleteTask
     } = user(state => state)
 
-    const destinationObject = {
+    // Destinos das task no quadro
+    const methodsToAddTaskToKanban = {
         fazer:(taskUser:TaskProps):void => {
             setTask([...task, taskUser])
         },
@@ -63,21 +41,6 @@ export const Kanban = () => {
         }
     }
 
-    // handleTaskKanbanSubmit
-    function handleTaskKanbanSubmit({ column, taskName }:SchemaKanbanProps){
-        // Verificando se o valor do select é igual ao id de uma coluna do kanban.
-        if(column in destinationObject){
-            // Adicionando a task na coluna escolhida pelo usuário.
-            destinationObject[column as keyof typeof destinationObject]({
-                id:crypto.randomUUID(),
-                name:taskName
-            })
-
-            // Limando o input
-            reset({taskName:''})
-        }
-    }
-
     // handleDragEnd - mover uma task de uma coluna a outra
     function handleDragEnd(e:any){
         if(e.destination !== null){
@@ -86,7 +49,7 @@ export const Kanban = () => {
                 const taskUser = task.find((task, index) => index === e.source.index && task) as TaskProps
 
                 // Pego o destino / coluna em que a task ira ficar.
-                const destino:keyof typeof destinationObject = e.destination.droppableId
+                const destino:keyof typeof methodsToAddTaskToKanban = e.destination.droppableId
 
                 // Verificando se eu estou movendo para uma coluna diferente da que está
                 if(e.source.droppableId !== destino){
@@ -94,7 +57,7 @@ export const Kanban = () => {
                     setTask(task.filter((item:TaskProps, index) => index !== e.source.index && item))
 
                     // de acordo com o destino / coluna, salvo as alterações no novo array.
-                    destinationObject[destino](taskUser)
+                    methodsToAddTaskToKanban[destino](taskUser)
                 }
             }
 
@@ -103,7 +66,7 @@ export const Kanban = () => {
                  const taskUser = devTask.find((task, index) => index === e.source.index && task) as TaskProps
 
                  // Pego o destino / coluna em que a task ira ficar.
-                 const destino:keyof typeof destinationObject = e.destination.droppableId
+                 const destino:keyof typeof methodsToAddTaskToKanban = e.destination.droppableId
  
                  // Verificando se eu estou movendo para uma coluna diferente da que está
                  if(e.source.droppableId !== destino){
@@ -111,7 +74,7 @@ export const Kanban = () => {
                      setDevTask(devTask.filter((task:TaskProps) => task.id !== taskUser.id))
  
                      // de acordo com o destino / coluna, salvo as alterações no novo array.
-                     destinationObject[destino](taskUser)
+                     methodsToAddTaskToKanban[destino](taskUser)
                  }
             }
 
@@ -120,7 +83,7 @@ export const Kanban = () => {
                 const taskUser = pauseTask.find((task, index) => index === e.source.index && task) as TaskProps
 
                 // Pego o destino / coluna em que a task ira ficar.
-                const destino:keyof typeof destinationObject = e.destination.droppableId
+                const destino:keyof typeof methodsToAddTaskToKanban = e.destination.droppableId
 
                 // Verificando se eu estou movendo para uma coluna diferente da que está
                 if(e.source.droppableId !== destino){
@@ -128,7 +91,7 @@ export const Kanban = () => {
                     setPauseTask(pauseTask.filter(task => task.id !== taskUser.id))
 
                     // de acordo com o destino / coluna, salvo as alterações no novo array.
-                    destinationObject[destino](taskUser)
+                    methodsToAddTaskToKanban[destino](taskUser)
                 }
             }
 
@@ -137,7 +100,7 @@ export const Kanban = () => {
                 const taskUser = completeTask.find((task, index) => index === e.source.index && task) as TaskProps
 
                 // Pego o destino / coluna em que a task ira ficar.
-                const destino:keyof typeof destinationObject = e.destination.droppableId
+                const destino:keyof typeof methodsToAddTaskToKanban = e.destination.droppableId
 
                 // Verificando se eu estou movendo para uma coluna diferente da que está
                 if(e.source.droppableId !== destino){
@@ -145,7 +108,7 @@ export const Kanban = () => {
                     setCompleteTask(completeTask.filter(task => task.id !== taskUser.id))
 
                     // de acordo com o destino / coluna, salvo as alterações no novo array.
-                    destinationObject[destino](taskUser)
+                    methodsToAddTaskToKanban[destino](taskUser)
                 }
             }
         }
@@ -155,30 +118,10 @@ export const Kanban = () => {
         <DragDropContext onDragEnd={handleDragEnd} >
             <section className="absolute top-[50%] left-[52%] -translate-x-1/2 -translate-y-[45%]  w-[85vw] h-[80vh] bg-black/30 rounded-sm p-3">
 
-                {/* Formulario para a adicionar tarefas ao kanban */}
-                <form 
-                className='mb-3 flex gap-3 w- text-white' 
-                onSubmit={handleSubmit(handleTaskKanbanSubmit)}
-                >
-                    <select 
-                        className='bg-black/40 w-40 rounded-sm outline-none px-2'
-                        {...register('column')}
-                    >
-                        <option value="fazer">Fazer</option>
-                        <option value="desenvolvendo">Desenvolvendo</option>
-                        <option value="pausado">Pausado</option>
-                        <option value="concluido">Concluido</option>
-                    </select>
-
-                    <input 
-                        type="text" 
-                        className={`bg-black/40 ${errors.taskName && 'border-2 border-red-500 placeholder:text-red-500'} px-1 w-full rounded-sm outline-none`}
-                        placeholder={errors.taskName ? 'Preencha o campo' : 'Insira uma task...'}
-                        {...register('taskName')}
-                    />
-
-                    <button className='bg-black/80 w-24 rounded-sm h-7' type='submit'>Send</button>
-                </form>
+                <KanbanForm 
+                    methodsKanban={methodsToAddTaskToKanban}
+                    selectValues={['fazer', 'desenvolvendo', 'pausado', 'concluido']}
+                />
 
                 {/* Colunas do kanban */}
                 <ColumnsKanban 
