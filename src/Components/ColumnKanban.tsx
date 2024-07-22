@@ -4,12 +4,20 @@ import { Droppable } from "@hello-pangea/dnd"
 // Components
 import { CardKanban } from "./CardKanban"
 
+// Store
+import { user } from '../Store/store'
+
 // Interfaces
 import { ColumnsKanbanProps } from "../interfaces/kanbanTypes"
 
-export const ColumnsKanban = ({task, devTask, pauseTask, completeTask}:ColumnsKanbanProps) => {
+export const ColumnsKanban = ({tasks, devTask, pauseTask, completeTask}:ColumnsKanbanProps) => {
+
+    // store - methods
+    const { setTask, setDevTask, setPauseTask, setCompleteTask } = user(state => state)
+
     // sectionColumnStyle
     const sectionColumnStyle = 'h-min w-[290px] bg-slate-900/90 rounded-sm px-5 py-2 text-white'
+
     return(
         <div className="flex gap-2 justify-between">
             <Droppable droppableId="fazer" direction="vertical">
@@ -22,11 +30,13 @@ export const ColumnsKanban = ({task, devTask, pauseTask, completeTask}:ColumnsKa
 
                             <h1 className='mb-2'>Tarefas a fazer:</h1>
 
-                            {task.map((task,index) => (
+                            {tasks.map((task,index) => (
                                 <CardKanban 
                                     key={task.id} 
                                     index={index} 
                                     task={task} 
+                                    tasks={tasks}
+                                    setTask={setTask}
                                 />
                             ))}
 
@@ -51,6 +61,8 @@ export const ColumnsKanban = ({task, devTask, pauseTask, completeTask}:ColumnsKa
                                     key={task.id} 
                                     index={index} 
                                     task={task}
+                                    tasks={devTask}
+                                    setTask={setDevTask}
                                 />
                             ))}
 
@@ -75,6 +87,8 @@ export const ColumnsKanban = ({task, devTask, pauseTask, completeTask}:ColumnsKa
                                     key={task.id} 
                                     index={index} 
                                     task={task}
+                                    tasks={pauseTask}
+                                    setTask={setPauseTask}
                                 />
                             ))}
 
@@ -99,6 +113,8 @@ export const ColumnsKanban = ({task, devTask, pauseTask, completeTask}:ColumnsKa
                                     key={task.id} 
                                     index={index} 
                                     task={task}
+                                    tasks={completeTask}
+                                    setTask={setCompleteTask}
                                 />
                             ))}
 

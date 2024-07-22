@@ -6,7 +6,7 @@ export interface TaskProps{
 
 //ColumnKanbanProps
 export interface ColumnsKanbanProps{
-    task:TaskProps[],
+    tasks:TaskProps[],
     devTask:TaskProps[],
     pauseTask:TaskProps[],
     completeTask:TaskProps[]
@@ -15,9 +15,10 @@ export interface ColumnsKanbanProps{
 // CardKanbanProps
 export interface CardKanbanProps{
     index:number,
-
     task:{
         id:string,
         name:string,
-    }
+    },
+    tasks:TaskProps[],
+    setTask: (task: TaskProps[]) => void
 }

@@ -125,7 +125,7 @@ export const Kanban = () => {
 
                 {/* Colunas do kanban */}
                 <ColumnsKanban 
-                    task={task} 
+                    tasks={task} 
                     devTask={devTask}
                     pauseTask={pauseTask}
                     completeTask={completeTask}
