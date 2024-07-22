@@ -54,7 +54,7 @@ export const Kanban = () => {
                 // Verificando se eu estou movendo para uma coluna diferente da que está
                 if(e.source.droppableId !== destino){
                     // Retiro a task do array dele.
-                    setTask(task.filter((item:TaskProps, index) => index !== e.source.index && item))
+                    setTask(task.filter((task:TaskProps) => task.id !== taskUser.id && task))
 
                     // de acordo com o destino / coluna, salvo as alterações no novo array.
                     methodsToAddTaskToKanban[destino](taskUser)
