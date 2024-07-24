@@ -63,11 +63,12 @@ export const KanbanForm = ({methodsKanban, selectValues}:KanbanFormProps) => {
             onSubmit={handleSubmit(handleTaskKanbanSubmit)}
         >
             <select 
-                className='bg-black/40 w-40 rounded-sm outline-none px-2'
+                className='cursor-pointer bg-black/40 w-40 rounded-sm outline-none px-2'
                 {...register('column')}
             >
                 {selectValues.map((value, idx) => (
-                    <option 
+                    <option
+                        className="bg-zinc-900" 
                         key={idx} 
                         value={value}
                     >
