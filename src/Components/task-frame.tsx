@@ -22,6 +22,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 
 // import interface
 import { TaskFrameProps } from '../interfaces/notes-frames-type'
+import { TaskProps } from "../interfaces/kanbanTypes"
 import { DraggableData, DraggableEvent } from "react-draggable"
 
 function TaskFrame({task,setTask}:TaskFrameProps){
@@ -83,39 +84,47 @@ function TaskFrame({task,setTask}:TaskFrameProps){
         loadTask()
     },[])
 
-    // addTask
-    async function addTask(e:FormEvent){
-        try {
-            // Cancelado evento do formulario
-            e.preventDefault()
+    // updateTaskDataBase
+    async function updateTaskDataBase(taskArray:TaskProps[]){
+        try{
+            // Refenrencia do banco de dados do usuario
+            const docRef = doc(database, 'users', userData?.id as string)
 
-            if(taskText !== ''){
-                // Alterando o valor do isAddTask
-                setIsAddTask(!isAddTask)
-
-                // Estrutura da task.
-                const taskCreated = {
-                    id:crypto.randomUUID(),
-                    name:taskText
-                }
-
-                // Adicionando task ao state task
-                setTask([...task, taskCreated])
-
-                // docref
-                const docRef = doc(database,'users',userData?.id as string)
-
-                // Atualizando array no banco de dados
-                await updateDoc(docRef,{
-                    task:[...task,taskCreated]
-                })
-
-                // Limpando state
-                setTaskText('')
-            }
-        } catch (error) {
-            console.log(error)
+            // Atualizando as tasks no banco de dados
+            await updateDoc(docRef, {
+                task:taskArray
+            })
+        }catch(e){
+            console.log(e)
         }
+    }
+
+    // addTask
+    function addTask(e:FormEvent){
+        
+        // Cancelado evento do formulario
+        e.preventDefault()
+
+        if(taskText !== ''){
+            // Alterando o valor do isAddTask
+            setIsAddTask(!isAddTask)
+
+            // Estrutura da task.
+            const taskCreated = {
+                id:crypto.randomUUID(),
+                name:taskText
+            }
+
+            // Adicionando task ao state task
+            setTask([...task, taskCreated])
+
+            // Atualizando a coleção de tasks no banco de dados do usuário
+            updateTaskDataBase([...task, taskCreated])
+
+            // Limpando state
+            setTaskText('')
+        }
+    
     }
 
     // taskComplete
@@ -131,25 +140,17 @@ function TaskFrame({task,setTask}:TaskFrameProps){
     }
 
     // deleteTask
-    async function deleteTask(idx:number){
-        try {
-            // Filtrando array sem o elemento especifico
-            const newTaskList = task.filter((item, index) => index !== idx && item)
+    function deleteTask(idx:number){
+        
+        // Filtrando array sem o elemento especifico
+        const newTaskList = task.filter((item, index) => index !== idx && item)
 
-            // Salvando na state task a nova lista de task
-            setTask(newTaskList)
+        // Salvando na state task a nova lista de task
+        setTask(newTaskList)
 
-            // docref
-            const docRef = doc(database,'users',userData?.id as string)
-
-            // Atualizando array no banco de dados
-            await updateDoc(docRef,{
-                task:newTaskList
-            })
-
-        } catch (error) {
-            console.log(error)
-        }
+        // Atualizando a coleção de tasks no banco de dados do usuário
+        updateTaskDataBase(newTaskList)
+        
     }
 
     // activeEdit
@@ -169,33 +170,26 @@ function TaskFrame({task,setTask}:TaskFrameProps){
     }
 
     // editTask
-    async function editingTask(){
-        try {
-            // Editando tarefa especifica
-            task[editIndex as number].name = editTaskText
+    function editingTask(){
+        
+        // Editando tarefa especifica
+        task[editIndex as number].name = editTaskText
 
-            // Setando as alterações da state
-            setTask([...task])
+        // Setando as alterações da state
+        setTask([...task])
 
-            // Referencia com o banco de dados
-            const docRef = doc(database, 'users', userData?.id as string)
+        // Atualizando a coleção de tasks no banco de dados do usuário
+        updateTaskDataBase([...task])
 
-            // Atualizando as task do banco de dados
-            await updateDoc(docRef, {
-                task:[...task]
-            })
+        // Alterando valor boleano da state isEditTask
+        setIsEditTask(!isEditTask)
 
-            // Alterando valor boleano da state isEditTask
-            setIsEditTask(!isEditTask)
+        // Limpando state de edição
+        setEditTaskText('')
 
-            // Limpando state de edição
-            setEditTaskText('')
-
-            // Alterando index
-            setEditIndex(null)
-        } catch (error) {
-            console.log(error)
-        }
+        // Alterando index
+        setEditIndex(null)
+        
     }
 
     // cancelTask
