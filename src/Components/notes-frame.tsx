@@ -26,6 +26,7 @@ import { MinusIcon } from 'lucide-react'
 import { NotesFrameProps } from '../interfaces/notes-frames-type'
 
 // import interfaces
+import { NotesProps } from '../interfaces/notesType'
 import { DraggableData, DraggableEvent } from 'react-draggable'
 
 export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
@@ -52,8 +53,23 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
     // state - isEditNote
     const [isEditNote, setIsEditNote] = useState<boolean>(false)
 
+    // updateNotesDataBase
+    async function updateNotesDataBase(notes:NotesProps[]){
+        try{
+            // Referencia do banco de dados do usuário
+            const docRef = doc(database, 'users', userData?.id as string)
+
+            // Atualizando as notas no banco de dados do usuário
+            await updateDoc(docRef, {
+                notes
+            })
+        }catch(e){
+            console.log(e)
+        }
+    }
+
     // addNotes
-    async function addNotes(e:FormEvent){
+    function addNotes(e:FormEvent){
         // Cancelando envio do formulario
         e.preventDefault()
 
@@ -62,21 +78,17 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
                 // Alterando o valor do isAddNote
                 setIsAddNote(!isAddNote)
     
+                // Salvando a lista de notas com o novo item.
                 setNotesList([...notesList, {
                     item:note,
                     date: Date.now()
                 }])
 
-                // docRef
-                const docRef = doc(database, 'users', userData?.id as string)
-
-                // Salvando notas no banco de dados
-                await updateDoc(docRef,{
-                    notes:[...notesList, {
-                        item:note,
-                        date: Date.now()
-                    }]
-                })
+                // Atualizar notas no banco de dados do usuário
+                updateNotesDataBase([...notesList, {
+                    item:note,
+                    date: Date.now()
+                }])
 
                 // Limpando state
                 setNote('')
@@ -89,7 +101,7 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
     }
 
     // editNote
-    async function editNotes(idx:number){
+    function editNotes(idx:number){
         try {
             // Buscando nota por meio do indice
             const seachNote = notesList[idx]
@@ -100,13 +112,8 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
             // Salvando a lista com o novo item editado
             setNotesList([...notesList])
 
-            // Criando referencia do banco de dados
-            const docRef = doc(database, 'users', userData?.id as string)
-
-            // Atualizando notas no banco de dados
-            await updateDoc(docRef,{
-                notes:[...notesList]
-            })
+            // Atualizar notas no banco de dados do usuário
+            updateNotesDataBase([...notesList])
 
             // Saindo do modo editar
             setIsEditNote(false)
@@ -116,18 +123,13 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
     }
 
     // deleteNote
-    async function deleteNote(idx:number){
+    function deleteNote(idx:number){
         try {
             // Filtrando nota por meio do indice
             const newNotesList = notesList.filter((item,index) => index !== idx && item)
 
-            // Criando referencia do banco de dados
-            const docRef = doc(database, 'users', userData?.id as string)
-
-            // Atualizando banco de dados com a nova lista de notas
-            await updateDoc(docRef, {
-                notes: newNotesList
-            })
+            // Atualizar notas no banco de dados do usuário
+            updateNotesDataBase(newNotesList)
 
             // Salvando novo array de notas
             setNotesList(newNotesList)
