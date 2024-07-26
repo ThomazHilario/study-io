@@ -86,7 +86,7 @@ export const Gemini = () => {
                         <ScrollArea.Viewport className={`w-full h-full rounded ${isLoading && 'flex justify-center items-center'}`}>
                             {!isLoading ? responseList.map((item, idx) => {
                                 return(
-                                    <div key={idx} className={idx % 2 === 0 ? 'flex justify-start' : 'flex justify-end'}>
+                                    <div key={idx} className={`flex ${idx % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
                                         <p className={`w-[450px] p-2 rounded-sm flex ${idx % 2 !== 0 && 'w-[400px]'} my-1 mb-3 bg-black/10`}>{idx % 2 === 0 ? `Gemini: ${item}` : `Voce: ${item}`}</p>
                                     </div>
                                 )
