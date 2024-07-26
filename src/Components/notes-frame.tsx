@@ -122,6 +122,15 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
         }
     }
 
+    // updateStateEdtiNotes
+    function updateStateEdtiNotes(note:string){
+        // Alterando o valor da state isEditNotes
+        setIsEditNote(true)
+
+        // colocando o valor da nota na state
+        setEditNote(note)
+    }
+
     // deleteNote
     function deleteNote(idx:number){
         try {
@@ -185,6 +194,7 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
                             <button className='border-2 w-full text-white' 
                             type='submit' onClick={addNotes}>Adicionar nota</button>
                         </form>
+
                         <button className="w-full bg-red-500 rounded-sm mt-1 text-white" onClick={cancelTask}>Cancelar</button>
                     </section>
                 ) : 
@@ -232,7 +242,7 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
                                                                 <Dialog.Close className='bg-red-500 px-2 rounded-sm' onClick={() => deleteNote(idx)}>
                                                                     Delete
                                                                 </Dialog.Close>
-                                                                <button className='bg-green-500 px-2 rounded-sm' onClick={() => setIsEditNote(!isEditNote)}>
+                                                                <button className='bg-green-500 px-2 rounded-sm' onClick={() => updateStateEdtiNotes(item.item)}>
                                                                     Editar
                                                                 </button>
                                                             </>
