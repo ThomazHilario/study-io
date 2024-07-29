@@ -17,35 +17,41 @@ export const MenuAside = () => {
     // Styled list
     const liStyledWithTailwind = 'flex flex-col justify-center items-center hover:bg-gray-400/10 py-[0.15rem] px-1 rounded-md'
 
+    // Styled Icon
+    const propsIcon:{color:string, size:number} = {
+        color:'white',
+        size:20
+    }
+
     return(
         <menu className='mt-4 flex flex-col gap-3 *:cursor-pointer'>
             <li className={`${liStyledWithTailwind} ${isTimer && 'bg-gray-400/10'}`} onClick={() => setIsTimer(!isTimer)}>
-                <AlarmClock color='white' size={20}/>
+                <AlarmClock {...propsIcon} />
                 <p className='text-white text-[0.8rem] font-semibold font-system'>Timer</p>
             </li>
 
             <li className={`${liStyledWithTailwind} ${isTask && 'bg-gray-400/10'}`} onClick={() => setIsTask(!isTask)}>
-                <PencilLine color='white' size={20} />
+                <PencilLine {...propsIcon} />
                 <p className='text-white text-[0.8rem] font-semibold font-system'>Task</p>
             </li>
 
             <li className={`${liStyledWithTailwind} ${isNotes && 'bg-gray-400/10'}`} onClick={() => setIsNotes(!isNotes)}>
-                <NotebookPen color='white' size={20}/>
+                <NotebookPen {...propsIcon} />
                 <p className='text-white text-[0.8rem] font-semibold font-system'>Notes</p>
             </li>
 
             <li className={`${liStyledWithTailwind} ${isThemes && 'bg-gray-400/10'}`} onClick={() => setIsThemes(!isThemes)}>
-                <WallpaperIcon color='white' size={20}/>
+                <WallpaperIcon {...propsIcon} />
                 <p className='text-white text-[0.75rem] font-semibold font-system'>Themes</p>
             </li>
 
             <li className={`${liStyledWithTailwind} ${isCalendar && 'bg-gray-400/10'}`} onClick={() => setIsCalendar(!isCalendar)}>
-                <CalendarDays color='white' size={20}/>
+                <CalendarDays {...propsIcon} />
                 <p className='text-white text-[0.8rem] font-semibold font-system'>Cal</p>
             </li>
 
             <li className={`${liStyledWithTailwind} ${isKanban && 'bg-gray-400/10'}`} onClick={() => setIsKanban(!isKanban)}>
-                <Kanban color='white' size={20}/>
+                <Kanban {...propsIcon} />
                 <p className='text-white text-[0.8rem] font-semibold font-system'>Kanban</p>
             </li>
         </menu>
