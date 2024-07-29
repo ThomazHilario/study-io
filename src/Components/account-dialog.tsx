@@ -8,6 +8,9 @@ import { useNavigate } from 'react-router-dom'
 // import Store
 import { user } from '../Store/store'
 
+// Lucide-React
+import { X } from 'lucide-react'
+
 // import firebase
 import { auth, database } from '../Services/FirebaseConnection'
 import { doc, deleteDoc } from 'firebase/firestore'
@@ -49,7 +52,11 @@ export const AccountDialog = () => {
                 <Dialog.Overlay className='fixed inset-0 bg-black/50 transition-opacity'/>
 
                 <Dialog.Content className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
-                    <section className='bg-slate-800 h-[50vh] w-[40vw] p-5 rounded-md flex flex-col gap-5 text-white'>
+                    <section className='bg-slate-800 h-[50vh] w-[40vw] p-5 rounded-md flex flex-col gap-5 text-white overflow-hidden'>
+                        <Dialog.Close className='absolute right-0 top-0 p-1 rounded-sm bg-slate-900'>
+                            <X color='white' size={20}/>
+                        </Dialog.Close>
+
                         <form className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-1'>
                                 <label>Username:</label>
