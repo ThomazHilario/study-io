@@ -60,8 +60,14 @@ export const MenuDialog = () => {
             <Dialog.Portal>
                 <Dialog.Content className={`absolute right-2 ${isFullscreen ? 'top-[4.5rem]' : 'top-[3.1rem]'}`}>
                     <menu className='py-2 w-[13vw] bg-slate-800 rounded-sm'>
-                        <li><AccountDialog/></li>
-                        <li><button className='p-2 text-center text-white w-full' onClick={LogOut}>Log Out</button></li>
+                        <li>
+                            <AccountDialog/>
+                        </li>
+
+                        <li>
+                            <button className='p-2 text-center text-white w-full' 
+                            onClick={LogOut}>Log Out</button>
+                        </li>
                     </menu>
                 </Dialog.Content>
             </Dialog.Portal>
