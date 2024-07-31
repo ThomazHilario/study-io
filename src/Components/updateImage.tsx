@@ -74,13 +74,26 @@ export const UpdateImage = () => {
         }
     }
 
+    // IsthereValueForTheImage
+    const imageValueNotIsNull = dataUser?.img !== null
+
     return(
         <div className='cursor-pointer'>
             {/* Input file */}
             <input className="hidden" type="file" id='inputImage' onChange={updateImageUser}/>
 
-            {/* icon Lucide */}
-            <CircleUser color='white' size={30} onClick={clickInput}/>
+            {/* Logic Html */}
+            {imageValueNotIsNull ? (
+                <img 
+                    className='h-8 w-8 object-cover rounded-full' 
+                    src={dataUser?.img as string} 
+                    alt={`Foto de perfil do ${dataUser?.username}`}
+                    onClick={clickInput}
+                />
+
+                ) : (
+                <CircleUser color='white' size={30} onClick={clickInput}/>
+            )}
         </div>
     )
 }

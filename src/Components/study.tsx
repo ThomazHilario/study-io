@@ -4,6 +4,9 @@ import { useEffect, useState } from "react"
 // import Context
 import { UseMyContext } from "../Context/context"
 
+// Radix
+import { Skeleton } from "@radix-ui/themes"
+
 // interface
 import { NotesProps } from '../interfaces/notesType'
 import { TaskProps } from "../interfaces/kanbanTypes"
@@ -50,6 +53,9 @@ export const Study = () => {
 
     // state - notesList
     const [notesList, setNotesList] = useState<NotesProps[]>([])
+
+    // state - isLoading
+    const [isLoading, setIsLoading] = useState<boolean>(true)
 
     const videoUrl = localStorage.getItem('videoUrl') != null ? JSON.parse(localStorage.getItem('videoUrl') as string) : "https://res.cloudinary.com/dseywnx5i/video/upload/v1713217730/Themes/boyTheme/p1urxw8smjx5gc3bfcnr.mp4"
 
@@ -124,17 +130,17 @@ export const Study = () => {
                 {/* header */}
                 <header className={`flex items-center justify-between py-1 px-2 bg-[#202224] basis-13 ${isFullscreen ? 'mt-6 pt-1' : 'mt-0'} border-b-[1px] border-b-gray-600`}>
                     {/*  what user using app */}
-                    <div className={`flex gap-2 items-center`}>
-                        {userData?.img !== null ? (
-                        <img className="h-8 w-8 rounded-full object-cover" src={userData?.img as string}/>
-                        ) : (
+                    <Skeleton loading={false}>
+                        <div className={`flex gap-2 items-center`}>
+                            
+                            {/* User profile */}
                             <UpdateImage/>
-                        )}
 
-                        <p className="bg-neutral-200/5 rounded-sm text-white py-[2px] px-3">
-                            {userData?.username}'s Room
-                        </p>
-                    </div>
+                            <p className="bg-neutral-200/5 rounded-sm text-white py-[2px] px-3">
+                                {userData?.username}'s Room
+                            </p>
+                        </div>
+                    </Skeleton>
 
                     {/* Account config */}
                     <div className="flex gap-2 mt-1">
