@@ -93,6 +93,9 @@ export const Study = () => {
 
                     // Salvando notas
                     setNotesList(data.data().notes)
+
+                    // Changing state value loading for false
+                    setIsLoading(false)
                 }
             } catch (error) {
                 console.log(error)
@@ -130,11 +133,11 @@ export const Study = () => {
                 {/* header */}
                 <header className={`flex items-center justify-between py-1 px-2 bg-[#202224] basis-13 ${isFullscreen ? 'mt-6 pt-1' : 'mt-0'} border-b-[1px] border-b-gray-600`}>
                     {/*  what user using app */}
-                    <Skeleton loading={false}>
+                    <Skeleton loading={isLoading}>
                         <div className={`flex gap-2 items-center`}>
                             
                             {/* User profile */}
-                            <UpdateImage/>
+                            <UpdateImage />
 
                             <p className="bg-neutral-200/5 rounded-sm text-white py-[2px] px-3">
                                 {userData?.username}'s Room
