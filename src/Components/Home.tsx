@@ -105,6 +105,12 @@ export const Home = () => {
         }
     }
 
+    // Container forms style for Tailwind
+    const styleContainerInputsForm = 'flex flex-col gap-2'
+
+    // Inputs style for Tailwind
+    const styleInputsForms = 'text-black rounded-sm w-[25vw] outline-none pl-2 py-2'
+
     return (
         <RightClick>
             <main className=" flex justify-center items-center h-screen bg-[#5356ad]">
@@ -126,11 +132,11 @@ export const Home = () => {
                         onSubmit={handleSubmit(singIn)}>
                             <legend className='mb-7 font-bold font-roboto text-3xl'>Sing In</legend>
 
-                            <div className="flex flex-col gap-2 mb-5">
+                            <div className={`${styleContainerInputsForm} mb-5`}>
                                 <label className="text-lg">Email:</label>
                                 <input type="text" 
                                 placeholder="Digite seu email..." 
-                                className={`text-black rounded-sm w-[25vw] outline-none pl-2 py-2 ${errors.email ? 'border-2 border-red-500' : 'border-none'}`}
+                                className={`${styleInputsForms} ${errors.email ? 'border-2 border-red-500' : 'border-none'}`}
                                 {...register('email')}/>
                                 
                                 {/* validação de erros dos inputs */}
@@ -140,11 +146,11 @@ export const Home = () => {
                                     </p>}
                             </div>
 
-                            <div className="flex flex-col gap-2 mb-5">
+                            <div className={`${styleContainerInputsForm} mb-5`}>
                                 <label className="text-lg">Password:</label>
                                 <input type="password" 
                                 placeholder="Digite sua senha" 
-                                className={` text-black rounded-sm w-[25vw] outline-none pl-2 py-2 ${errors.password ? 'border-2 border-red-500' : 'border-none'}`}
+                                className={`${styleInputsForms} ${errors.password ? 'border-2 border-red-500' : 'border-none'}`}
                                 {...register('password')}/>
                                 
                                 {/* validação de erros dos inputs */}
@@ -154,7 +160,7 @@ export const Home = () => {
                                     </p>}
                             </div>
 
-                            <div className="flex flex-col gap-2 mt-2">
+                            <div className={`${styleContainerInputsForm} mt-2`}>
                                 <button className="text-white bg-[#5356ad] w-[25vw] py-2 rounded-sm">
                                     Entrar
                                 </button>

@@ -100,6 +100,12 @@ export const Register = () => {
         }
     }
 
+    // Container forms style for Tailwind
+    const styleContainerInputsForm = 'flex flex-col gap-2'
+
+    // Inputs style for Tailwind
+    const styleInputsForms = 'text-black rounded-sm w-[25vw] outline-none pl-2 py-2'
+
     return(
         <RightClick>
             <main className=" flex justify-center items-center h-screen bg-[#5356ad]">
@@ -121,11 +127,11 @@ export const Register = () => {
                         <form className="w-1/2 flex flex-col justify-center items-center" onSubmit={handleSubmit(singUp)}>
                             <legend className='mb-7 font-bold font-roboto text-3xl'>Sing Up</legend>
                             
-                            <div className="flex flex-col gap-2 mb-5">
+                            <div className={`${styleContainerInputsForm} mb-5`}>
                                 <label className="text-lg">Username:</label>
                                 <input type="text" 
                                 placeholder="Digite seu nome..." 
-                                className={`text-black rounded-sm w-[25vw] outline-none pl-2 py-2 ${errors.username ? 'border-2 border-red-500' : 'border-none'}`} 
+                                className={`${styleInputsForms} ${errors.username ? 'border-2 border-red-500' : 'border-none'}`} 
                                 {...register("username")}
                                 />
 
@@ -137,12 +143,12 @@ export const Register = () => {
                                 }
                             </div>
 
-                            <div className="flex flex-col gap-2 mb-5">
+                            <div className={`${styleContainerInputsForm} mb-5`}>
                                 <label className="text-lg">Email:</label>
                                 <input 
                                 type="text" 
                                 placeholder="Digite seu email..." 
-                                className={`text-black rounded-sm w-[25vw] outline-none pl-2 py-2 ${errors.email ? 'border-2 border-red-500' : 'border-none'}`} 
+                                className={`${styleInputsForms} ${errors.email ? 'border-2 border-red-500' : 'border-none'}`} 
                                 {...register("email")}/>
 
                                 {/* validação de erro dos inputs */}
@@ -152,12 +158,12 @@ export const Register = () => {
                                     </p>}
                             </div>
 
-                            <div className="flex flex-col gap-2 mb-5">
+                            <div className={`${styleContainerInputsForm} mb-5`}>
                                 <label className="text-lg">Password:</label>
                                 <input 
                                 type="password" 
                                 placeholder="Digite sua senha" 
-                                className={`text-black rounded-sm w-[25vw] outline-none pl-2 py-2 ${errors.password ? 'border-2 border-red-500' : 'border-none'}`}  
+                                className={`${styleInputsForms} ${errors.password ? 'border-2 border-red-500' : 'border-none'}`}  
                                 {...register("password")}
                                 />
 
@@ -168,7 +174,7 @@ export const Register = () => {
                                     </p>}
                             </div>
 
-                            <div className="flex flex-col gap-2 mt-2">
+                            <div className={`${styleContainerInputsForm} mt-2`}>
                                 <button className="text-white bg-[#5356ad] w-[25vw] py-2 rounded-sm">
                                     Cadastrar
                                 </button>
