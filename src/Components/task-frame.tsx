@@ -51,7 +51,7 @@ function TaskFrame({task,setTask}:TaskFrameProps){
     const [editTaskText, setEditTaskText] = useState<string>('')
 
     // state - editIndex
-    const [editIndex, setEditIndex] = useState<number | null>(null)
+    const [editId, setEditId] = useState<string | null>(null)
 
     // state - seach
     const [seach, setSeach] = useState('')
@@ -154,10 +154,10 @@ function TaskFrame({task,setTask}:TaskFrameProps){
     }
 
     // activeEdit
-    function activeEdit(idx:number){
+    function activeEdit(id:string){
 
         // Buscando a task do array de task
-        const taskForEditing = task[idx]
+        const taskForEditing = task.find(task => task.id === id) as TaskProps
 
         // Alterando o valor da state isEditask
         setIsEditTask(!isEditTask)
@@ -166,14 +166,17 @@ function TaskFrame({task,setTask}:TaskFrameProps){
         setEditTaskText(taskForEditing.name)
 
         // Passando o index para a state editIndex
-        setEditIndex(idx)
+        setEditId(id)
     }
 
     // editTask
     function editingTask(){
         
+        // Buscando tarefa
+        const taskEditing = task.find(task => task.id === editId) as TaskProps
+
         // Editando tarefa especifica
-        task[editIndex as number].name = editTaskText
+        taskEditing.name = editTaskText
 
         // Setando as alterações da state
         setTask([...task])
@@ -188,7 +191,7 @@ function TaskFrame({task,setTask}:TaskFrameProps){
         setEditTaskText('')
 
         // Alterando index
-        setEditIndex(null)
+        setEditId(null)
         
     }
 
@@ -220,7 +223,7 @@ function TaskFrame({task,setTask}:TaskFrameProps){
     const isAddTaskAndEditTaskisFalse = !isAddTask && !isEditTask
 
     // numberOfTaskIsGreaterThanFour
-    const numberOfTaskIsGreaterThanFour = task.length > 4
+    const numberOfTaskIsGreaterThanFour = task.length > 4 && !isEditTask
 
     return(
         <Rnd bounds="window" 
@@ -260,7 +263,7 @@ function TaskFrame({task,setTask}:TaskFrameProps){
                                 <Task 
                                     key={idx} 
                                     task={task} 
-                                    handleActiveEdit={() => activeEdit(idx)}
+                                    handleActiveEdit={() => activeEdit(task.id)}
                                     handleDeleteTask={() => deleteTask(idx)}
                                     handletTaskComplete={() => taskComplete}
                                 />
