@@ -2,7 +2,7 @@
 import { ChangeEvent, FormEvent, useState, useEffect, memo } from "react"
 
 // import lucide-icons
-import { MenuIcon, MinusIcon } from 'lucide-react'
+import { MinusIcon } from 'lucide-react'
 
 // import Context
 import { UseMyContext } from "../Context/context"
@@ -17,8 +17,8 @@ import { user } from '../Store/store'
 import { database } from '../Services/FirebaseConnection'
 import { doc, updateDoc, getDoc } from 'firebase/firestore'
 
-// import dialog
-import * as Dialog from '@radix-ui/react-dialog'
+// Components
+import { Task } from "./task"
 
 // import interface
 import { TaskFrameProps } from '../interfaces/notes-frames-type'
@@ -257,31 +257,13 @@ function TaskFrame({task,setTask}:TaskFrameProps){
                     <ul className="mt-3 flex flex-col gap-2">
                         {taskFilterList.map((task, idx) => {
                             return(
-                                <li key={idx} className="group flex gap-4 border-2 py-1 px-2 rounded-md w-full justify-between">
-                                    <div className="flex items-center gap-2">
-                                        <input className="min-h-4 min-w-4" type="checkbox" onChange={taskComplete}/>
-                                        <span className="text-justify whitespace-break-spaces">{task.name}</span>
-                                    </div>
-
-                                    <section className="w-7">
-                                        <Dialog.Root>
-                                            <Dialog.Trigger>
-                                                <MenuIcon className="hidden group-hover:block cursor-pointer" size={15}/>
-                                            </Dialog.Trigger>
-
-                                            
-                                            <Dialog.Content className="absolute -right-5">
-                                                <section className="bg-slate-800 w-32 flex flex-col">
-                                                    <button className="py-2 px-2" onClick={() => activeEdit(idx)}>Editar</button>
-                                                    <Dialog.Close className="py-2 px-2" onClick={() => deleteTask(idx)}>
-                                                        Delete
-                                                    </Dialog.Close>
-                                                </section>
-                                            </Dialog.Content>
-                                            
-                                        </Dialog.Root>
-                                    </section>
-                                </li>
+                                <Task 
+                                    key={idx} 
+                                    task={task} 
+                                    handleActiveEdit={() => activeEdit(idx)}
+                                    handleDeleteTask={() => deleteTask(idx)}
+                                    handletTaskComplete={() => taskComplete}
+                                />
                             )
                         })}
                     </ul>
