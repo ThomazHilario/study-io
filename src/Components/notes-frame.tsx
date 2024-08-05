@@ -11,15 +11,8 @@ import { doc, updateDoc } from 'firebase/firestore'
 // import store
 import { user } from '../Store/store'
 
-// dialog react
-import * as Dialog from '@radix-ui/react-dialog'
-
 // import rnd
 import { Rnd } from 'react-rnd'
-
-// import date-fns
-import { formatDistanceToNow } from 'date-fns'
-import { ptBR } from 'date-fns/locale'
 
 // import lucide-icons
 import { MinusIcon } from 'lucide-react'
@@ -28,6 +21,9 @@ import { NotesFrameProps } from '../interfaces/notes-frames-type'
 // import interfaces
 import { NotesProps } from '../interfaces/notesType'
 import { DraggableData, DraggableEvent } from 'react-draggable'
+
+// Components
+import { Note } from './notes'
 
 export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
 
@@ -205,60 +201,19 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
 
                     {notesListisEmpty && (
                         <div className='mt-2 flex flex-col gap-2'>
-                            {notesList.map((item, idx) => {
+                            {notesList.map((note) => {
                                 return(
-                                    <Dialog.Root key={idx}>
-                                        <Dialog.Trigger key={idx} className='p-1 bg-slate-900/30 rounded-sm text-white'>
-                                            <p className=' px-1 text-justify h-6 overflow-hidden'>
-                                                {item.item}
-                                            </p>
-
-                                            <p className='text-start rounded-sm px-1 text-sm'>
-                                                Criado há {formatDistanceToNow(item.date,{locale:ptBR})}
-                                            </p>
-                                        </Dialog.Trigger>
-
-                                        <Dialog.Portal>
-                                            <Dialog.Content className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
-                                                <section className='bg-slate-700 p-2 rounded-sm text-white text-justify w-[20vw]'>
-                                                    {isEditNote ? (
-                                                        <textarea className='p-1 resize-none outline-none bg-black/20 w-full rounded-sm' rows={3} value={editNote} onChange={(e) => setEditNote(e.target.value)}/>
-                                                    ) : 
-                                                        <article className='bg-black/40 p-2'><p>{item.item}</p></article>
-                                                    }
-
-                                                    <article className='mb-4 mt-4 flex gap-3'>
-                                                        {isEditNote ? (
-                                                            <>
-                                                                <button className='bg-green-500 px-2 rounded-sm' onClick={() => editNotes(item.id)}>
-                                                                    Editar
-                                                                </button>
-
-                                                                <button className='bg-slate-800 px-2 rounded-sm' onClick={() => setIsEditNote(!isEditNote)}>
-                                                                    Cancel
-                                                                </button>
-                                                            </>
-                                                        ) : (
-                                                            <>
-                                                                <Dialog.Close className='bg-red-500 px-2 rounded-sm' onClick={() => deleteNote(item.id)}>
-                                                                    Delete
-                                                                </Dialog.Close>
-                                                                <button className='bg-green-500 px-2 rounded-sm' onClick={() => updateStateEditNotes(item.item)}>
-                                                                    Editar
-                                                                </button>
-                                                            </>
-                                                        )}
-                                                    </article>
-
-                                                    {!isEditNote && (
-                                                        <span>
-                                                            Criado há {formatDistanceToNow(item.date,{locale:ptBR})}
-                                                        </span>
-                                                    )}
-                                                </section>
-                                            </Dialog.Content>
-                                        </Dialog.Portal>
-                                    </Dialog.Root>
+                                    <Note 
+                                        key={note.id}
+                                        note={note}
+                                        editNote={editNote}
+                                        setEditNote={setEditNote}
+                                        isEditNote={isEditNote}
+                                        setIsEditNote={setIsEditNote}
+                                        editNotes={() => editNotes(note.id)}
+                                        deleteNote={() => deleteNote(note.id)}
+                                        updateStateEditNotes={() => updateStateEditNotes(note.item)}
+                                    />
                                 )
                             })}
                         </div>
