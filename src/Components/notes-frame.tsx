@@ -77,18 +77,19 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
             if(note !== ''){
                 // Alterando o valor do isAddNote
                 setIsAddNote(!isAddNote)
+
+                // Criando a estrutura da nota
+                const noteUser = {
+                    id:crypto.randomUUID(),
+                    item:note,
+                    date: Date.now()
+                }
     
                 // Salvando a lista de notas com o novo item.
-                setNotesList([...notesList, {
-                    item:note,
-                    date: Date.now()
-                }])
+                setNotesList([...notesList, noteUser])
 
                 // Atualizar notas no banco de dados do usuário
-                updateNotesDataBase([...notesList, {
-                    item:note,
-                    date: Date.now()
-                }])
+                updateNotesDataBase([...notesList, noteUser])
 
                 // Limpando state
                 setNote('')
@@ -101,10 +102,10 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
     }
 
     // editNote
-    function editNotes(idx:number){
+    function editNotes(noteId:string){
         try {
             // Buscando nota por meio do indice
-            const seachNote = notesList[idx]
+            const seachNote = notesList.find(note => note.id === noteId) as NotesProps
 
             // Editando a nota do item
             seachNote.item = editNote
@@ -123,7 +124,7 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
     }
 
     // updateStateEdtiNotes
-    function updateStateEdtiNotes(note:string){
+    function updateStateEditNotes(note:string){
         // Alterando o valor da state isEditNotes
         setIsEditNote(true)
 
@@ -132,10 +133,10 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
     }
 
     // deleteNote
-    function deleteNote(idx:number){
+    function deleteNote(noteId:string){
         try {
             // Filtrando nota por meio do indice
-            const newNotesList = notesList.filter((item,index) => index !== idx && item)
+            const newNotesList = notesList.filter(note => note.id !== noteId)
 
             // Atualizar notas no banco de dados do usuário
             updateNotesDataBase(newNotesList)
@@ -229,7 +230,7 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
                                                     <article className='mb-4 mt-4 flex gap-3'>
                                                         {isEditNote ? (
                                                             <>
-                                                                <button className='bg-green-500 px-2 rounded-sm' onClick={() => editNotes(idx)}>
+                                                                <button className='bg-green-500 px-2 rounded-sm' onClick={() => editNotes(item.id)}>
                                                                     Editar
                                                                 </button>
 
@@ -239,10 +240,10 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
                                                             </>
                                                         ) : (
                                                             <>
-                                                                <Dialog.Close className='bg-red-500 px-2 rounded-sm' onClick={() => deleteNote(idx)}>
+                                                                <Dialog.Close className='bg-red-500 px-2 rounded-sm' onClick={() => deleteNote(item.id)}>
                                                                     Delete
                                                                 </Dialog.Close>
-                                                                <button className='bg-green-500 px-2 rounded-sm' onClick={() => updateStateEdtiNotes(item.item)}>
+                                                                <button className='bg-green-500 px-2 rounded-sm' onClick={() => updateStateEditNotes(item.item)}>
                                                                     Editar
                                                                 </button>
                                                             </>
