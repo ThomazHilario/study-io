@@ -1,6 +1,9 @@
 // Radix-UI
 import * as Dialog from '@radix-ui/react-dialog'
 
+// Lucide-React
+import { X } from 'lucide-react'
+
 // import date-fns
 import { formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
@@ -34,7 +37,8 @@ export const Note = ({note, isEditNote, editNote, setEditNote, setIsEditNote, ed
 
             <Dialog.Portal>
                 <Dialog.Content className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
-                    <section className='bg-slate-700 p-2 rounded-sm text-white text-justify w-[20vw]'>
+                    <section className='bg-slate-700 p-2 pt-8 rounded-sm text-white text-justify w-[20vw] overflow-hidden'>
+                        <Dialog.Close className='absolute p-1 right-0 top-0 bg-gray-800 rounded-sm'> <X color='white' size={20}/> </Dialog.Close>
                         {isEditNote ? (
                             <textarea className='p-1 resize-none outline-none bg-black/20 w-full rounded-sm' rows={3} value={editNote} onChange={(e) => setEditNote(e.target.value)}/>
                         ) : 
