@@ -112,7 +112,8 @@ function TaskFrame({task,setTask}:TaskFrameProps){
             // Estrutura da task.
             const taskCreated = {
                 id:crypto.randomUUID(),
-                name:taskText
+                name:taskText,
+                checked:false
             }
 
             // Adicionando task ao state task
@@ -128,15 +129,15 @@ function TaskFrame({task,setTask}:TaskFrameProps){
     }
 
     // taskComplete
-    function taskComplete(e:ChangeEvent){
-        if(e.target instanceof HTMLInputElement){
-            if(e.target.checked === true){
-                e.target.nextElementSibling?.classList.add('line-through')
-            } else{
-                e.target.nextElementSibling?.classList.remove('line-through')
-            }
+    function taskComplete(taskValue:TaskProps){
+        // Alterando o valor do checked da task.
+        taskValue.checked === false ? taskValue.checked = true : taskValue.checked = false
 
-        }
+        // Setando alterações na state task.
+        setTask([...task])
+
+        // Salvando as alterações no banco de dados.
+        updateTaskDataBase([...task])
     }
 
     // deleteTask
@@ -265,7 +266,7 @@ function TaskFrame({task,setTask}:TaskFrameProps){
                                     task={task} 
                                     handleActiveEdit={() => activeEdit(task.id)}
                                     handleDeleteTask={() => deleteTask(idx)}
-                                    handletTaskComplete={() => taskComplete}
+                                    handletTaskComplete={() => taskComplete(task)}
                                 />
                             )
                         })}
