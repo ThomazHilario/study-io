@@ -25,7 +25,7 @@ export const Task = ({task, handleActiveEdit, handleDeleteTask, handletTaskCompl
         <li className="group flex gap-4 border-2 py-1 px-2 rounded-md w-full justify-between">
             <div className="flex items-center gap-2">
                 <input className="min-h-4 min-w-4" type="checkbox" {...inputProps} onChange={handletTaskComplete}/>
-                <span className="text-justify whitespace-break-spaces">{task.name}</span>
+                <span className={`text-justify whitespace-break-spaces ${task.checked && 'line-through'}`}>{task.name}</span>
             </div>
 
             <section className="w-7">

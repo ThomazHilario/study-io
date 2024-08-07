@@ -1,5 +1,5 @@
 // import react
-import { ChangeEvent, FormEvent, useState, useEffect, memo } from "react"
+import { FormEvent, useState, useEffect, memo } from "react"
 
 // import lucide-icons
 import { MinusIcon } from 'lucide-react'
