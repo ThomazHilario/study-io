@@ -167,11 +167,16 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
     // notesListisEmpty
     const notesListisEmpty = notesList.length > 0
 
+    // props Rnd
+    const propsRnd = {
+        bounds:'window',
+        enableResizing:false,
+        default:{x:xDrag, y:yDrag, height:'', width:''},
+        onDragStop:savePositionNotesDrag
+    }
+
     return(
-        <Rnd bounds="window" 
-        enableResizing={false} 
-        default={{x:xDrag, y:yDrag, height:'', width:''}}
-        onDragStop={savePositionNotesDrag}>
+        <Rnd {...propsRnd}>
             <section className='bg-slate-700 rounded-sm w-full cursor-pointer py-3'>
                 <div className='flex items-center justify-end px-3 mb-2'>
                     <MinusIcon color='white' onClick={() => setIsNotes(false)}/>

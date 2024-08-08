@@ -226,13 +226,18 @@ function TaskFrame({task,setTask}:TaskFrameProps){
     // numberOfTaskIsGreaterThanFour
     const numberOfTaskIsGreaterThanFour = task.length > 4 && !isEditTask
 
+    // props Rnd
+    const propsRnd = {
+        bounds:'window',
+        enableResizing:false,
+        default:{x:positionXTaskFrame, y:positionYTaskFrame, height:'', width:''},
+        onDragStop:savingPositionComponentTask,
+    }
+
     return(
-        <Rnd bounds="window" 
-        enableResizing={false} 
-        default={{x:positionXTaskFrame, y:positionYTaskFrame, height:'', width:''}}
-        onDragStop={savingPositionComponentTask}>
+        <Rnd {...propsRnd}>
             <div className="bg-slate-700 py-3 px-2 rounded-sm text-white cursor-default w-[330px]">
-                <div className='flex items-center justify-end mb-2'>
+                <div className='flex items-center justify-end mb-2 cursor-pointer'>
                         <MinusIcon className="cursor-pointer" color='white' onClick={() => setIsTask(false)}/>
                 </div>
 
