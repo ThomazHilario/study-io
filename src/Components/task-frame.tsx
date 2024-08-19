@@ -19,6 +19,7 @@ import { doc, updateDoc, getDoc } from 'firebase/firestore'
 
 // Components
 import { Task } from "./task"
+import { ActiveDrag } from "./active-drag"
 
 // import interface
 import { TaskFrameProps } from '../interfaces/notes-frames-type'
@@ -35,8 +36,14 @@ function TaskFrame({task,setTask}:TaskFrameProps){
 
     const positionYTaskFrame = localStorage.getItem('TaskFrameDrag') !== null ? JSON.parse(localStorage.getItem('TaskFrameDrag') as string).y : 65
 
+    // isDragging
+    const isDraggingInLocalStorage = localStorage.getItem('isDragging') !== null ? JSON.parse(localStorage.getItem('isDragging') as string) : false
+
     // store
     const userData = user(state => state.user)
+
+    // state isDragging
+    const [isDragging, setIsDragging] = useState(isDraggingInLocalStorage)
 
     // state - taskText
     const [taskText, setTaskText] = useState<string>('')
@@ -217,6 +224,20 @@ function TaskFrame({task,setTask}:TaskFrameProps){
         }))
     }
 
+    // Update dragCheckedValue
+    function updateCheckedValue(){
+        const isDraggingInLocalStorage = JSON.parse(localStorage.getItem('isDragging') as string)
+
+        const newCheckedValue = isDraggingInLocalStorage === true ? false : true
+
+        // Change in State isDragging
+        setIsDragging(newCheckedValue)
+
+        // Save in localStorage
+        localStorage.setItem('isDragging', JSON.stringify(newCheckedValue))
+
+    }
+
     // isTaskEmptyAndEditIsFalse
     const isTaskEmptyAndEditIsFalse = !isEditTask && task.length > 0
 
@@ -232,12 +253,18 @@ function TaskFrame({task,setTask}:TaskFrameProps){
         enableResizing:false,
         default:{x:positionXTaskFrame, y:positionYTaskFrame, height:'', width:''},
         onDragStop:savingPositionComponentTask,
+        disableDragging:isDragging
     }
 
     return(
         <Rnd {...propsRnd}>
             <div className="bg-slate-700 py-3 px-2 rounded-sm text-white cursor-default w-[330px]">
-                <div className='flex items-center justify-end mb-2 cursor-pointer'>
+                <div className='flex items-center justify-between mb-2 cursor-pointer'>
+                        <ActiveDrag 
+                            checkedValue={isDragging}
+                            updateCheckedValue={updateCheckedValue}
+                        />
+
                         <MinusIcon className="cursor-pointer" color='white' onClick={() => setIsTask(false)}/>
                 </div>
 
