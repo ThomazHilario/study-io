@@ -1,5 +1,5 @@
 // Radix
-import { Switch, Badge } from "@radix-ui/themes"
+import { Badge } from "@radix-ui/themes"
 
 export const ActiveDrag = ({ checkedValue, updateCheckedValue }:{checkedValue:boolean, updateCheckedValue: () => void}) => {
 
