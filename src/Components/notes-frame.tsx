@@ -12,7 +12,7 @@ import { doc, updateDoc } from 'firebase/firestore'
 import { user } from '../Store/store'
 
 // import rnd
-import { Rnd } from 'react-rnd'
+import { Rnd, Props } from 'react-rnd'
 
 // import lucide-icons
 import { MinusIcon } from 'lucide-react'
@@ -187,7 +187,7 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
     const notesListisEmpty = notesList.length > 0
 
     // props Rnd
-    const propsRnd = {
+    const propsRnd:Props = {
         bounds:'window',
         enableResizing:false,
         default:{x:xDrag, y:yDrag, height:'', width:''},

@@ -8,7 +8,7 @@ import { MinusIcon } from 'lucide-react'
 import { UseMyContext } from "../Context/context"
 
 // import rnd
-import { Rnd } from "react-rnd"
+import { Rnd, Props } from "react-rnd"
 
 // store
 import { user } from '../Store/store'
@@ -248,7 +248,7 @@ function TaskFrame({task,setTask}:TaskFrameProps){
     const numberOfTaskIsGreaterThanFour = task.length > 4 && !isEditTask
 
     // props Rnd
-    const propsRnd = {
+    const propsRnd:Props = {
         bounds:'window',
         enableResizing:false,
         default:{x:positionXTaskFrame, y:positionYTaskFrame, height:'', width:''},
