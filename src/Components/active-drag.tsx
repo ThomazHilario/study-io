@@ -7,7 +7,7 @@ export const ActiveDrag = ({ checkedValue, updateCheckedValue }:{checkedValue:bo
     const buttonActiveDragStyleDrag = !checkedValue ? 'bg-green-500' : 'bg-red-500'
 
     return(
-        <article className="flex items-center gap-2">
+        <article className="flex items-center gap-2 text-white">
             <Badge variant="solid" color="indigo">
                 <p className="text-sm text-white">Drag:</p>
             </Badge>

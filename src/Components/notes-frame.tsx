@@ -24,6 +24,7 @@ import { DraggableData, DraggableEvent } from 'react-draggable'
 
 // Components
 import { Note } from './notes'
+import { ActiveDrag } from './active-drag'
 
 export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
 
@@ -31,11 +32,17 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
     const xDrag = localStorage.getItem('notesDrag') ? JSON.parse(localStorage.getItem('notesDrag') as string).x : 10
     const yDrag = localStorage.getItem('notesDrag') ? JSON.parse(localStorage.getItem('notesDrag') as string).y : 125
 
+    // isDraggingNotes
+    const isDraggingNotesInLocalStorage = localStorage.getItem('isDraggingNotesInLocalStorage') !== null ? JSON.parse(localStorage.getItem('isDraggingNotesInLocalStorage') as string) : false
+
     // context
     const { setIsNotes } = UseMyContext()
 
     // store
     const userData = user(state => state.user)
+
+    // state - isDraggingNotes
+    const [isDraggingNotes, setIsDraggingNotes] = useState(isDraggingNotesInLocalStorage)
 
     // state - note
     const [note, setNote] = useState<string>('')
@@ -164,6 +171,18 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
         }
     }
 
+    // updateDraggingNotes
+    function updateDraggingNotes(){
+        const draggingNotesInLocalStorage = JSON.parse(localStorage.getItem('isDraggingNotesInLocalStorage') as string)
+
+        const newValueDraggingNotes = draggingNotesInLocalStorage === true ? false : true
+
+        setIsDraggingNotes(newValueDraggingNotes)
+
+        // save in localStorage
+        localStorage.setItem('isDraggingNotesInLocalStorage', JSON.stringify(newValueDraggingNotes))
+    }
+
     // notesListisEmpty
     const notesListisEmpty = notesList.length > 0
 
@@ -172,13 +191,19 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
         bounds:'window',
         enableResizing:false,
         default:{x:xDrag, y:yDrag, height:'', width:''},
-        onDragStop:savePositionNotesDrag
+        onDragStop:savePositionNotesDrag,
+        disableDragging:isDraggingNotes
     }
 
     return(
         <Rnd {...propsRnd}>
             <section className='bg-slate-700 rounded-sm w-full cursor-pointer py-3'>
-                <div className='flex items-center justify-end px-3 mb-2'>
+                <div className='flex items-center justify-between px-3 mb-2'>
+                    <ActiveDrag 
+                        checkedValue={isDraggingNotes}
+                        updateCheckedValue={updateDraggingNotes}
+                    />
+
                     <MinusIcon color='white' onClick={() => setIsNotes(false)}/>
                 </div>
 
