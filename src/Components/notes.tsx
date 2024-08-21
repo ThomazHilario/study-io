@@ -57,14 +57,17 @@ export const Note = ({note, isEditNote, editNote, setEditNote, setIsEditNote, ed
                                     </button>
                                 </>
                             ) : (
-                                <>
+                                <section className='flex gap-2'>
+                                    
                                     <Dialog.Close className='bg-red-500 px-2 rounded-sm' onClick={deleteNote}>
                                         Delete
                                     </Dialog.Close>
+                                    
                                     <button className='bg-green-500 px-2 rounded-sm' onClick={updateStateEditNotes}>
                                         Editar
                                     </button>
-                                </>
+                                
+                                </section>
                             )}
                         </article>
 
