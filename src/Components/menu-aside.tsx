@@ -1,8 +1,14 @@
 // import Lucide-icons
 import { AlarmClock, PencilLine, NotebookPen, WallpaperIcon, CalendarDays, Kanban } from 'lucide-react'
 
+// store global state
+import { globalStatesComponents } from '../Store/store'
+
 // context
 import { UseMyContext } from '../Context/context'
+
+// Components
+import { Report } from './Report'
 
 export const MenuAside = () => {
 
@@ -14,6 +20,9 @@ export const MenuAside = () => {
     const { isCalendar, setIsCalendar } = UseMyContext()
     const { isKanban, setIsKanban } = UseMyContext()
 
+    // store
+    const { isReport, setIsReport } = globalStatesComponents()
+
     // Styled list
     const liStyledWithTailwind = 'flex flex-col justify-center items-center hover:bg-gray-400/10 py-[0.15rem] px-1 rounded-md'
 
@@ -24,7 +33,7 @@ export const MenuAside = () => {
     }
 
     return(
-        <menu className='mt-4 flex flex-col gap-3 *:cursor-pointer'>
+        <menu className='h-full mt-4 flex flex-col  gap-3 *:cursor-pointer'>
             <li className={`${liStyledWithTailwind} ${isTimer && 'bg-gray-400/10'}`} onClick={() => setIsTimer(!isTimer)}>
                 <AlarmClock {...propsIcon} />
                 <p className='text-white text-[0.8rem] font-semibold font-system'>Timer</p>
@@ -53,6 +62,10 @@ export const MenuAside = () => {
             <li className={`${liStyledWithTailwind} ${isKanban && 'bg-gray-400/10'}`} onClick={() => setIsKanban(!isKanban)}>
                 <Kanban {...propsIcon} />
                 <p className='text-white text-[0.8rem] font-semibold font-system'>Kanban</p>
+            </li>
+
+            <li className={`absolute bottom-2`} onClick={() => setIsReport(!isReport)}>
+                <Report propsIcon={propsIcon}/>
             </li>
         </menu>
     )

@@ -19,3 +19,8 @@ export interface StoreProps{
     completeTask: TaskProps[],
     setCompleteTask: (task:TaskProps[]) => void
 }
+
+export interface GlobalStatesProps{
+    isReport:boolean;
+    setIsReport: (value:boolean) => void;
+}
