@@ -6,6 +6,9 @@ import * as Tabs from '@radix-ui/react-tabs'
 // Lucide-React
 import { MessageSquareMore } from 'lucide-react'
 
+// Components
+import { Feedback } from './Feedback'
+
 // PropsIcon Interface
 interface PropsIcon{
     propsIcon:{
@@ -15,8 +18,6 @@ interface PropsIcon{
 }
 
 export const Report = ({propsIcon}:PropsIcon) => {
-
-    const inputStyleForTailwind = 'outline-none bg-black/20 resize-none p-1 rounded-md'
 
     return(
         <Dialog.Root>
@@ -39,32 +40,7 @@ export const Report = ({propsIcon}:PropsIcon) => {
                         </Tabs.List>
 
                         <Tabs.Content value='FeedBack'>
-                            <p>Hello, here you can send your feedback about the study-io app, we are always listening to our users and always improving our app based on your feedback.</p>
-
-                            <form action="" className='flex flex-col gap-2 mt-5'>
-                                <div className='flex flex-col gap-2'>
-                                    <label htmlFor="">
-                                        What did you like most about our app?
-                                    </label>
-                                    <input className={inputStyleForTailwind} type="text" />
-                                </div>
-
-                                <div className='flex flex-col gap-2'>
-                                    <label htmlFor="">
-                                        Explain your answer above 👆
-                                    </label>
-                                    <textarea className={inputStyleForTailwind} rows={4}/>
-                                </div>
-
-                                <div className='flex flex-col gap-2'>
-                                    <label htmlFor="">
-                                        What can we do to improve the study-io even further?
-                                    </label>
-                                    <textarea className={inputStyleForTailwind} rows={4}/>
-                                </div>
-
-                                <button className='mt-1 self-start bg-black/50 p-3 rounded-sm'>Send Your feedback</button>
-                            </form>
+                            <Feedback/>
                         </Tabs.Content>
 
                         <Tabs.Content value='Bugs'>
