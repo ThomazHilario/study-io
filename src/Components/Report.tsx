@@ -1,6 +1,5 @@
 // Radix Dialog
 import * as Dialog from '@radix-ui/react-dialog'
-import * as Select from '@radix-ui/react-select'
 import * as Tabs from '@radix-ui/react-tabs'
 
 // Lucide-React
@@ -8,6 +7,7 @@ import { MessageSquareMore } from 'lucide-react'
 
 // Components
 import { Feedback } from './Feedback'
+import { Bugs } from './Bugs'
 
 // PropsIcon Interface
 interface PropsIcon{
@@ -44,36 +44,7 @@ export const Report = ({propsIcon}:PropsIcon) => {
                         </Tabs.Content>
 
                         <Tabs.Content value='Bugs'>
-                            <p>Did you find a bug in studio-io ?, yes, explain to us what bug you found ?</p>
-
-                            <form className='flex flex-col gap-2 mt-5'>
-                                <div className='flex flex-col gap-2'>
-                                    <label>What is type bug ?</label>
-
-                                    <Select.Root defaultValue="interface">
-                                        <Select.Trigger className='text-start bg-black/20 p-1'>
-                                            Interface
-                                        </Select.Trigger>
-
-                                        <Select.Content className='relative top-[4.5rem] bg-black/20 w-[20vw]'>
-                                            <Select.Item className='cursor-pointer p-1' value="interface">Interface</Select.Item>
-                                            <Select.Item className='cursor-pointer p-1' value="components">Components task, notes...</Select.Item>
-                                            <Select.Item className='cursor-pointer p-1' value="other">Other</Select.Item>
-                                        </Select.Content>
-                                    </Select.Root>
-                                </div>
-
-                                <div className='flex flex-col gap-2'>
-                                    <label>Explain your answer above?</label>
-
-                                    <textarea 
-                                        className='outline-none bg-black/20 resize-none p-1 rounded-md' 
-                                        rows={5}
-                                    />
-                                </div>
-
-                                <button className='mt-1 self-start bg-black/50 p-3 rounded-sm' type='submit'>Send your report</button>
-                            </form>
+                            <Bugs/>
                         </Tabs.Content>
                     </Tabs.Root>
                 </Dialog.Content>
