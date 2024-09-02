@@ -6,28 +6,45 @@ import { zodResolver } from '@hookform/resolvers/zod'
 // Radix-ui
 import * as Select from '@radix-ui/react-select'
 
+// store
+import { user } from '../Store/store'
+
 // interface BugProps
 interface BugProps{
     bugType:string,
     explain:string
 }
 
+// Schema
 const schema = z.object({
     bugType:z.string(),
     explain:z.string().min(20, "O campo tem que ter no minimo 20 caracteres! Escreva com detalhes o bug acima!")
 })
 
 export const Bugs = () => {
-
+    
     // Desestructure useform
-    const { register, handleSubmit, formState:{errors}, setValue } = useForm<BugProps>({resolver:zodResolver(schema), defaultValues:{bugType:'Interface'}})
+    const { register, handleSubmit, formState:{errors}, setValue, reset } = useForm<BugProps>({resolver:zodResolver(schema), defaultValues:{bugType:'Interface'}})
+
+    // Store
+    const userData = user(state => state)
 
     // updateHookValue
     const updateHookValue = (value:string) => setValue('bugType',value)
 
     // reportBugs
-    function reportBugs(data:BugProps){
-        console.log(data)
+    async function reportBugs(data:BugProps){
+        try {
+
+            console.log(data)
+
+            // Resetando valor do campo explain
+            reset({
+                explain:''
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return(
