@@ -14,7 +14,7 @@ interface BugProps{
 
 const schema = z.object({
     bugType:z.string(),
-    explain:z.string().min(5)
+    explain:z.string().min(20, "O campo tem que ter no minimo 20 caracteres! Escreva com detalhes o bug acima!")
 })
 
 export const Bugs = () => {
@@ -63,8 +63,9 @@ export const Bugs = () => {
                     <label>Explain your answer above?</label>
 
                     <textarea 
-                        className='outline-none bg-black/20 resize-none p-1 rounded-md' 
+                        className={`border-2 border-transparent outline-none bg-black/20 resize-none p-1 rounded-m ${errors.explain && 'border-red-500 placeholder:text-red-500'}`} 
                         rows={5}
+                        placeholder={`${errors.explain ? errors.explain.message : 'Explain bug in top!'}`}
                         {...register('explain')}
                     />
                 </div>
