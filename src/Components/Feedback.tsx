@@ -36,14 +36,19 @@ export const Feedback = () => {
     // Input style for tailwind
     const inputStyleForTailwind = 'outline-none bg-black/20 resize-none p-1 rounded-md'
 
-    return(
-        <section>
-            <p>Hello, here you can send your feedback about the study-io app, we are always listening to our users and always improving our app based on your feedback.</p>
+    // Font family style for tailwind
+    const fontFamilyStyleForTailwind = 'font-roboto text-justify'
 
-            <form action="" className='flex flex-col gap-2 mt-5' onSubmit={handleSubmit(Feeback)}>
+    return(
+        <section className='flex flex-col gap-2'>
+            <h2 className='font-roboto font-bold'>Obrigado por um usuário do Study-io!</h2>
+
+            <p className={fontFamilyStyleForTailwind}>Sua opinião é essencial para nós. Para ajudar a melhorar o aplicativo, por favor, compartilhe suas experiências, sugestões e comentários no formulário abaixo sobre o Study-io. Estamos atentos ao seu feedback para aprimorar sua experiência.</p>
+
+            <form className='flex flex-col gap-2' onSubmit={handleSubmit(Feeback)}>
                 <div className='flex flex-col gap-2'>
-                    <label htmlFor="">
-                        What did you like most about our app?
+                    <label className={fontFamilyStyleForTailwind}>
+                        O que você mais gostou em nosso aplicativo ?
                     </label>
 
                     <input 
@@ -54,8 +59,8 @@ export const Feedback = () => {
                 </div>
 
                 <div className='flex flex-col gap-2'>
-                    <label htmlFor="">
-                        Explain your answer above 👆
+                    <label className={fontFamilyStyleForTailwind}>
+                        Explique a sua resposta acima 👆
                     </label>
 
                     <textarea 
@@ -66,8 +71,8 @@ export const Feedback = () => {
                 </div>
 
                 <div className='flex flex-col gap-2'>
-                    <label htmlFor="">
-                        What can we do to improve the study-io even further?
+                    <label className={fontFamilyStyleForTailwind}>
+                        O que podemos fazer para melhorar ainda mais o Study-io ?
                     </label>
 
                     <textarea 

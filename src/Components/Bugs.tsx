@@ -47,13 +47,18 @@ export const Bugs = () => {
         }
     }
 
-    return(
-        <section>
-            <p>Did you find a bug in studio-io ?, yes, explain to us what bug you found ?</p>
+    // Font family style for tailwind
+    const fontFamilyStyleForTailwind = 'font-roboto text-justify' 
 
-            <form className='flex flex-col gap-2 mt-5' onSubmit={handleSubmit(reportBugs)}>
+    return(
+        <section className='flex flex-col gap-2'>
+            <h2 className='font-roboto font-bold'>Você encontrou um problema no Study-io?</h2>
+
+            <p className={fontFamilyStyleForTailwind}>Por favor, descreva o problema que você encontrou. Detalhes adicionais nos ajudarão a resolver a questão de forma mais eficiente.</p>
+
+            <form className='flex flex-col gap-2' onSubmit={handleSubmit(reportBugs)}>
                 <div className='flex flex-col gap-2'>
-                    <label>What is type bug ?</label>
+                    <label className={fontFamilyStyleForTailwind}>What is type bug ?</label>
 
                     <Select.Root defaultValue="Interface" onValueChange={updateHookValue}>
                         <Select.Trigger className='text-start bg-black/20 p-1'>
@@ -77,7 +82,7 @@ export const Bugs = () => {
                 </div>
 
                 <div className='flex flex-col gap-2'>
-                    <label>Explain your answer above?</label>
+                    <label className={fontFamilyStyleForTailwind}>Explain your answer above?</label>
 
                     <textarea 
                         className={`border-2 border-transparent outline-none bg-black/20 resize-none p-1 rounded-m ${errors.explain && 'border-red-500 placeholder:text-red-500'}`} 
