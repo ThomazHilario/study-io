@@ -30,13 +30,14 @@ const schema = z.object({
 export const Feedback = () => {
 
     // Desestructure useForm
-    const { register, handleSubmit, formState:{errors} } = useForm<SchemaProps>({resolver:zodResolver(schema)})
+    const { register, handleSubmit, formState:{errors}, reset } = useForm<SchemaProps>({resolver:zodResolver(schema)})
 
     // store - user
     const userData = user(state => state)
 
     async function Feeback({likeApp, explain, implementText, }:SchemaProps){
         try{
+            // Fazendo a requisição
             await fetch('https://send-email-study-io.onrender.com/email', {
                 method:'post',
                 headers: {
@@ -47,12 +48,21 @@ export const Feedback = () => {
                     subject:`Feedback from Study-io - ${userData.user?.username}`,
                     html:`
                         <h2>${likeApp}</h2>
-                        <br/>
                         <p>${explain}</p>
+
                         <br/>
+
+                        <h2>Sugestões de melhorias ao app</h2>
                         <p>${implementText}</p>
                     `
                 })
+            })
+
+            // Resetando campos
+            reset({
+                likeApp:'',
+                explain:'',
+                implementText:''
             })
         }catch(e){
             console.log(e)
