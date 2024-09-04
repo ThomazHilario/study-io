@@ -6,6 +6,9 @@ import { zodResolver } from '@hookform/resolvers/zod'
 // message error
 const minErrorMessage = 'Preencha este campo'
 
+// Store - user
+import { user } from '../Store/store'
+
 // interface schema
 interface SchemaProps{
     likeApp:string,
@@ -29,8 +32,31 @@ export const Feedback = () => {
     // Desestructure useForm
     const { register, handleSubmit, formState:{errors} } = useForm<SchemaProps>({resolver:zodResolver(schema)})
 
-    function Feeback(data:SchemaProps){
-        console.log(data)
+    // store - user
+    const userData = user(state => state)
+
+    async function Feeback({likeApp, explain, implementText, }:SchemaProps){
+        try{
+            await fetch('https://send-email-study-io.onrender.com/email', {
+                method:'post',
+                headers: {
+                    "Content-Type": "application/json"
+               },
+                body:JSON.stringify({
+                    email:`${userData.user?.username.replace(' ','')}Study-io@resend.dev`,
+                    subject:`Feedback from Study-io - ${userData.user?.username}`,
+                    html:`
+                        <h2>${likeApp}</h2>
+                        <br/>
+                        <p>${explain}</p>
+                        <br/>
+                        <p>${implementText}</p>
+                    `
+                })
+            })
+        }catch(e){
+            console.log(e)
+        }
     }
 
     // Input style for tailwind
