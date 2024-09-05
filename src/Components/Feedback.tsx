@@ -35,6 +35,7 @@ export const Feedback = () => {
     // store - user
     const userData = user(state => state)
 
+    // Send Feedback
     async function Feeback({likeApp, explain, implementText, }:SchemaProps){
         try{
             // Fazendo a requisição
@@ -44,7 +45,8 @@ export const Feedback = () => {
                     "Content-Type": "application/json"
                },
                 body:JSON.stringify({
-                    email:`${userData.user?.username.replace(' ','')}Study-io@resend.dev`,
+                    emailForVerification:userData.user?.email,
+                    emailForOrganization:`${userData.user?.username.replace(' ','')}Study-io@resend.dev`,
                     subject:`Feedback from Study-io - ${userData.user?.username}`,
                     html:`
                         <h2>${likeApp}</h2>
@@ -63,7 +65,7 @@ export const Feedback = () => {
                 likeApp:'',
                 explain:'',
                 implementText:''
-            })
+            })  
         }catch(e){
             console.log(e)
         }
