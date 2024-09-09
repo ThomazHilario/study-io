@@ -36,7 +36,26 @@ export const Bugs = () => {
     async function reportBugs(data:BugProps){
         try {
 
-            console.log(data)
+            // Realizando requisição para enviar o email
+            await fetch('https://send-email-study-io.onrender.com/email', {
+                method:'post',
+                headers:{
+                     "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailForVerification:userData.user?.email,
+                    emailForOrganization:`${userData.user?.username.replace(' ','')}study-io@resend.dev`,
+                    subject:`Report Bugs in Study-io from ${userData.user?.username}`,
+                    html: `
+                        <div style={{backgroundColor:'rgb(168, 181, 255)'}}>
+                            <h1>Bug: ${data.bugType}</h1>
+
+                            <h2>Explicação do bug encontrado pelo ${userData.user?.username}</h2>
+                            <p>${data.explain}</p>
+                        </div>
+                    `,
+                })
+            })
 
             // Resetando valor do campo explain
             reset({
@@ -85,7 +104,7 @@ export const Bugs = () => {
                     <label className={fontFamilyStyleForTailwind}>Explain your answer above?</label>
 
                     <textarea 
-                        className={`border-2 border-transparent outline-none bg-black/20 resize-none p-1 rounded-m ${errors.explain && 'border-red-500 placeholder:text-red-500'}`} 
+                        className={`border-2 rounded-md outline-none bg-black/20 resize-none p-1 rounded-m ${errors.explain ? 'border-red-500 placeholder:text-red-500' : 'border-transparent'}`} 
                         rows={5}
                         placeholder={`${errors.explain ? errors.explain.message : 'Explain bug in top!'}`}
                         {...register('explain')}
