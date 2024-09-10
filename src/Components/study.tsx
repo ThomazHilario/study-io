@@ -22,7 +22,6 @@ import { Timer } from './timer'
 import { Themes } from "./themes"
 import { Gemini } from "./gemini"
 import { Calendar } from "./calendar"
-import { Kanban } from "./kanban"
 
 // import Firebase
 import { database } from "../Services/FirebaseConnection"
@@ -42,7 +41,7 @@ export const Study = () => {
     // Context
     const { isFullscreen, setIsFullscreen } = UseMyContext()
     const { resizable, setResizable } = UseMyContext()
-    const { isTask, isNotes, isTimer, isThemes, isCalendar, isKanban ,setIsLogged } = UseMyContext()
+    const { isTask, isNotes, isTimer, isThemes, isCalendar ,setIsLogged } = UseMyContext()
 
     // store
     const setUserData = user(state => state.setUserData)
@@ -180,9 +179,6 @@ export const Study = () => {
 
                         {/* Calendar */}
                         {isCalendar && <Calendar/>}
-
-                        {/* Kanban */}
-                        {isKanban && <Kanban/>}
                         
                     </section>
                 </section>

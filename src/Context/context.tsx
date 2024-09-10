@@ -34,11 +34,8 @@ export const UserData = ({children}:ChildrenType) => {
     // isCalendar
     const [isCalendar, setIsCalendar] = useState<boolean>(false)
 
-    // isKanban
-    const [isKanban, setIsKanban] = useState<boolean>(false)
-
     return(
-        <Context.Provider value={{isFullscreen, setIsFullscreen, resizable, setResizable, isTask, setIsTask, isNotes, setIsNotes, isTimer, setIsTimer, isThemes, setIsThemes,isCalendar, setIsCalendar, isLogged, setIsLogged,isKanban, setIsKanban}}>
+        <Context.Provider value={{isFullscreen, setIsFullscreen, resizable, setResizable, isTask, setIsTask, isNotes, setIsNotes, isTimer, setIsTimer, isThemes, setIsThemes,isCalendar, setIsCalendar, isLogged, setIsLogged}}>
             {children}
         </Context.Provider>
     )

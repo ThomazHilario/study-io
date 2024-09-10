@@ -15,8 +15,6 @@ export interface FullScreenProps{
     setIsThemes:React.Dispatch<React.SetStateAction<boolean>>,
     isCalendar:boolean,
     setIsCalendar:React.Dispatch<React.SetStateAction<boolean>>,
-    isKanban:boolean,
-    setIsKanban:React.Dispatch<React.SetStateAction<boolean>>,
     isLogged:boolean,
     setIsLogged: React.Dispatch<React.SetStateAction<boolean>>
 }

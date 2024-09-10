@@ -11,7 +11,7 @@ import { TaskProps } from '../interfaces/kanbanTypes'
 import { ColumnsKanban } from './ColumnKanban'
 import { KanbanForm } from './kanban-form'
 
-export const Kanban = () => {
+export const KanbanFrame = () => {
 
     // Store
     const {
@@ -116,7 +116,7 @@ export const Kanban = () => {
 
     return(
         <DragDropContext onDragEnd={handleDragEnd} >
-            <section className="absolute top-[50%] left-[52%] -translate-x-1/2 -translate-y-[45%]  w-[85vw] h-[80vh] bg-black/30 rounded-sm p-3">
+            <section className="w-[90vw] h-[80vh] bg-black/30 rounded-sm p-3">
 
                 <KanbanForm 
                     methodsKanban={methodsToAddTaskToKanban}
