@@ -92,7 +92,7 @@ export const Feedback = () => {
                     <input 
                         className={`${inputStyleForTailwind} ${errors.likeApp ? 'border-red-500 placeholder:text-red-500' : 'border-transparent'}`} 
                         type="text"
-                        placeholder={`${errors.likeApp ? errors.likeApp.message : ''}`} 
+                        placeholder={`${errors.likeApp ? errors.likeApp.message : 'Escreva o que você mais gostou do app Study-io'}`} 
                         {...register('likeApp')}
                     />
                 </div>
@@ -105,7 +105,7 @@ export const Feedback = () => {
                     <textarea 
                         className={`${inputStyleForTailwind} ${errors.explain ? 'border-red-500 placeholder:text-red-500' : 'border-transparent'}`} 
                         rows={4} 
-                        placeholder={`${errors.explain ? errors.explain.message : ''}`}
+                        placeholder={`${errors.explain ? errors.explain.message : 'Explique o que você escolheu acima!'}`}
                         {...register('explain')}
                     />
                 </div>
@@ -118,7 +118,7 @@ export const Feedback = () => {
                     <textarea 
                         className={`${inputStyleForTailwind} ${errors.implementText ? 'border-red-500 placeholder:text-red-500' : 'border-transparent'}`} 
                         rows={4} 
-                        placeholder={`${errors.implementText ? errors.implementText.message : ''}`}
+                        placeholder={`${errors.implementText ? errors.implementText.message : 'Escreva aqui em poucas palavras o que podemos fazer para melhorar o app!'}`}
                         {...register('implementText')}
                     />
                 </div>

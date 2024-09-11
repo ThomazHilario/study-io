@@ -3,7 +3,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 import * as Tabs from '@radix-ui/react-tabs'
 
 // Lucide-React
-import { MessageSquareMore } from 'lucide-react'
+import { MessageSquareMore, X } from 'lucide-react'
 
 // Components
 import { Feedback } from './Feedback'
@@ -27,7 +27,11 @@ export const Report = ({propsIcon}:PropsIcon) => {
             </Dialog.Trigger>
 
             <Dialog.Portal>
-                <Dialog.Content className='absolute top-[54%] left-[51%] -translate-x-1/2 -translate-y-1/2 bg-slate-900 w-[60vw] min-h-[75vh] py-5 px-8 text-white rounded-md'>
+                <Dialog.Content className='absolute top-[54%] left-[51%] -translate-x-1/2 -translate-y-1/2 bg-slate-800 w-[60vw] min-h-[75vh] py-5 px-8 text-white rounded-md overflow-hidden'>
+                    <Dialog.Close className='absolute top-0 right-0 p-1 bg-slate-900/80 rounded-sm'>
+                        <X/>
+                    </Dialog.Close>
+
                     <Tabs.Root defaultValue='FeedBack'>
                         <Tabs.List className='flex gap-10 mb-5'>
                             <Tabs.Trigger className='text-2xl border-b-2 border-transparent data-[state="active"]:border-purple-500' value='FeedBack'>
