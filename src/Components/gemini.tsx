@@ -6,7 +6,6 @@ import { toast } from 'sonner'
 
 // import radix
 import * as ScrollArea from '@radix-ui/react-scroll-area'
-
 import { Skeleton } from '@radix-ui/themes'
 
 // import gemini

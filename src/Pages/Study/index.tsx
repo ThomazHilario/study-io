@@ -2,33 +2,33 @@
 import { useEffect, useState } from "react"
 
 // import Context
-import { UseMyContext } from "../Context/context"
+import { UseMyContext } from "@/Context/context"
 
 // Radix
 import { Skeleton } from "@radix-ui/themes"
 
 // interface
-import { NotesProps } from '../interfaces/notesType'
-import { TaskProps } from "../interfaces/kanbanTypes"
+import { NotesProps } from '@/interfaces/notesType'
+import { TaskProps } from "@/interfaces/kanbanTypes"
 
 // Components
-import { RightClick } from "./rightClick"
-import { MenuDialog } from "./menu-dialog"
-import { UpdateImage } from "./updateImage"
-import { MenuAside } from "./menu-aside"
-import TaskFrame from "./task-frame"
-import { NotesFrame } from "./notes-frame"
-import { Timer } from './timer'
-import { Themes } from "./themes"
-import { Gemini } from "./gemini"
-import { Calendar } from "./calendar"
+import { RightClick } from "@/Components/rightClick"
+import { MenuDialog } from "@/Components/menu-dialog"
+import { UpdateImage } from "@/Components/updateImage"
+import { MenuAside } from "@/Components/menu-aside"
+import TaskFrame from "@/Components/task-frame"
+import { NotesFrame } from "@/Components/notes-frame"
+import { Timer } from '@/Components/timer'
+import { Themes } from "@/Components/themes"
+import { Gemini } from "@/Components/gemini"
+import { Calendar } from "@/Components/calendar"
 
 // import Firebase
-import { database } from "../Services/FirebaseConnection"
+import { database } from "@/Services/FirebaseConnection"
 import { getDoc, doc } from "firebase/firestore"
 
 // import store
-import { user } from "../Store/store"
+import { user } from "@/Store/store"
 
 // imports lucide
 import { Maximize2 } from 'lucide-react'

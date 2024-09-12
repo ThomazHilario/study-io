@@ -30,7 +30,7 @@ import * as DialogAlert from '@radix-ui/react-alert-dialog'
 import { X } from "lucide-react"
 
 // Interface
-import { CardKanbanProps } from "../interfaces/kanbanTypes"
+import { CardKanbanProps } from "@/interfaces/kanbanTypes"
 
 export const CardKanban = ({index, task, tasks, setTask}:CardKanbanProps) => {
 

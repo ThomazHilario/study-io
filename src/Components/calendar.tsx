@@ -8,7 +8,7 @@ import { ptBR } from 'date-fns/locale'
 import 'react-day-picker/dist/style.css';
 
 // import Context
-import { UseMyContext } from '../Context/context';
+import { UseMyContext } from '@/Context/context';
 
 // import lucide-icons
 import { Minus } from 'lucide-react'

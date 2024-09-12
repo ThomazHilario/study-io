@@ -4,20 +4,20 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 // import Store
-import {user} from '../Store/store'
+import {user} from '@/Store/store'
 
 // import toast from sonner
 import { toast } from 'sonner'
 
 // import firebase
-import { auth, database } from '../Services/FirebaseConnection'
+import { auth, database } from '@/Services/FirebaseConnection'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { doc, setDoc } from 'firebase/firestore'
 import { FirebaseError } from 'firebase/app'
 
 
 // import interfaces
-import { RegisterType } from '../interfaces/formType'
+import { RegisterType } from '@/interfaces/formType'
 
 // react-hook-form
 import { useForm } from 'react-hook-form'
@@ -25,8 +25,8 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 // import RightClick component
-import { RightClick } from './rightClick'
-import { Loading } from './loading'
+import { RightClick } from '@/Components/rightClick'
+import { Loading } from '@/Components/loading'
 
 // schema from form
 const schema = z.object({

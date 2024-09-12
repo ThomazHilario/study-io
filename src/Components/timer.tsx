@@ -2,11 +2,11 @@
 import { useEffect, useMemo, useState } from "react"
 
 // import context
-import { UseMyContext } from "../Context/context"
+import { UseMyContext } from "@/Context/context"
 
 // Audio
-import pause from '../assets/audio/pause.mp3'
-import unpause from '../assets/audio/unpause.mp3'
+import pause from '@/assets/audio/pause.mp3'
+import unpause from '@/assets/audio/unpause.mp3'
 
 // import Rnd
 import { Rnd } from "react-rnd"

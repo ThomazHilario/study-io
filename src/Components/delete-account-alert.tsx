@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import * as Alert from '@radix-ui/react-alert-dialog'
 
 // import Store
-import { user } from '../Store/store'
+import { user } from '@/Store/store'
 
 // import firebase
 import { auth, database } from '../Services/FirebaseConnection'

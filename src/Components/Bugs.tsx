@@ -7,7 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import * as Select from '@radix-ui/react-select'
 
 // store
-import { user } from '../Store/store'
+import { user } from '@/Store/store'
 
 // interface BugProps
 interface BugProps{

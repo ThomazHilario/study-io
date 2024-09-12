@@ -5,7 +5,7 @@ import { Minus, PanelTop, X } from 'lucide-react'
 import { appWindow } from '@tauri-apps/api/window'
 
 // context
-import { UseMyContext } from '../Context/context'
+import { UseMyContext } from '@/Context/context'
 
 export const WindowHeader = () => {
 

@@ -1,11 +1,11 @@
 // import Context
-import { UseMyContext } from "../Context/context"
+import { UseMyContext } from "@/Context/context"
 
 // import lucide-icons
 import { Minus } from 'lucide-react'
 
 // import cloudinary
-import { cloudinary } from "../Services/cloudinary"
+import { cloudinary } from "@/Services/cloudinary"
 
 export const Themes = () => {
     

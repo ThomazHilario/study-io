@@ -2,24 +2,24 @@
 import { FormEvent, useState, memo } from 'react'
 
 // import context
-import { UseMyContext } from '../Context/context'
+import { UseMyContext } from '@/Context/context'
 
 // import firebase
-import { database } from '../Services/FirebaseConnection'
+import { database } from '@/Services/FirebaseConnection'
 import { doc, updateDoc } from 'firebase/firestore'
 
 // import store
-import { user } from '../Store/store'
+import { user } from '@/Store/store'
 
 // import rnd
 import { Rnd, Props } from 'react-rnd'
 
 // import lucide-icons
 import { MinusIcon } from 'lucide-react'
-import { NotesFrameProps } from '../interfaces/notes-frames-type'
+import { NotesFrameProps } from '@/interfaces/notes-frames-type'
 
 // import interfaces
-import { NotesProps } from '../interfaces/notesType'
+import { NotesProps } from '@/interfaces/notesType'
 import { DraggableData, DraggableEvent } from 'react-draggable'
 
 // Components

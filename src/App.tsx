@@ -35,15 +35,15 @@ appWindow.onResized(() => {
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 // import window header 
-import { WindowHeader } from './Components/window-header';
+import { WindowHeader } from '@/Components/window-header';
 
 // pages
-import { Home } from "./Components/Home";
-import { Register } from './Components/Register';
-import { Study } from './Components/study';
+import { Home } from "@/Pages/Home";
+import { Register } from '@/Pages/Register';
+import { Study } from '@/Pages/Study';
 
 // import Context - UserData
-import { UserData } from './Context/context';
+import { UserData } from '@/Context/context';
 
 
 

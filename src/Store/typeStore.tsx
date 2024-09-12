@@ -1,5 +1,4 @@
-// TaskProps
-import { TaskProps } from "../interfaces/kanbanTypes"
+import { TasksKanbanProps } from "@/interfaces/kanbanTypes"
 interface UserProps{
     id: string,
     username:string,
@@ -10,14 +9,14 @@ interface UserProps{
 export interface StoreProps{
     user: null | UserProps,
     setUserData: (id:string, username:string, email:string, img:unknown) => void,
-    task: TaskProps[],
-    setTask: (task:TaskProps[]) => void,
-    devTask: TaskProps[],
-    setDevTask: (task:TaskProps[]) => void,
-    pauseTask: TaskProps[],
-    setPauseTask: (task:TaskProps[]) => void,
-    completeTask: TaskProps[],
-    setCompleteTask: (task:TaskProps[]) => void
+    task: TasksKanbanProps[],
+    setTask: (task:TasksKanbanProps[]) => void,
+    devTask: TasksKanbanProps[],
+    setDevTask: (task:TasksKanbanProps[]) => void,
+    pauseTask: TasksKanbanProps[],
+    setPauseTask: (task:TasksKanbanProps[]) => void,
+    completeTask: TasksKanbanProps[],
+    setCompleteTask: (task:TasksKanbanProps[]) => void
 }
 
 export interface GlobalStatesProps{

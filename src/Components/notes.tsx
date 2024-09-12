@@ -9,7 +9,7 @@ import { formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 
 // interface
-import { NotesProps } from '../interfaces/notesType'
+import { NotesProps } from '@/interfaces/notesType'
 
 interface NotePropsComponent{
     note: NotesProps,

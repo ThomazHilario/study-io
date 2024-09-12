@@ -2,16 +2,16 @@
 import { useState, useEffect } from 'react'
 
 // Components
-import { Loading } from './loading'
+import { Loading } from '@/Components/loading'
 
 // imports react-router-dom
 import { Link, useNavigate } from 'react-router-dom'
 
 // import Context
-import { UseMyContext } from '../Context/context'
+import { UseMyContext } from '@/Context/context'
 
 // imports firebase
-import { auth } from '../Services/FirebaseConnection'
+import { auth } from '@/Services/FirebaseConnection'
 import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
 
 // imports hook form and zod
@@ -29,13 +29,13 @@ const schema = z.object({
 })
 
 // imports interface
-import { LoginType } from '../interfaces/formType'
+import { LoginType } from '@/interfaces/formType'
 
 // import toast
 import {toast} from 'sonner'
 
 // import RightClick component
-import { RightClick } from './rightClick'
+import { RightClick } from '@/Components/rightClick'
 
 export const Home = () => {
 

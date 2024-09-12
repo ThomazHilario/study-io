@@ -7,7 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 const minErrorMessage = 'Preencha este campo'
 
 // Store - user
-import { user } from '../Store/store'
+import { user } from '@/Store/store'
 
 // interface schema
 interface SchemaProps{

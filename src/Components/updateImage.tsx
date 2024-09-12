@@ -2,10 +2,10 @@ import { CircleUser } from 'lucide-react'
 import { ChangeEvent } from 'react'
 
 // import store from zustand
-import {user} from '../Store/store'
+import {user} from '@/Store/store'
 
 // import Firebase from storage
-import { database, storage } from '../Services/FirebaseConnection'
+import { database, storage } from '@/Services/FirebaseConnection'
 import { ref, uploadBytes, getDownloadURL, StorageReference } from 'firebase/storage'
 import { doc, updateDoc } from 'firebase/firestore'
 

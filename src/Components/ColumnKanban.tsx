@@ -5,10 +5,10 @@ import { Droppable } from "@hello-pangea/dnd"
 import { CardKanban } from "./CardKanban"
 
 // Store
-import { user } from '../Store/store'
+import { user } from '@/Store/store'
 
 // Interfaces
-import { ColumnsKanbanProps } from "../interfaces/kanbanTypes"
+import { ColumnsKanbanProps } from "@/interfaces/kanbanTypes"
 
 export const ColumnsKanban = ({tasks, devTask, pauseTask, completeTask}:ColumnsKanbanProps) => {
 

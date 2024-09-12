@@ -5,13 +5,13 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { useNavigate } from 'react-router-dom'
 
 // import Context
-import { UseMyContext } from '../Context/context'
+import { UseMyContext } from '@/Context/context'
 
 // import user from lucide
 import { User } from 'lucide-react'
 
 // import firebase
-import { auth } from '../Services/FirebaseConnection'
+import { auth } from '@/Services/FirebaseConnection'
 import { signOut } from 'firebase/auth'
 
 // import Components

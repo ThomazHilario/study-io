@@ -2,7 +2,7 @@
 import * as Dialog from '@radix-ui/react-dialog'
 
 // import Store
-import { user } from '../Store/store'
+import { user } from '@/Store/store'
 
 // Lucide-React
 import { X } from 'lucide-react'

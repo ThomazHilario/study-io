@@ -5,12 +5,18 @@ export interface TaskProps{
     checked:boolean
 }
 
+// TasksKanbanProps
+export interface TasksKanbanProps{
+    id:string,
+    name:string
+}
+
 //ColumnKanbanProps
 export interface ColumnsKanbanProps{
-    tasks:TaskProps[],
-    devTask:TaskProps[],
-    pauseTask:TaskProps[],
-    completeTask:TaskProps[]
+    tasks:TasksKanbanProps[],
+    devTask:TasksKanbanProps[],
+    pauseTask:TasksKanbanProps[],
+    completeTask:TasksKanbanProps[]
 }
 
 // CardKanbanProps

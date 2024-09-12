@@ -2,7 +2,7 @@
 import { AlarmClock, PencilLine, NotebookPen, WallpaperIcon, CalendarDays } from 'lucide-react'
 
 // context
-import { UseMyContext } from '../Context/context'
+import { UseMyContext } from '@/Context/context'
 
 // Components
 import { Report } from './Report'

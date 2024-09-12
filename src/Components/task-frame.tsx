@@ -5,16 +5,16 @@ import { FormEvent, useState, useEffect, memo } from "react"
 import { MinusIcon } from 'lucide-react'
 
 // import Context
-import { UseMyContext } from "../Context/context"
+import { UseMyContext } from "@/Context/context"
 
 // import rnd
 import { Rnd, Props } from "react-rnd"
 
 // store
-import { user } from '../Store/store'
+import { user } from '@/Store/store'
 
 // firebase
-import { database } from '../Services/FirebaseConnection'
+import { database } from '@/Services/FirebaseConnection'
 import { doc, updateDoc, getDoc } from 'firebase/firestore'
 
 // Components
@@ -22,8 +22,8 @@ import { Task } from "./task"
 import { ActiveDrag } from "./active-drag"
 
 // import interface
-import { TaskFrameProps } from '../interfaces/notes-frames-type'
-import { TaskProps } from "../interfaces/kanbanTypes"
+import { TaskFrameProps } from '@/interfaces/notes-frames-type'
+import { TaskProps } from "@/interfaces/kanbanTypes"
 import { DraggableData, DraggableEvent } from "react-draggable"
 
 function TaskFrame({task,setTask}:TaskFrameProps){

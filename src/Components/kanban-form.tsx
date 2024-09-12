@@ -21,14 +21,14 @@ const schema = z.object({
 })
 
 // TaskProps
-import { TaskProps } from '../interfaces/kanbanTypes'
+import { TasksKanbanProps } from '../interfaces/kanbanTypes'
 
 // methodsToAddTaskToKanban
 interface methodsToAddTaskToKanban{
-    fazer:(task:TaskProps) => void,
-    desenvolvendo:(task:TaskProps) => void,
-    pausado:(task:TaskProps) => void,
-    concluido:(task:TaskProps) => void
+    fazer:(task:TasksKanbanProps) => void,
+    desenvolvendo:(task:TasksKanbanProps) => void,
+    pausado:(task:TasksKanbanProps) => void,
+    concluido:(task:TasksKanbanProps) => void
 }
 
 // KanbanFormProps
@@ -49,7 +49,7 @@ export const KanbanForm = ({methodsKanban, selectValues}:KanbanFormProps) => {
             // Adicionando a task na coluna escolhida pelo usuário.
             methodsKanban[column as keyof typeof methodsKanban]({
                 id:crypto.randomUUID(),
-                name:taskName
+                name:taskName,
             })
 
             // Limando o input

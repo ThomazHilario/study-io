@@ -2,7 +2,7 @@ import { ChildrenType } from '../interfaces/contextType'
 import { ContextMenu } from '@radix-ui/themes'
 
 // import context
-import { UseMyContext } from '../Context/context'
+import { UseMyContext } from '@/Context/context'
 
 export const RightClick = ({children}:ChildrenType) => {
 
@@ -19,8 +19,6 @@ export const RightClick = ({children}:ChildrenType) => {
         isTimer,
         isThemes,
         isCalendar,
-        isKanban,
-        setIsKanban
     } = UseMyContext()
 
     return(
@@ -52,9 +50,6 @@ export const RightClick = ({children}:ChildrenType) => {
                         {`${isCalendar ? 'Close' : 'Open'} Calendar`}
                     </ContextMenu.Item>
 
-                    <ContextMenu.Item shortcut='⌘' color='violet' onClick={() => setIsKanban(!isKanban)}>
-                        {`${isKanban ? 'Close' : 'Open'} Kanban`}
-                    </ContextMenu.Item>
                 </>
             ) : (
                 <ContextMenu.Item>Refresh</ContextMenu.Item>
