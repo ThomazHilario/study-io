@@ -21,7 +21,6 @@ import { NotesFrame } from "@/Components/notes-frame"
 import { Timer } from '@/Components/timer'
 import { Themes } from "@/Components/themes"
 import { Gemini } from "@/Components/gemini"
-import { Calendar } from "@/Components/calendar"
 
 // import Firebase
 import { database } from "@/Services/FirebaseConnection"
@@ -41,7 +40,7 @@ export const Study = () => {
     // Context
     const { isFullscreen, setIsFullscreen } = UseMyContext()
     const { resizable, setResizable } = UseMyContext()
-    const { isTask, isNotes, isTimer, isThemes, isCalendar ,setIsLogged } = UseMyContext()
+    const { isTask, isNotes, isTimer, isThemes ,setIsLogged } = UseMyContext()
 
     // store
     const setUserData = user(state => state.setUserData)
@@ -176,9 +175,6 @@ export const Study = () => {
                         {isThemes && <Themes/>}
 
                         <Gemini/>
-
-                        {/* Calendar */}
-                        {isCalendar && <Calendar/>}
                         
                     </section>
                 </section>

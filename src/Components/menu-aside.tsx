@@ -1,5 +1,5 @@
 // import Lucide-icons
-import { AlarmClock, PencilLine, NotebookPen, WallpaperIcon, CalendarDays } from 'lucide-react'
+import { AlarmClock, PencilLine, NotebookPen, WallpaperIcon} from 'lucide-react'
 
 // context
 import { UseMyContext } from '@/Context/context'
@@ -7,6 +7,7 @@ import { UseMyContext } from '@/Context/context'
 // Components
 import { Report } from './Report'
 import { DialogKanban } from './Dialog-kanban'
+import { DialogCalendar } from './Dialog-calendar'
 
 export const MenuAside = () => {
 
@@ -15,7 +16,6 @@ export const MenuAside = () => {
     const { isTask, setIsTask } = UseMyContext()
     const { isNotes, setIsNotes } = UseMyContext()
     const { isThemes, setIsThemes } = UseMyContext()
-    const { isCalendar, setIsCalendar } = UseMyContext()
 
     // Styled list
     const liStyledWithTailwind = 'flex flex-col justify-center items-center hover:bg-gray-400/10 py-[0.15rem] px-1 rounded-md'
@@ -48,9 +48,8 @@ export const MenuAside = () => {
                 <p className='text-white text-[0.75rem] font-semibold font-system'>Themes</p>
             </li>
 
-            <li className={`${liStyledWithTailwind} ${isCalendar && 'bg-gray-400/10'}`} onClick={() => setIsCalendar(!isCalendar)}>
-                <CalendarDays {...propsIcon} />
-                <p className='text-white text-[0.8rem] font-semibold font-system'>Cal</p>
+            <li>
+                <DialogCalendar propsIcon={propsIcon}/>
             </li>
 
             <li>

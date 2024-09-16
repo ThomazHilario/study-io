@@ -13,12 +13,10 @@ export const RightClick = ({children}:ChildrenType) => {
         setIsNotes, 
         setIsTimer,
         setIsThemes,
-        setIsCalendar,
         isTask,
         isNotes,
         isTimer,
         isThemes,
-        isCalendar,
     } = UseMyContext()
 
     return(
@@ -44,10 +42,6 @@ export const RightClick = ({children}:ChildrenType) => {
 
                     <ContextMenu.Item shortcut='⌘' color="violet" onClick={() => setIsThemes(!isThemes)}>
                         {`${isThemes ? 'Close' : 'Open'} Themes`}
-                    </ContextMenu.Item>
-
-                    <ContextMenu.Item shortcut='⌘' color="violet" onClick={() => setIsCalendar(!isCalendar)}>
-                        {`${isCalendar ? 'Close' : 'Open'} Calendar`}
                     </ContextMenu.Item>
 
                 </>

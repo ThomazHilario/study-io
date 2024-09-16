@@ -13,8 +13,6 @@ export interface FullScreenProps{
     setIsTimer:React.Dispatch<React.SetStateAction<boolean>>,
     isThemes:boolean,
     setIsThemes:React.Dispatch<React.SetStateAction<boolean>>,
-    isCalendar:boolean,
-    setIsCalendar:React.Dispatch<React.SetStateAction<boolean>>,
     isLogged:boolean,
     setIsLogged: React.Dispatch<React.SetStateAction<boolean>>
 }
