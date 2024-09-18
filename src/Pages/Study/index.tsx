@@ -116,6 +116,12 @@ export const Study = () => {
         // Deixando a window nao redimensionavel
         appWindow.setResizable(resizable)
 
+        // Salvar valor do isFullScreen na localStorage
+        localStorage.setItem('isFullScreen', JSON.stringify(isFullscreen ? false : true))
+
+        // Salvar valor do isResizable na localStorage
+        localStorage.setItem('isResizable', JSON.stringify(resizable === false ? true : false))
+
         // Alterando valor booleano do estado
         setIsFullscreen(isFullscreen ? false : true)
 

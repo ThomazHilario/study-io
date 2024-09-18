@@ -11,10 +11,10 @@ export const Context = createContext<FullScreenProps | null>(null)
 export const UserData = ({children}:ChildrenType) => {
 
     // context - fullscreen
-    const [isFullscreen, setIsFullscreen] = useState<boolean>(true)
+    const [isFullscreen, setIsFullscreen] = useState<boolean>(localStorage.getItem('isFullScreen') !== null ? JSON.parse(localStorage.getItem('isFullScreen') as string) : true)
 
     // resizable
-    const [resizable, setResizable] = useState<boolean>(false)
+    const [resizable, setResizable] = useState<boolean>(localStorage.getItem('isResizable') !== null ? JSON.parse(localStorage.getItem('isResizable') as string) : false)
 
     // isLogged
     const [isLogged, setIsLogged] = useState<boolean>(false)
