@@ -104,7 +104,7 @@ export const Register = () => {
     const styleContainerInputsForm = 'flex flex-col gap-2'
 
     // Inputs style for Tailwind
-    const styleInputsForms = 'text-black rounded-sm w-[25vw] outline-none pl-2 py-2'
+    const styleInputsForms = 'text-white rounded-sm w-[25vw] outline-none pl-2 py-2 bg-transparent bg-gradient-to-r from-gray-700/10 to-gray-300/5 border-2 placeholder:text-white'
 
     return(
         <RightClick>
@@ -131,7 +131,7 @@ export const Register = () => {
                                 <label className="text-lg">Username:</label>
                                 <input type="text" 
                                 placeholder="Digite seu nome..." 
-                                className={`${styleInputsForms} ${errors.username ? 'border-2 border-red-500' : 'border-none'}`} 
+                                className={`${styleInputsForms} ${errors.username ? 'border-red-500' : 'border-zinc-700/40'}`} 
                                 {...register("username")}
                                 />
 
@@ -148,7 +148,7 @@ export const Register = () => {
                                 <input 
                                 type="text" 
                                 placeholder="Digite seu email..." 
-                                className={`${styleInputsForms} ${errors.email ? 'border-2 border-red-500' : 'border-none'}`} 
+                                className={`${styleInputsForms} ${errors.email ? 'border-red-500' : 'border-zinc-700/40'}`} 
                                 {...register("email")}/>
 
                                 {/* validação de erro dos inputs */}
@@ -163,7 +163,7 @@ export const Register = () => {
                                 <input 
                                 type="password" 
                                 placeholder="Digite sua senha" 
-                                className={`${styleInputsForms} ${errors.password ? 'border-2 border-red-500' : 'border-none'}`}  
+                                className={`${styleInputsForms} ${errors.password ? 'border-red-500' : 'border-zinc-700/40'}`}  
                                 {...register("password")}
                                 />
 
