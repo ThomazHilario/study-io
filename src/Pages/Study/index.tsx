@@ -92,11 +92,12 @@ export const Study = () => {
                     // Salvando notas
                     setNotesList(data.data().notes)
 
-                    // Changing state value loading for false
-                    setIsLoading(false)
                 }
             } catch (error) {
                 console.log(error)
+            } finally{
+                // Changing state value loading for false
+                setIsLoading(false)
             }
         }
 
