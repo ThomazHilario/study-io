@@ -8,9 +8,10 @@ import * as Alert from '@radix-ui/react-alert-dialog'
 import { user } from '@/Store/store'
 
 // import firebase
-import { auth, database } from '../Services/FirebaseConnection'
+import { auth, database, storage } from '../Services/FirebaseConnection'
 import { doc, deleteDoc } from 'firebase/firestore'
 import { User, deleteUser, signOut } from 'firebase/auth'
+import { ref, deleteObject, listAll } from 'firebase/storage'
 
 
 export const DeleteAccountAlert = () => {
@@ -20,6 +21,26 @@ export const DeleteAccountAlert = () => {
     // Buscando dados da store
     const data = user(state => state.user)
 
+    // deleteStorage - deletando a storage
+    async function deleteStorage(){
+        try{
+            // StorageRef - referencia da storage
+            const storageRef = ref(storage, `imagesUser/${data?.id}`)
+
+            // All get files for user
+            const storageFiles = await listAll(storageRef)
+
+            // Verify length storageFiles
+            if(storageFiles.items.length > 0){
+                // Delete all files
+                storageFiles.items.map(file => deleteObject(file))
+            }
+
+        }catch(error){
+            console.log(error)
+        }
+    }
+
     // deleteAccount - deletando conta
     async function deleteAccount(){
         try {
@@ -27,13 +48,18 @@ export const DeleteAccountAlert = () => {
             deleteUser(auth.currentUser as User)
             
             // Excluindo o seu banco de dados
-            await deleteDoc(doc(database,'users', data?.id as string))     
+            await deleteDoc(doc(database,'users', data?.id as string))   
+            
+            // Delete storage
+            deleteStorage()
 
             // Navegando para a pagina inicial da aplicação
             navigate('/')
 
             // Deslogando usuário ainda autenticado
             signOut(auth)
+
+            localStorage.clear()
         } catch (error) {
             console.log(error)
         }

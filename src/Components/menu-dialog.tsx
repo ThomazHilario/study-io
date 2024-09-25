@@ -31,17 +31,8 @@ export const MenuDialog = () => {
             // Retirando autenticacao
             await signOut(auth)
 
-            // Retirando id da localStorage
-            localStorage.removeItem('@DataId')
-
-            // Removendo o timerDrag da localStorage
-            localStorage.removeItem('timerDrag')
-
-            // Removendo o TaskFrameDrag da localStorage
-            localStorage.removeItem('TaskFrameDrag')
-
-            // Removendo a url do video da localStorage
-            localStorage.removeItem('videoUrl')
+            // Remove all keys for localStorage
+            localStorage.clear()
 
             // Navegando a rota inicial
             navigate('/')
