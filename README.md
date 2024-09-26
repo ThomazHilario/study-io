@@ -15,5 +15,5 @@
 - **Firebase**: Plataforma para desenvolvimento de aplicativos móveis e web.
 - **Tailwind CSS**: Framework CSS para estilização rápida e responsiva.
 - **Radix-UI**: Componentes acessíveis e customizáveis.
-- **RDN**: Gerenciamento de estado para melhor performance.
+- **RND**: Biblioteca que permite que componentes sejam arrastáveis.
 - **Zustand**: Gerenciamento de estado leve e fácil de usar.
