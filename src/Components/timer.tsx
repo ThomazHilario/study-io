@@ -34,6 +34,9 @@ export const Timer = () => {
     // state shortBreak
     const [shortBreak, setShortBreak] = useState<boolean>(true)
 
+    // state longBreakValue
+    const [longBreakValue, setLongBreakValue] = useState<number[]>([])
+
     // state - minutes
     const [minutes, setMinutes] = useState<number>(20)
 
@@ -58,22 +61,47 @@ export const Timer = () => {
                     // retirando 1 minuto
                     setMinutes(minutes - 1)
 
+                    
+
                     // Caso o minuto seja menor 1 e o shortBreak seja true
-                    if(shortBreak && minutes < 1){
+                    if(shortBreak && minutes < 1 && longBreakValue.length < 4){
                         // audio de pause
                         new Audio(pause).play()
+
+                        // Verify longBreak steps
+                        if(longBreakValue.length === 3){
+                            // Set Minutes for long break
+                            setMinutes(20)
+
+                            // Set Short break for false
+                            setShortBreak(false)
+
+                            // Increment long break value
+                            setLongBreakValue([...longBreakValue, longBreakValue.length > 0 ? longBreakValue.length + 1 : 1])
+
+                            return
+                        }
 
                         // Alterando o valor de minutes para 4
                         setMinutes(4)
 
                         // Alterando valor do shortBreak
                         setShortBreak(false)
+
+                        // Increment long break value
+                        setLongBreakValue([...longBreakValue, longBreakValue.length > 0 ? longBreakValue.length + 1 : 1])
+
                     }
 
                     // Caso o minuto seja menor que 1 e o shortBreak seja falso
                     if(shortBreak === false && minutes < 1){
                         // audio de unpause
                         new Audio(unpause).play()
+
+                        // Clear steps values
+                        if(longBreakValue.length === 4){
+                            setLongBreakValue([])
+                        }
 
                         // Alterando o valor de minutes para 19
                         setMinutes(19)
@@ -84,7 +112,7 @@ export const Timer = () => {
                     
                 
                 }
-            }, 1000)
+            }, 10)
 
             if(isRestartTimer){
                 // Limpando o intervalo de tempo
@@ -101,6 +129,9 @@ export const Timer = () => {
 
                 // Alterando o valor da state isRestartTimer para false
                 setIsRestartTimer(false)
+
+                // Clear steps long break
+                setLongBreakValue([])
             }
 
         }
@@ -137,7 +168,14 @@ export const Timer = () => {
           default={{x:timerPositionX, y:timerPositionY, height:'', width:''}}
           onDragStop={saveDragTimerPosition}>
             <div className="bg-slate-700 rounded-sm w-full cursor-pointer py-2">
-                <div className='flex items-center justify-end px-3 mb-2 border-b-[1px]'>
+                <div className='flex items-center justify-between px-3 mb-2 border-b-[1px]'>
+                    <div className="flex gap-1">
+                        <div className={`h-2 w-2 rounded-full bg-black/50 ${longBreakValue.includes(1) && 'bg-indigo-500/90'}`}/>
+                        <div className={`h-2 w-2 rounded-full bg-black/50 ${longBreakValue.includes(2) && 'bg-indigo-500/90'}`}/>
+                        <div className={`h-2 w-2 rounded-full bg-black/50 ${longBreakValue.includes(3) && 'bg-indigo-500/90'}`}/>
+                        <div className={`h-2 w-2 rounded-full bg-black/50 ${longBreakValue.includes(4) && 'bg-indigo-500/90'}`}/>
+                    </div>
+
                     <MinusIcon color='white' onClick={() => setIsTimer(false)}/>
                 </div>
 
