@@ -112,7 +112,7 @@ export const Timer = () => {
                     
                 
                 }
-            }, 10)
+            }, 1000)
 
             if(isRestartTimer){
                 // Limpando o intervalo de tempo
@@ -140,6 +140,11 @@ export const Timer = () => {
     // Salvando os valores das states de minutes e seconds na memoria
     const minuteMemorize = useMemo(() => minutes < 10 ? '0' + minutes : minutes,[minutes])
     const secondsMemorize = useMemo(() => seconds < 10 ? '0' + seconds : seconds,[seconds])
+
+    // changeStepColor
+    function changeStepColor(step:number){
+        return longBreakValue.includes(step) && 'bg-indigo-500/90'
+    }
 
     // Salvando valores x e y do Timer na localStorage
     function saveDragTimerPosition(mouse:DraggableEvent, drag:DraggableData){
@@ -170,10 +175,10 @@ export const Timer = () => {
             <div className="bg-slate-700 rounded-sm w-full cursor-pointer py-2">
                 <div className='flex items-center justify-between px-3 mb-2 border-b-[1px]'>
                     <div className="flex gap-1">
-                        <div className={`h-2 w-2 rounded-full bg-black/50 ${longBreakValue.includes(1) && 'bg-indigo-500/90'}`}/>
-                        <div className={`h-2 w-2 rounded-full bg-black/50 ${longBreakValue.includes(2) && 'bg-indigo-500/90'}`}/>
-                        <div className={`h-2 w-2 rounded-full bg-black/50 ${longBreakValue.includes(3) && 'bg-indigo-500/90'}`}/>
-                        <div className={`h-2 w-2 rounded-full bg-black/50 ${longBreakValue.includes(4) && 'bg-indigo-500/90'}`}/>
+                        <div className={`h-2 w-2 rounded-full bg-black/50 ${changeStepColor(1)}`}/>
+                        <div className={`h-2 w-2 rounded-full bg-black/50 ${changeStepColor(2)}`}/>
+                        <div className={`h-2 w-2 rounded-full bg-black/50 ${changeStepColor(3)}`}/>
+                        <div className={`h-2 w-2 rounded-full bg-black/50 ${changeStepColor(4)}`}/>
                     </div>
 
                     <MinusIcon color='white' onClick={() => setIsTimer(false)}/>
