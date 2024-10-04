@@ -32,7 +32,7 @@ import { Loading } from '@/Components/loading'
 const schema = z.object({
     username:z.string().min(1,'Preencha o campo acima'),
     email:z.string().min(1,'Preencha o campo acima').regex( /\S+@\S+\.\S+/,'email invalido'),
-    password:z.string().min(1,"Preencha o campo acima").min(8,'A senha deve conter 8 caracteres')
+    password:z.string().min(1,"Preencha o campo acima").min(8,'A senha deve conter 8 caracteres').regex(/(?=.*[a-z])/, 'A senha deve ter letras minúsculas').regex(/(?=.*[A-Z])/, 'A senha deve ter letras Maiúsculas').regex(/(?=.*[\W_])/, 'Adicione caracteres especiais a senha')
 }).required({
     username:true,
     email:true,
