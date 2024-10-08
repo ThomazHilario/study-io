@@ -38,22 +38,24 @@ export const WindowHeader = () => {
         }
     }
 
+    // style iconsWindowHeader
+    const iconsWindowHeaderFromTailwindCss = `cursor-pointer`
     return(
         <>
             {isFullscreen && (
-                <div data-tauri-drag-region className="flex fixed top-0 left-0 right-0 h-6 w-full pr-2 gap-2 justify-end items-center bg-zinc-800 select-none">
-                    <div className="cursor-pointer" onClick={() => appWindow.minimize()}>
-                    <Minus color='white'/>
+                <header data-tauri-drag-region className="flex fixed top-0 left-0 right-0 h-6 w-full pr-2 gap-2 justify-end items-center bg-zinc-800 select-none">
+                    <div className={iconsWindowHeaderFromTailwindCss} onClick={() => appWindow.minimize()}>
+                        <Minus color='white'/>
                     </div>
 
-                    <div className="cursor-pointer" onClick={changeMaximizeApplication}>
+                    <div className={iconsWindowHeaderFromTailwindCss} onClick={changeMaximizeApplication}>
                         <PanelTop size={18} color='white'/>
                     </div>
                     
-                    <div className="cursor-pointer" onClick={() => appWindow.close()}>
+                    <div className={iconsWindowHeaderFromTailwindCss} onClick={() => appWindow.close()}>
                         <X  size={20} color='white'/>
                     </div>
-                </div>
+                </header>
             )}        
         </>
     )

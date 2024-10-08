@@ -271,7 +271,7 @@ function TaskFrame({task,setTask}:TaskFrameProps){
                 {isAddTask && (
                     <section>
                         <form onSubmit={addTask}>
-                            <textarea className="resize-none bg-black/20 rounded-sm w-full p-2" id="" rows={3} value={taskText} onChange={(e) => setTaskText(e.target.value)}></textarea>
+                            <textarea className="resize-none bg-black/20 rounded-sm w-full p-2" rows={3} value={taskText} onChange={(e) => setTaskText(e.target.value)}></textarea>
                             <button className="w-full text-center rounded-sm border-2">Adicionar Task</button>
                         </form>
                         <button className="w-full bg-red-500 rounded-sm mt-1" onClick={cancelTask}>Cancelar</button>
