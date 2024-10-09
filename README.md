@@ -12,6 +12,7 @@
 ## Tecnologias Utilizadas
 
 - **React**: Biblioteca para construção de interfaces de usuário.
+- **Tauri**: Ferramenta para construção de aplicativos desktop usando tecnologias web.
 - **Firebase**: Plataforma para desenvolvimento de aplicativos móveis e web.
 - **Tailwind CSS**: Framework CSS para estilização rápida e responsiva.
 - **Radix-UI**: Componentes acessíveis e customizáveis.
