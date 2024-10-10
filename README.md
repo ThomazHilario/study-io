@@ -1,6 +1,6 @@
 # Study-io
 
-<img src="assets/imagem_de_apresentacao.png" alt="Imagem de apresentação do projeto study-io">
+<img src="src/assets/imagem_de_apresentacao.png" alt="Imagem de apresentação do projeto study-io">
 
 > **Study-io** é uma aplicação desenvolvida para organizar suas tarefas, notas, acesso a quadros Kanban e muito mais, tudo em um só lugar. É essencial para quem busca uma rotina produtiva e organizada, seja para estudos ou trabalho.
 
