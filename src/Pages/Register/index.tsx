@@ -1,3 +1,4 @@
+// React
 import { useState } from 'react'
 
 // import recat-router-dom
@@ -14,7 +15,6 @@ import { auth, database } from '@/Services/FirebaseConnection'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { doc, setDoc } from 'firebase/firestore'
 import { FirebaseError } from 'firebase/app'
-
 
 // import interfaces
 import { RegisterType } from '@/interfaces/formType'

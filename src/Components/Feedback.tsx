@@ -3,6 +3,9 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
+// Sonner
+import { toast } from 'sonner'
+
 // message error
 const minErrorMessage = 'Preencha este campo'
 
@@ -66,6 +69,15 @@ export const Feedback = () => {
                 explain:'',
                 implementText:''
             })  
+
+            // Notification
+            toast.success('Obrigado por nos enviar seu feedback!',{
+                unstyled:true,
+                classNames:{
+                    toast:'bg-violet-400 flex items-center gap-3 p-3 rounded-md',
+                    title:'text-black',
+                }
+            })
         }catch(e){
             console.log(e)
         }

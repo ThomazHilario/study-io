@@ -3,6 +3,9 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
+// Sonner
+import { toast } from 'sonner'
+
 // Radix-ui
 import * as Select from '@radix-ui/react-select'
 
@@ -61,6 +64,16 @@ export const Bugs = () => {
             reset({
                 explain:''
             })
+
+            // Notification
+            toast.success('Obrigado por nos enviar seu feedback!',{
+                unstyled:true,
+                classNames:{
+                    toast:'bg-violet-400 flex items-center gap-3 p-3 rounded-md',
+                    title:'text-black',
+                }
+            })
+
         } catch (error) {
             console.log(error)
         }
