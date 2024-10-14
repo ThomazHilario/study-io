@@ -5,7 +5,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { MenuIcon } from 'lucide-react'
 
 // Task Props
-import { TaskProps } from '@/interfaces/kanbanTypes'
+import { TaskProps } from '@/interfaces/tasksType'
 
 // Interface Task Props Componente
 interface TaskPropsComponent{

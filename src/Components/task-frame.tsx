@@ -22,8 +22,8 @@ import { Task } from "./task"
 import { ActiveDrag } from "./active-drag"
 
 // import interface
-import { TaskFrameProps } from '@/interfaces/notes-frames-type'
-import { TaskProps } from "@/interfaces/kanbanTypes"
+import { TaskFrameProps } from '@/interfaces/tasksType'
+import { TaskProps } from "@/interfaces/tasksType"
 import { DraggableData, DraggableEvent } from "react-draggable"
 
 function TaskFrame({task,setTask}:TaskFrameProps){

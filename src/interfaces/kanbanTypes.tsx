@@ -1,9 +1,6 @@
-// taskProps
-export interface TaskProps{
-    id:string,
-    name:string,
-    checked:boolean
-}
+// taskProps interface
+import { TaskProps } from '@/interfaces/tasksType'
+
 
 // TasksKanbanProps
 export interface TasksKanbanProps{
