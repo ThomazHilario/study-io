@@ -1,8 +1,11 @@
 // import icons lucide
 import { Minus, PanelTop, X } from 'lucide-react'
 
-//import window
-import { appWindow, PhysicalSize } from '@tauri-apps/api/window'
+// Imports from tauri api
+import { getCurrentWindow, PhysicalSize } from '@tauri-apps/api/window';
+
+// Instance getCurrentWindow
+const appWindow = getCurrentWindow()
 
 // context
 import { UseMyContext } from '@/Context/context'

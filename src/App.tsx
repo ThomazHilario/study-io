@@ -1,4 +1,8 @@
-import { PhysicalSize, appWindow } from '@tauri-apps/api/window'
+// Imports from tauri api
+import { getCurrentWindow, PhysicalSize } from '@tauri-apps/api/window';
+
+// Instance getCurrentWindow
+const appWindow = getCurrentWindow()
 
 // Aplicando valor minimo da tela de desktop
 appWindow.setMinSize(new PhysicalSize(1450,900))
@@ -44,8 +48,6 @@ import { Study } from '@/Pages/Study';
 
 // import Context - UserData
 import { UserData } from '@/Context/context';
-
-
 
 function App() {
   return (

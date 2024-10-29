@@ -1,3 +1,9 @@
+// import window from tauri api
+import { getCurrentWindow } from '@tauri-apps/api/window'
+
+// Instance getCurrentWindow
+const appWindow = getCurrentWindow()
+
 // import react
 import { useEffect, useState } from "react"
 
@@ -9,7 +15,7 @@ import { Skeleton } from "@radix-ui/themes"
 
 // interface
 import { NotesProps } from '@/interfaces/notesType'
-import { TaskProps } from "@/interfaces/kanbanTypes"
+import { TaskProps } from "@/interfaces/tasksType"
 
 // Components
 import { RightClick } from "@/Components/rightClick"
@@ -31,9 +37,6 @@ import { user } from "@/Store/store"
 
 // imports lucide
 import { Maximize2 } from 'lucide-react'
-
-// import window from tauri
-import { appWindow } from '@tauri-apps/api/window'
 
 export const Study = () => {
 
