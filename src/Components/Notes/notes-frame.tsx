@@ -24,7 +24,7 @@ import { DraggableData, DraggableEvent } from 'react-draggable'
 
 // Components
 import { Note } from './notes'
-import { ActiveDrag } from './active-drag'
+import { ActiveDrag } from '@/Components/UI/active-drag'
 
 export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
 

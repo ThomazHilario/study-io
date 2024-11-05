@@ -21,7 +21,7 @@ const schema = z.object({
 })
 
 // TaskProps
-import { TasksKanbanProps } from '../interfaces/kanbanTypes'
+import { TasksKanbanProps } from '@/interfaces/kanbanTypes'
 
 // methodsToAddTaskToKanban
 interface methodsToAddTaskToKanban{

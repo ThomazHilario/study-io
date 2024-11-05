@@ -1,5 +1,5 @@
 // Store
-import { user } from '../Store/store'
+import { user } from '@/Store/store'
 
 // Hello pangea
 import { DragDropContext } from '@hello-pangea/dnd'

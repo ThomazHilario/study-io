@@ -19,7 +19,7 @@ import { doc, updateDoc, getDoc } from 'firebase/firestore'
 
 // Components
 import { Task } from "./task"
-import { ActiveDrag } from "./active-drag"
+import { ActiveDrag } from "@/Components/UI/active-drag"
 
 // import interface
 import { TaskFrameProps } from '@/interfaces/tasksType'

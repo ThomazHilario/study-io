@@ -39,7 +39,7 @@ appWindow.onResized(() => {
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 // import window header 
-import { WindowHeader } from '@/Components/window-header';
+import { WindowHeader } from '@/Components/Header/window-header';
 
 // pages
 import { Home } from "@/Pages/Home";

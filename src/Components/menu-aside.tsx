@@ -6,7 +6,7 @@ import { UseMyContext } from '@/Context/context'
 
 // Components
 import { Report } from './Report'
-import { DialogKanban } from './Dialog-kanban'
+import { DialogKanban } from '@/Components/Kanban/Dialog-kanban'
 import { DialogCalendar } from './Dialog-calendar'
 
 export const MenuAside = () => {
