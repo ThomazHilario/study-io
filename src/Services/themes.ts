@@ -2,7 +2,7 @@ export async function getThemes(){
     try {
 
         // Making Request
-        const response = await fetch('https://study-io-api.vercel.app/themes')
+        const response = await fetch(import.meta.env.VITE_REACT_API_THEMES)
 
         // Return data
         return await response.json()
