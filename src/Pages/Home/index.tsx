@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 
 // Components
-import { Loading } from '@/Components/loading'
+import { Loading } from '@/Components/Summary/loading-pages'
 
 // imports react-router-dom
 import { Link, useNavigate } from 'react-router-dom'

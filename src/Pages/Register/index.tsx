@@ -26,7 +26,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 // import RightClick component
 import { RightClick } from '@/Components/rightClick'
-import { Loading } from '@/Components/loading'
+import { Loading } from '@/Components/Summary/loading-pages'
 
 // schema from form
 const schema = z.object({

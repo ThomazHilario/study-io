@@ -5,7 +5,7 @@ import { AlarmClock, PencilLine, NotebookPen, WallpaperIcon} from 'lucide-react'
 import { UseMyContext } from '@/Context/context'
 
 // Components
-import { Report } from './Report'
+import { Report } from './Report/Report'
 import { DialogKanban } from '@/Components/Kanban/Dialog-kanban'
 import { DialogCalendar } from './Dialog-calendar'
 

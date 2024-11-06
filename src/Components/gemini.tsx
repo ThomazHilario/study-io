@@ -1,6 +1,9 @@
 // import react
 import { useState } from 'react'
 
+// Components
+import { LoadingGemini } from './Summary/loading-gemini'
+
 // import toast
 import { toast } from 'sonner'
 
@@ -86,25 +89,14 @@ export const Gemini = () => {
                             {!isLoading ? responseList.map((item, idx) => {
                                 return(
                                     <div key={idx} className={`flex ${idx % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
-                                        <p className={`w-[450px] p-2 rounded-sm flex ${idx % 2 !== 0 && 'w-[400px]'} my-1 mb-3 bg-black/10`}>{idx % 2 === 0 ? `Gemini: ${item}` : `Voce: ${item}`}</p>
+                                        <p className={`p-2 rounded-sm flex ${idx % 2 !== 0 && 'w-10/12'} my-1 mb-3 bg-black/10`}>{idx % 2 === 0 ? `Gemini: ${item}` : `Voce: ${item}`}</p>
                                     </div>
                                 )
-                            }) : (
-                                <article className='flex justify-center items-center'>
-                                    <svg className=" rounded-full animate-spin h-10 w-10 mr-3 border-[10px] border-dotted" viewBox="0 0 24 24"/>
-                                    <span className='text-2xl'>Processando a sua pergunta...</span>
-                                </article>
-                            )}
+                            }) : <LoadingGemini/>}
                         </ScrollArea.Viewport>
                         <ScrollArea.Scrollbar
                         className="flex select-none touch-none p-0.5 bg-blackA3 transition-colors duration-[160ms] ease-out hover:bg-blackA5 data-[orientation=vertical]:w-2.5 data-[orientation=horizontal]:flex-col data-[orientation=horizontal]:h-2.5"
                         orientation="vertical"
-                        >
-                        <ScrollArea.Thumb className="flex-1 bg-mauve10 rounded-[10px] relative before:content-[''] before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-full before:h-full before:min-w-[44px] before:min-h-[44px]" />
-                        </ScrollArea.Scrollbar>
-                        <ScrollArea.Scrollbar
-                        className="flex select-none touch-none p-0.5 bg-blackA3 transition-colors duration-[160ms] ease-out hover:bg-blackA5 data-[orientation=vertical]:w-2.5 data-[orientation=horizontal]:flex-col data-[orientation=horizontal]:h-2.5"
-                        orientation="horizontal"
                         >
                         <ScrollArea.Thumb className="flex-1 bg-mauve10 rounded-[10px] relative before:content-[''] before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-full before:h-full before:min-w-[44px] before:min-h-[44px]" />
                         </ScrollArea.Scrollbar>
@@ -113,7 +105,7 @@ export const Gemini = () => {
 
                     <article className='flex gap-2'>
                         <Skeleton loading={isLoading} className='w-full'>
-                            <textarea className='overflow-hidden w-full resize-none bg-black/20 outline-none p-2 rounded-sm' value={question} placeholder='Faça uma pergunta...' autoFocus rows={1} onChange={(e) => setQuestion(e.target.value)}></textarea>
+                            <textarea className='overflow-hidden min-h-11 w-full resize-none bg-black/20 outline-none p-2 py-3 rounded-sm' value={question} placeholder='Faça uma pergunta...' autoFocus rows={1} onChange={(e) => setQuestion(e.target.value)}/>
 
                             <button onClick={questionUser}><SendHorizonal/></button>
                         </Skeleton>

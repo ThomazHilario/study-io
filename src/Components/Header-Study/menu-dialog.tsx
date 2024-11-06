@@ -15,7 +15,7 @@ import { auth } from '@/Services/FirebaseConnection'
 import { signOut } from 'firebase/auth'
 
 // import Components
-import { AccountDialog } from './account-dialog'
+import { AccountDialog } from '../account-dialog'
 
 export const MenuDialog = () => {
 
