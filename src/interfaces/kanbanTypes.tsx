@@ -1,7 +1,15 @@
+interface Task{
+    id:string,
+    name:string,
+    isChecked:boolean
+}
+
 // TasksKanbanProps
 export interface TasksKanbanProps{
     id:string,
     name:string,
+    description?:string
+    tasks?: Task[]
 }
 
 //ColumnKanbanProps
