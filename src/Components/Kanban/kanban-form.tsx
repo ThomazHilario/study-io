@@ -8,6 +8,9 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
+// Interface
+import { TaskProps } from '@/interfaces/tasksType'
+
 // radix-ui
 import * as Dialog from '@radix-ui/react-dialog'
 
@@ -16,7 +19,7 @@ interface SchemaKanbanProps{
     column:string,
     taskName:string,
     description?:string,
-    subTasks:string[]
+    subTasks:TaskProps[]
 }
 
 // schema
@@ -24,28 +27,18 @@ const schema = z.object({
     column:z.string(),
     taskName:z.string().min(1,'Preencha o campo'),
     description:z.string().optional(),
-    subTasks:z.array(z.string()).optional()
+    subTasks:z.array(z.object({
+        id:z.string().default(crypto.randomUUID()),
+        name:z.string(),
+        checked:z.boolean()
+    })).optional()
 }).required({
     column:true,
     taskName:true
 })
 
-// TaskProps
-import { TasksKanbanProps } from '@/interfaces/kanbanTypes'
-
-// Interface methodsToAddTaskToKanban
-interface methodsToAddTaskToKanban{
-    fazer:(task:TasksKanbanProps) => void,
-    desenvolvendo:(task:TasksKanbanProps) => void,
-    pausado:(task:TasksKanbanProps) => void,
-    concluido:(task:TasksKanbanProps) => void
-}
-
-// KanbanFormProps
-interface KanbanFormProps{
-    methodsKanban:methodsToAddTaskToKanban, 
-    selectValues:string[]
-}
+// Interfaces
+import { KanbanFormProps } from '@/interfaces/Kanban/Form-Kanban-Type'
 
 export const KanbanForm = ({methodsKanban, selectValues}:KanbanFormProps) => {
 
@@ -69,23 +62,35 @@ export const KanbanForm = ({methodsKanban, selectValues}:KanbanFormProps) => {
     const subTasks = watch('subTasks')
 
     // handleTaskKanbanSubmit
-    function handleTaskKanbanSubmit({ column, taskName }:SchemaKanbanProps){
+    function handleTaskKanbanSubmit({ column, taskName, description, subTasks }:SchemaKanbanProps){
         // Verificando se o valor do select é igual ao id de uma coluna do kanban.
         if(column in methodsKanban){
             // Adicionando a task na coluna escolhida pelo usuário.
             methodsKanban[column as keyof typeof methodsKanban]({
                 id:crypto.randomUUID(),
                 name:taskName,
+                description,
+                subTasks
             })
 
-            // Limando o input
-            reset({taskName:''})
+            // Reset input
+            reset({taskName:'', subTasks:[]})
+
+            // Reset state - SubTaskName
+            setSubTaskName('')
         }
     }
 
     // Add new subtasks
     const addSubTask = () => {
-        setValue('subTasks', [...subTasks, subTaskName])
+        setValue('subTasks', [...subTasks, {
+            id:crypto.randomUUID(),
+            name: subTaskName,
+            checked:false
+        }])
+
+        // Reset state - SubTaskName
+        setSubTaskName('')
     }
 
     return(
@@ -177,12 +182,15 @@ export const KanbanForm = ({methodsKanban, selectValues}:KanbanFormProps) => {
                             {/* section render sub tasks */}
                             {subTasks.length > 0 && <ul className='overflow-y-scroll h-20'>
                                 {subTasks.map((task, index) => (
-                                    <div key={index}>{task}</div>
+                                    <div key={index}>{task.name}</div>
                                 ))}
                             </ul>}
                         </div>
 
-                        <button className='bg-black/80 w-24 rounded-sm h-7' type='submit'>Send</button>
+                        
+                        {/* Button submit */}
+                        <button className='bg-black/40 w-auto rounded-sm h-10' type='submit'>Create Task in Kanban</button>
+                        
                     </form>
                 </Dialog.Content>
             </Dialog.Portal>    

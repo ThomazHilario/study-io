@@ -8,6 +8,9 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod"
 
+// Components
+import { SummaryCardkanban } from "./Summary-Card-Kanban"
+
 // interface from schema
 interface SchemaProps{
     newTask:string
@@ -86,13 +89,13 @@ export const CardKanban = ({index, task, tasks, setTask}:CardKanbanProps) => {
                                 <DialogAlert.Overlay className="fixed inset-0 bg-black/50"/>
 
                                 {/* Content Dialog */}
-                                <DialogAlert.Content className="absolute top-1/2 left-[37%] text-white">
+                                <DialogAlert.Content className="absolute top-1/2 -translate-y-1/2 left-[37%] text-white">
                                     <section className="bg-gray-700 px-5 pb-2 rounded-sm w-[30vw]">
                                         <DialogAlert.Cancel className="absolute bg-gray-800 rounded-sm right-0 p-1">
                                             <X color="white" size={20} />
                                         </DialogAlert.Cancel>
 
-                                        <article className="pt-10">
+                                        <section className="pt-10">
                                             {isEditTask ? (
                                                 <form 
                                                     className="w-full" 
@@ -104,12 +107,14 @@ export const CardKanban = ({index, task, tasks, setTask}:CardKanbanProps) => {
 
                                                     <button className="bg-slate-800 px-2 py-1 rounded-sm">Editar tarefa</button>
                                                 </form>
-                                            ):(
-                                                <p className="bg-black/30 p-2 px-5 rounded-sm">
-                                                    {task.name}
-                                                </p>
+                                            ): (
+                                                <SummaryCardkanban
+                                                    name={task.name}
+                                                    description={task.description}
+                                                    subTasks={task.subTasks}
+                                                />
                                             )}
-                                        </article>
+                                        </section>
 
                                         {/* Buttons */}
                                         <div className="flex justify-between mt-5">

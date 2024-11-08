@@ -1,15 +1,11 @@
-interface Task{
-    id:string,
-    name:string,
-    isChecked:boolean
-}
+import { TaskProps } from "./tasksType"
 
 // TasksKanbanProps
 export interface TasksKanbanProps{
     id:string,
     name:string,
     description?:string
-    tasks?: Task[]
+    subTasks?: TaskProps[]
 }
 
 //ColumnKanbanProps
