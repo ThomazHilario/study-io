@@ -8,11 +8,18 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-// Interface
+// Components
+import { ScrollAreaForm } from '../UI/scroll-area-radix'
+
+// Interfaces
 import { TaskProps } from '@/interfaces/tasksType'
+import { KanbanFormProps } from '@/interfaces/Kanban/Form-Kanban-Type'
 
 // radix-ui
 import * as Dialog from '@radix-ui/react-dialog'
+
+// Lucide 
+import { X } from 'lucide-react'
 
 // Interface SchemaKanbanProps
 interface SchemaKanbanProps{
@@ -37,8 +44,6 @@ const schema = z.object({
     taskName:true
 })
 
-// Interfaces
-import { KanbanFormProps } from '@/interfaces/Kanban/Form-Kanban-Type'
 
 export const KanbanForm = ({methodsKanban, selectValues}:KanbanFormProps) => {
 
@@ -91,6 +96,11 @@ export const KanbanForm = ({methodsKanban, selectValues}:KanbanFormProps) => {
 
         // Reset state - SubTaskName
         setSubTaskName('')
+    }
+
+    // Delete subtask
+    const deleteSubTask = (id:string) => {
+        setValue('subTasks', subTasks.filter(subTask => subTask.id !== id))
     }
 
     return(
@@ -180,11 +190,27 @@ export const KanbanForm = ({methodsKanban, selectValues}:KanbanFormProps) => {
                             onClick={addSubTask}>Add subTask</button>
 
                             {/* section render sub tasks */}
-                            {subTasks.length > 0 && <ul className='overflow-y-scroll h-20'>
-                                {subTasks.map((task, index) => (
-                                    <div key={index}>{task.name}</div>
-                                ))}
-                            </ul>}
+                            <ScrollAreaForm>
+                                {subTasks.length > 0 && (
+                                    <ul className='h-20 flex flex-col gap-2'>
+                                        {subTasks.map((task, index) => (
+                                            <li key={index} className='bg-black/20 p-2 rounded-sm flex items-center justify-between'>
+
+                                                {/* Task name */}
+                                                <h1>{task.name}</h1>
+
+                                                {/* Button delete subtask */}
+                                                <button 
+                                                    type='button' 
+                                                    className='flex items-center' 
+                                                    onClick={() => deleteSubTask(task.id)}>
+                                                        <X size={20}/>
+                                                </button>
+                                            </li>
+                                        ))}
+                                    </ul>)
+                                }
+                            </ScrollAreaForm>
                         </div>
 
                         
