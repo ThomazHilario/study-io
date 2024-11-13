@@ -19,7 +19,7 @@ import { KanbanFormProps } from '@/interfaces/Kanban/Form-Kanban-Type'
 import * as Dialog from '@radix-ui/react-dialog'
 
 // Lucide 
-import { X } from 'lucide-react'
+import { X, Plus } from 'lucide-react'
 
 // Interface SchemaKanbanProps
 interface SchemaKanbanProps{
@@ -43,7 +43,6 @@ const schema = z.object({
     column:true,
     taskName:true
 })
-
 
 export const KanbanForm = ({methodsKanban, selectValues}:KanbanFormProps) => {
 
@@ -105,12 +104,22 @@ export const KanbanForm = ({methodsKanban, selectValues}:KanbanFormProps) => {
 
     return(
         <Dialog.Root>
-            <Dialog.Trigger className='w-full text-xl text-start text-white bg-slate-900/90 py-1 px-5 rounded-sm mb-3'>
-                Create task
+            <Dialog.Trigger className='text-xl text-start text-white bg-slate-900/90 px-3 min-h-12 min-w-12 rounded-full mb-3 flex justify-center items-center gap-3 group'>
+                {/* Icon */}
+                <Plus/> 
+
+                {/* Text */}
+                <p className='hidden text-lg group-hover:block'>Create Task</p>
             </Dialog.Trigger>
 
             <Dialog.Portal>
-                <Dialog.Content className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-800 min-h-80 w-1/2 p-5 rounded-sm'>
+                <Dialog.Content className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-800 min-h-80 w-1/2 p-5 rounded-sm overflow-hidden'>
+                    {/* Dialog Close */}
+                    <Dialog.Close className='absolute top-0 right-0 p-1 bg-slate-900'>
+                        <X color='white'/>
+                    </Dialog.Close>
+
+                    {/* Form */}
                     <form 
                     className='mb-3 gap-3 text-white flex flex-col' 
                     onSubmit={handleSubmit(handleTaskKanbanSubmit)}>
