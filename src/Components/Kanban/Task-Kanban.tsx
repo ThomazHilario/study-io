@@ -6,11 +6,11 @@ import { TaskProps } from "@/interfaces/tasksType"
 
 interface TaskKanbanProps{
     task:TaskProps;
-    subTasks:TaskProps[]
 }
 
-export const TaskKanban = ({task, subTasks}:TaskKanbanProps) => {
+export const TaskKanban = ({task}:TaskKanbanProps) => {
 
+    // State - checked
     const [checked, setChecked] = useState<boolean>(task.checked)
 
     // Checked value

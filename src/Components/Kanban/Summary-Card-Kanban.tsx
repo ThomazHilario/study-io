@@ -52,7 +52,6 @@ export const SummaryCardkanban = ({name, description, subTasks}:SummaryProps) =>
                         <TaskKanban 
                             key={task.id}
                             task={task}
-                            subTasks={subTasks}
                         />
                     )) : (
                         <li>Not have tasks</li>
