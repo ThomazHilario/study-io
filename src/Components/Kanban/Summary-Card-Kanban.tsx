@@ -1,6 +1,9 @@
 // Interfaces
 import { SummaryProps } from "@/interfaces/Kanban/Summary-Type"
 
+// Components
+import { TaskKanban } from "./Task-Kanban"
+
 export const SummaryCardkanban = ({name, description, subTasks}:SummaryProps) => {
 
     // Logics
@@ -46,7 +49,11 @@ export const SummaryCardkanban = ({name, description, subTasks}:SummaryProps) =>
                 {/* Content */}
                 <ul className="list-none">
                     {subTasksNotIsEmpty ? subTasks?.map((task) => (
-                        <li key={task.id}>{task.name}</li>
+                        <TaskKanban 
+                            key={task.id}
+                            task={task}
+                            subTasks={subTasks}
+                        />
                     )) : (
                         <li>Not have tasks</li>
                     )}
