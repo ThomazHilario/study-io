@@ -87,11 +87,14 @@ export const KanbanForm = ({methodsKanban, selectValues}:KanbanFormProps) => {
 
     // Add new subtasks
     const addSubTask = () => {
-        setValue('subTasks', [...subTasks, {
-            id:crypto.randomUUID(),
-            name: subTaskName,
-            checked:false
-        }])
+        // Case subTaskName not is empty
+        if(subTaskName !== ''){
+            setValue('subTasks', [...subTasks, {
+                id:crypto.randomUUID(),
+                name: subTaskName,
+                checked:false
+            }])
+        }
 
         // Reset state - SubTaskName
         setSubTaskName('')
