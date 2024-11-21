@@ -8,6 +8,7 @@ import { UseMyContext } from '@/Context/context'
 import { Report } from './Report/Report'
 import { DialogKanban } from '@/Components/Kanban/Dialog-kanban'
 import { DialogCalendar } from './Dialog-calendar'
+import { DonateDialog } from './Donate/donate-dialog'
 
 export const MenuAside = () => {
 
@@ -58,6 +59,10 @@ export const MenuAside = () => {
 
             <li className={`absolute bottom-2`}>
                 <Report propsIcon={propsIcon}/>
+            </li>
+
+            <li>
+                <DonateDialog propsIcon={propsIcon}/>
             </li>
         </menu>
     )
