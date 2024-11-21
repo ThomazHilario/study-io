@@ -5,7 +5,7 @@ import { user } from '@/Store/store'
 import { DragDropContext } from '@hello-pangea/dnd'
 
 // interface
-import { TasksKanbanProps } from '@/interfaces/kanbanTypes'
+import { ColumnsProps, TasksKanbanProps } from '@/interfaces/kanbanTypes'
 
 // Component
 import { ColumnsKanban } from './ColumnKanban'
@@ -24,6 +24,34 @@ export const KanbanFrame = () => {
         completeTask, 
         setCompleteTask
     } = user(state => state)
+
+    // Columns array
+    const columsArray:ColumnsProps[] = [
+        {
+            idColumn:'fazer',
+            titleColumn:'Tarefas a fazer:',
+            tasks:task,
+            setTask
+        },
+        {
+            idColumn:'desenvolvendo',
+            titleColumn:'Em desenvolvendo:',
+            tasks:devTask,
+            setTask:setDevTask
+        },
+        {
+            idColumn:'pausado',
+            titleColumn:'Pausado:',
+            tasks:pauseTask,
+            setTask:setPauseTask
+        },
+        {
+            idColumn:'concluido',
+            titleColumn:'Concluido:',
+            tasks:completeTask,
+            setTask:setCompleteTask
+        }
+    ]
 
     // Destinos das task no quadro
     const methodsToAddTaskToKanban = {
@@ -125,10 +153,7 @@ export const KanbanFrame = () => {
 
                 {/* Colunas do kanban */}
                 <ColumnsKanban 
-                    tasks={task} 
-                    devTask={devTask}
-                    pauseTask={pauseTask}
-                    completeTask={completeTask}
+                    columns={columsArray}
                 />
             </section>
         </DragDropContext>

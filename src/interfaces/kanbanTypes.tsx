@@ -9,11 +9,15 @@ export interface TasksKanbanProps{
 }
 
 //ColumnKanbanProps
+export interface ColumnsProps{
+    idColumn:string;
+    titleColumn:string;
+    tasks:TasksKanbanProps[];
+    setTask:(tasks:TasksKanbanProps[]) => void  
+}
+
 export interface ColumnsKanbanProps{
-    tasks:TasksKanbanProps[],
-    devTask:TasksKanbanProps[],
-    pauseTask:TasksKanbanProps[],
-    completeTask:TasksKanbanProps[]
+    columns:ColumnsProps[]
 }
 
 // CardKanbanProps
