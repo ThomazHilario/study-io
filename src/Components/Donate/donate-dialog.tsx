@@ -1,6 +1,9 @@
 // Radix
 import * as Dialog from '@radix-ui/react-dialog'
 
+// Components
+import { Donate } from './donate';
+
 // Interface
 interface PropsIcon{
     propsIcon:{
@@ -28,8 +31,8 @@ export const DonateDialog = ({propsIcon}:PropsIcon) => {
             </Dialog.Trigger>
 
             <Dialog.Portal>
-                <Dialog.Content className='absolute top-1/2 left-[52%] -translate-x-1/2 - translate-y-1/2'>
-                    
+                <Dialog.Content className='absolute top-1/2 left-[52%] -translate-x-1/2 -translate-y-[45%]'>
+                    <Donate/>
                 </Dialog.Content>
             </Dialog.Portal>
         </Dialog.Root>

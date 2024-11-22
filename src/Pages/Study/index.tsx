@@ -94,7 +94,7 @@ export const Study = () => {
 
     return(
         <RightClick>
-            <main className="flex flex-col bg-slate-900 h-screen">
+            <main className="flex flex-col bg-slate-900 h-screen font-roboto">
                 {/* header */}
                 <HeaderStudy isLoading={isLoading}/>
 
