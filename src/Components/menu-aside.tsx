@@ -50,19 +50,19 @@ export const MenuAside = () => {
             </li>
 
             <li>
-                <DialogCalendar propsIcon={propsIcon}/>
+                <DialogCalendar {...propsIcon} />
             </li>
 
             <li>
-                <DialogKanban propsIcon={propsIcon}/>
+                <DialogKanban {...propsIcon}/>
             </li>
 
             <li className={`absolute bottom-2`}>
-                <Report propsIcon={propsIcon}/>
+                <Report {...propsIcon}/>
             </li>
 
             <li>
-                <DonateDialog propsIcon={propsIcon}/>
+                <DonateDialog {...propsIcon}/>
             </li>
         </menu>
     )

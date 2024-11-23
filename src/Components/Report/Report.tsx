@@ -2,6 +2,9 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import * as Tabs from '@radix-ui/react-tabs'
 
+// Interface
+import { IconPropsComponent } from '@/interfaces/icon-type'
+
 // Lucide-React
 import { MessageSquareMore, X } from 'lucide-react'
 
@@ -9,15 +12,7 @@ import { MessageSquareMore, X } from 'lucide-react'
 import { Feedback } from './Feedback'
 import { Bugs } from './Bugs'
 
-// PropsIcon Interface
-interface PropsIcon{
-    propsIcon:{
-        color:string;
-        size:number
-    }
-}
-
-export const Report = ({propsIcon}:PropsIcon) => {
+export const Report = (propsIcon:IconPropsComponent) => {
 
     return(
         <Dialog.Root>

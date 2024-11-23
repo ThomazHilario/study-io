@@ -1,13 +1,16 @@
 // Radix
 import * as Dialog from '@radix-ui/react-dialog'
 
+// Interface
+import { IconPropsComponent } from '@/interfaces/icon-type'
+
 // Lucide React
 import { CalendarDays } from 'lucide-react'
 
-// COmponents 
+// Components 
 import { Calendar } from './calendar'
 
-export const DialogCalendar = ({propsIcon}:{propsIcon:{color:string, size:number}}) => {
+export const DialogCalendar = (propsIcon:IconPropsComponent) => {
     return(
         <Dialog.Root>
             <Dialog.Trigger className={`flex flex-col items-center hover:bg-gray-400/10 py-[0.15rem] px-[0.35rem] rounded-md data-[state="open"]:bg-gray-400/10 w-full`}>

@@ -1,21 +1,16 @@
 // Radix
 import * as Dialog from '@radix-ui/react-dialog'
 
+// Interface
+import { IconPropsComponent } from '@/interfaces/icon-type';
+
 // Components
 import { Donate } from './donate';
-
-// Interface
-interface PropsIcon{
-    propsIcon:{
-        color:string;
-        size:number
-    }
-}
 
 // Lucide React
 import { HandHeart} from 'lucide-react'
 
-export const DonateDialog = ({propsIcon}:PropsIcon) => {
+export const DonateDialog = (propsIcon:IconPropsComponent) => {
 
     // TailwindCss
     const backgroundColor = 'bg-gray-400/10'
