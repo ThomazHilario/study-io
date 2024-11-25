@@ -87,17 +87,17 @@ export const Feedback = () => {
     const inputStyleForTailwind = 'outline-none bg-black/20 resize-none p-1 rounded-md border-2'
 
     // Font family style for tailwind
-    const fontFamilyStyleForTailwind = 'font-roboto text-justify'
+    const textAlignStyleForTailwind = 'text-justify'
 
     return(
-        <section className='flex flex-col gap-2'>
-            <h2 className='font-roboto font-bold'>Obrigado por ser um usuário do Study-io!</h2>
+        <section className='flex flex-col gap-2 font-roboto'>
+            <h2 className='font-bold'>Obrigado por ser um usuário do Study-io!</h2>
 
-            <p className={fontFamilyStyleForTailwind}>Sua opinião é essencial para nós. Para ajudar a melhorar o aplicativo, por favor, compartilhe suas experiências, sugestões e comentários no formulário abaixo sobre o Study-io. Estamos atentos ao seu feedback para aprimorar sua experiência.</p>
+            <p className='text-justify'>Sua opinião é essencial para nós. Para ajudar a melhorar o aplicativo, por favor, compartilhe suas experiências, sugestões e comentários no formulário abaixo sobre o Study-io. Estamos atentos ao seu feedback para aprimorar sua experiência.</p>
 
             <form className='flex flex-col gap-2' onSubmit={handleSubmit(Feeback)}>
                 <div className='flex flex-col gap-2'>
-                    <label className={fontFamilyStyleForTailwind}>
+                    <label className={textAlignStyleForTailwind}>
                         O que você mais gostou em nosso aplicativo ?
                     </label>
 
@@ -110,7 +110,7 @@ export const Feedback = () => {
                 </div>
 
                 <div className='flex flex-col gap-2'>
-                    <label className={fontFamilyStyleForTailwind}>
+                    <label className={textAlignStyleForTailwind}>
                         Explique a sua resposta acima 👆
                     </label>
 
@@ -123,7 +123,7 @@ export const Feedback = () => {
                 </div>
 
                 <div className='flex flex-col gap-2'>
-                    <label className={fontFamilyStyleForTailwind}>
+                    <label className={textAlignStyleForTailwind}>
                         O que podemos fazer para melhorar ainda mais o Study-io ?
                     </label>
 

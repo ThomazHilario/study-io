@@ -79,18 +79,18 @@ export const Bugs = () => {
         }
     }
 
-    // Font family style for tailwind
-    const fontFamilyStyleForTailwind = 'font-roboto text-justify' 
+    // Label style for tailwind
+    const labelStyleForTailwind = 'text-justify' 
 
     return(
-        <section className='flex flex-col gap-2'>
-            <h2 className='font-roboto font-bold'>Você encontrou um problema no Study-io?</h2>
+        <section className='flex flex-col gap-2 font-roboto'>
+            <h2 className='font-bold'>Você encontrou um problema no Study-io?</h2>
 
-            <p className={fontFamilyStyleForTailwind}>Por favor, descreva o problema que você encontrou. Detalhes adicionais nos ajudarão a resolver a questão de forma mais eficiente.</p>
+            <p className='text-justify'>Por favor, descreva o problema que você encontrou. Detalhes adicionais nos ajudarão a resolver a questão de forma mais eficiente.</p>
 
             <form className='flex flex-col gap-2' onSubmit={handleSubmit(reportBugs)}>
                 <div className='flex flex-col gap-2'>
-                    <label className={fontFamilyStyleForTailwind}>What is type bug ?</label>
+                    <label className={labelStyleForTailwind}>What is type bug ?</label>
 
                     <Select.Root defaultValue="Interface" onValueChange={updateHookValue}>
                         <Select.Trigger className='text-start bg-black/20 p-1'>
@@ -114,7 +114,7 @@ export const Bugs = () => {
                 </div>
 
                 <div className='flex flex-col gap-2'>
-                    <label className={fontFamilyStyleForTailwind}>Explain your answer above?</label>
+                    <label className={labelStyleForTailwind}>Explain your answer above?</label>
 
                     <textarea 
                         className={`border-2 rounded-md outline-none bg-black/20 resize-none p-1 rounded-m ${errors.explain ? 'border-red-500 placeholder:text-red-500' : 'border-transparent'}`} 
