@@ -72,12 +72,17 @@ export const DeleteAccountAlert = () => {
                 Delete Account
             </Alert.Trigger>
 
-            <Alert.Content className='absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-[30vw] bg-slate-900 p-5 rounded-md'>
+            <Alert.Content className='absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-[30vw] bg-slate-900 p-5 rounded-md flex flex-col gap-3'>
+
+            {/* Title */}
             <Alert.Title className='text-2xl font-bold'>
                 Delete Account
             </Alert.Title>
 
-            <Alert.Description className='mb-3'>
+            <hr/>
+
+            {/* Description */}
+            <Alert.Description>
                 Ao deletar sua conta suas informações armazenadas como as task, notes e kanban não podem ser recuperadas.
             </Alert.Description>
 
