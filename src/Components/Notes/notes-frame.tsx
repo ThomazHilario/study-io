@@ -72,7 +72,7 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
     }
 
     // addNotes
-    function addNotes(e:FormEvent){
+    async function addNotes(e:FormEvent){
         // Cancelando envio do formulario
         e.preventDefault()
 
@@ -184,7 +184,7 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
     }
 
     // notesListisEmpty
-    const notesListisEmpty = notesList.length > 0
+    const notesListIsEmpty = notesList.length > 0
 
     // props Rnd
     const propsRnd:Props = {
@@ -229,8 +229,8 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
                     <button className='w-full rounded-sm border-2 text-center text-white'  
                     onClick={() => setIsAddNote(!isAddNote)}>Adicionar nota</button>
 
-                    {notesListisEmpty && (
-                        <div className='mt-2 flex flex-col gap-2'>
+                    {notesListIsEmpty && (
+                        <section className='mt-2 flex flex-col gap-2'>
                             {notesList.map((note) => {
                                 return(
                                     <Note 
@@ -246,7 +246,7 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
                                     />
                                 )
                             })}
-                        </div>
+                        </section>
                     )}
                 </section>
                 }
