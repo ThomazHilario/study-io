@@ -161,7 +161,7 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
     }
 
     // cancelTask
-    function cancelTask(){
+    function cancelNote(){
         // Alterando o valor da state isAddNote
         setIsAddNote(false)
 
@@ -222,7 +222,7 @@ export const NotesFrame = memo(({notesList, setNotesList}:NotesFrameProps) => {
                             type='submit' onClick={addNotes}>Adicionar nota</button>
                         </form>
 
-                        <button className="w-full bg-red-500 rounded-sm mt-1 text-white" onClick={cancelTask}>Cancelar</button>
+                        <button className="w-full bg-red-500 rounded-sm mt-1 text-white" onClick={cancelNote}>Cancelar</button>
                     </section>
                 ) : 
                 <section className='px-2 w-[330px]'>
