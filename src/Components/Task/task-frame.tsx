@@ -258,7 +258,7 @@ function TaskFrame({task,setTask}:TaskFrameProps){
 
     return(
         <Rnd {...propsRnd}>
-            <div className="bg-slate-700 py-3 px-2 rounded-sm text-white cursor-default w-[330px]">
+            <section className="bg-slate-700 py-3 px-2 rounded-sm text-white cursor-default w-[330px]">
                 <div className='flex items-center justify-between mb-2 cursor-pointer'>
                         <ActiveDrag 
                             checkedValue={isDragging}
@@ -268,6 +268,7 @@ function TaskFrame({task,setTask}:TaskFrameProps){
                         <MinusIcon className="cursor-pointer" color='white' onClick={() => setIsTask(false)}/>
                 </div>
 
+                {/* Form add task */}
                 {isAddTask && (
                     <section>
                         <form onSubmit={addTask}>
@@ -277,6 +278,8 @@ function TaskFrame({task,setTask}:TaskFrameProps){
                         <button className="w-full bg-red-500 rounded-sm mt-1" onClick={cancelTask}>Cancelar</button>
                     </section>
                 )}
+
+                {/* Show button add task */}
                 {isAddTaskAndEditTaskisFalse &&(
                     <button className="text-center w-full border-2 rounded-sm" onClick={() => setIsAddTask(!isAddTask)}>
                         Adicionar Task
@@ -304,8 +307,10 @@ function TaskFrame({task,setTask}:TaskFrameProps){
                         })}
                     </ul>
                 )} 
+
+                {/* Form edit task */}
                 {isEditTask &&(
-                    <div className="flex flex-col gap-2">
+                    <section className="flex flex-col gap-2">
                         <textarea className="resize-none p-1 bg-black/20 outline-none" rows={3} cols={38} value={editTaskText} onChange={(e) => setEditTaskText((e.target.value))}/>
 
                         <div className="flex gap-2">
@@ -317,9 +322,9 @@ function TaskFrame({task,setTask}:TaskFrameProps){
                                 Cancelar
                             </button>
                         </div>
-                    </div>
+                    </section>
                 )}
-            </div>
+            </section>
         </Rnd>    
     )
 }
