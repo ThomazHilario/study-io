@@ -106,7 +106,7 @@ export const Home = () => {
     }
 
     // Container forms style for Tailwind
-    const styleContainerInputsForm = 'flex flex-col gap-2'
+    const styleContainerInputsForm = 'flex flex-col gap-2 mb-5'
 
     // Inputs style for Tailwind
     const styleInputsForms = 'text-white rounded-sm w-[25vw] outline-none pl-2 py-2  bg-transparent bg-gradient-to-r from-gray-700/10 to-gray-300/5 border-2 placeholder:text-white'
@@ -132,7 +132,7 @@ export const Home = () => {
                         onSubmit={handleSubmit(singIn)}>
                             <legend className='mb-7 font-bold font-roboto text-3xl'>Sing In</legend>
 
-                            <div className={`${styleContainerInputsForm} mb-5`}>
+                            <div className={styleContainerInputsForm}>
                                 <label className="text-lg">Email:</label>
                                 <input type="text" 
                                 placeholder="Digite seu email..." 
@@ -146,7 +146,7 @@ export const Home = () => {
                                     </p>}
                             </div>
 
-                            <div className={`${styleContainerInputsForm} mb-5`}>
+                            <div className={styleContainerInputsForm}>
                                 <label className="text-lg">Password:</label>
                                 <input type="password" 
                                 placeholder="Digite sua senha" 
