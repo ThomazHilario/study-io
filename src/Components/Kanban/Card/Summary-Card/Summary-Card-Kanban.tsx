@@ -2,7 +2,7 @@
 import { SummaryProps } from "@/interfaces/Kanban/Summary-Type"
 
 // Components
-import { TaskKanban } from "./Task-Kanban"
+import { TaskKanban } from "../SubTask/Task-Kanban"
 
 export const SummaryCardkanban = ({name, description, subTasks}:SummaryProps) => {
 

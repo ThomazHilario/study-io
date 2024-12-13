@@ -1,5 +1,5 @@
 // Components
-import { DonateTabs } from "./donate-tabs"
+import { DonateTabs } from "./Tabs-payments/donate-tabs"
 
 export const Donate = () => {
     return(

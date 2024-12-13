@@ -2,10 +2,10 @@
 import { useState } from "react"
 
 // Components
-import { SummaryCardkanban } from "./Summary-Card-Kanban"
+import { SummaryCardkanban } from "./Summary-Card/Summary-Card-Kanban"
 
 // Components
-import { KanbanEditForm } from "./kanban-edit-form"
+import { KanbanEditForm } from "../kanban-edit-form"
 
 // React-dnd
 import { Draggable } from "@hello-pangea/dnd"

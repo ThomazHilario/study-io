@@ -5,7 +5,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { IconPropsComponent } from '@/interfaces/icon-type';
 
 // Components
-import { Donate } from './donate';
+import { Donate } from '../donate';
 
 // Lucide React
 import { HandHeart} from 'lucide-react'

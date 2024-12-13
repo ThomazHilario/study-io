@@ -6,9 +6,9 @@ import { UseMyContext } from '@/Context/context'
 
 // Components
 import { Report } from './Report/Report'
-import { DialogKanban } from '@/Components/Kanban/Dialog-kanban'
+import { DialogKanban } from '@/Components/Kanban/Dialog/Dialog-kanban'
 import { DialogCalendar } from './Dialog-calendar'
-import { DonateDialog } from './Donate/donate-dialog'
+import { DonateDialog } from './Donate/Dialog/donate-dialog'
 
 export const MenuAside = () => {
 

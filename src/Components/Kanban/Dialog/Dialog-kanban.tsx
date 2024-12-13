@@ -8,7 +8,7 @@ import { IconPropsComponent } from '@/interfaces/icon-type'
 import { Kanban } from 'lucide-react'
 
 // Components
-import { KanbanFrame } from './kanban-frame'
+import { KanbanFrame } from '../kanban-frame'
 
 export const DialogKanban = (propsIcon:IconPropsComponent) => {
     return(

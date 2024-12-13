@@ -8,7 +8,7 @@ import { DragDropContext } from '@hello-pangea/dnd'
 import { ColumnsProps, TasksKanbanProps } from '@/interfaces/kanbanTypes'
 
 // Component
-import { ColumnsKanban } from './ColumnKanban'
+import { ColumnsKanban } from './Column/ColumnKanban'
 import { KanbanForm } from './kanban-form'
 
 export const KanbanFrame = () => {

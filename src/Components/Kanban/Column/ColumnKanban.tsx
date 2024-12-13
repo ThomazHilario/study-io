@@ -2,7 +2,7 @@
 import { Droppable } from "@hello-pangea/dnd"
 
 // Components
-import { CardKanban } from "./CardKanban"
+import { CardKanban } from "../Card/CardKanban"
 
 // Interfaces
 import { ColumnsKanbanProps } from "@/interfaces/kanbanTypes"
