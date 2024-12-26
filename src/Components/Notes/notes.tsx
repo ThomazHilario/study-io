@@ -23,6 +23,10 @@ interface NotePropsComponent{
 }
 
 export const Note = ({note, isEditNote, editNote, setEditNote, setIsEditNote, editNotes, deleteNote, updateStateEditNotes}:NotePropsComponent) => {
+
+    // note date create
+    const noteDateCreate = formatDistanceToNow(note.date, {locale:ptBR})
+
     return(
         <Dialog.Root>
             <Dialog.Trigger className='p-1 bg-slate-900/30 rounded-sm text-white'>
@@ -31,7 +35,7 @@ export const Note = ({note, isEditNote, editNote, setEditNote, setIsEditNote, ed
                 </p>
 
                 <p className='text-start rounded-sm px-1 text-sm'>
-                    Criado há {formatDistanceToNow(note.date,{locale:ptBR})}
+                    Criado há {noteDateCreate}
                 </p>
             </Dialog.Trigger>
 
@@ -78,7 +82,7 @@ export const Note = ({note, isEditNote, editNote, setEditNote, setIsEditNote, ed
 
                         {!isEditNote && (
                             <span>
-                                Criado há {formatDistanceToNow(note.date,{locale:ptBR})}
+                                Criado há {noteDateCreate}
                             </span>
                         )}
                     </section>
