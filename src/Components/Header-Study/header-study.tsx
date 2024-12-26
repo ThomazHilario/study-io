@@ -60,7 +60,7 @@ export const HeaderStudy = ({isLoading}:{isLoading:boolean}) => {
         <header className={`flex items-center justify-between py-1 px-3 bg-[#202224] basis-13 ${isFullscreen ? 'mt-6 pt-1' : 'mt-0'} border-b-[1px] border-b-gray-600`}>
             {/*  what user using app */}
             <Skeleton loading={isLoading}>
-                <div className={`flex gap-2 items-center`}>
+                <section className={`flex gap-2 items-center`}>
                     
                     {/* User profile */}
                     <UpdateImage />
@@ -68,15 +68,15 @@ export const HeaderStudy = ({isLoading}:{isLoading:boolean}) => {
                     <p className="bg-neutral-200/5 rounded-sm text-white py-[2px] px-3">
                         {userData?.username}'s Room
                     </p>
-                </div>
+                </section>
             </Skeleton>
 
             {/* Account config */}
-            <div className="flex gap-2 mt-1">
+            <section className="flex gap-2 mt-1">
                 <Maximize2 className="cursor-pointer" size={18} color="white" onClick={() => changeFullScreen()}/>
                 
                 <MenuDialog/>
-            </div>
+            </section>
         </header>
     )
 }
