@@ -17,7 +17,7 @@ export const DonateDialog = (propsIcon:IconPropsComponent) => {
 
     return(
         <Dialog.Root>
-            <Dialog.Trigger className={`flex flex-col items-center justify-center py-[0.15rem] px-[0.35rem] rounded-md hover:${backgroundColor} data-[state="open"]:${backgroundColor}`}>
+            <Dialog.Trigger role='donate_dialog_trigger' className={`flex flex-col items-center justify-center py-[0.15rem] px-[0.35rem] rounded-md hover:${backgroundColor} data-[state="open"]:${backgroundColor}`}>
                 {/* Icon */}
                 <HandHeart {...propsIcon} />
 
@@ -26,7 +26,7 @@ export const DonateDialog = (propsIcon:IconPropsComponent) => {
             </Dialog.Trigger>
 
             <Dialog.Portal>
-                <Dialog.Content className='absolute top-1/2 left-[52%] -translate-x-1/2 -translate-y-[45%]'>
+                <Dialog.Content role='donate_content_trigger' className='absolute top-1/2 left-[52%] -translate-x-1/2 -translate-y-[45%]'>
                     <Donate/>
                 </Dialog.Content>
             </Dialog.Portal>
