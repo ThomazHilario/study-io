@@ -6,7 +6,7 @@ import { user } from '@/Store/store'
 
 // Components
 import { UpdateImage } from "./updateImage"
-import { MenuDialog } from "./menu-dialog"
+import { MenuDialog } from "./Menu/menu-dialog"
 
 // import window from tauri api
 import { getCurrentWindow } from '@tauri-apps/api/window'

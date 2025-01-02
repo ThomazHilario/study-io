@@ -8,7 +8,7 @@ import * as Alert from '@radix-ui/react-alert-dialog'
 import { user } from '@/Store/store'
 
 // import firebase
-import { auth, database, storage } from '../Services/FirebaseConnection'
+import { auth, database, storage } from '@/Services/FirebaseConnection'
 import { doc, deleteDoc } from 'firebase/firestore'
 import { User, deleteUser, signOut } from 'firebase/auth'
 import { ref, deleteObject, listAll } from 'firebase/storage'
