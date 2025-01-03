@@ -46,7 +46,7 @@ export const WindowHeader = () => {
     return(
         <>
             {isFullscreen && (
-                <header data-tauri-drag-region className="flex fixed top-0 left-0 right-0 h-6 w-full pr-2 gap-2 justify-end items-center bg-zinc-800 select-none">
+                <header role='header-app-study' data-tauri-drag-region className="flex fixed top-0 left-0 right-0 h-6 w-full pr-2 gap-2 justify-end items-center bg-zinc-800 select-none">
                     <div className={iconsWindowHeaderFromTailwindCss} onClick={() => appWindow.minimize()}>
                         <Minus color='white'/>
                     </div>
