@@ -12,7 +12,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { ScrollAreaForm } from '../UI/scroll-area-radix'
 
 // Interfaces
-import { TaskProps } from '@/interfaces/tasksType'
 import { KanbanFormProps } from '@/interfaces/Kanban/Form-Kanban-Type'
 
 // radix-ui
