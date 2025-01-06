@@ -21,13 +21,8 @@ import * as Dialog from '@radix-ui/react-dialog'
 // Lucide 
 import { X, Plus } from 'lucide-react'
 
-// Interface SchemaKanbanProps
-interface SchemaKanbanProps{
-    column:string,
-    taskName:string,
-    description?:string,
-    subTasks:TaskProps[]
-}
+// SchemaKanbanProps
+import { SchemaKanbanProps } from '@/interfaces/Kanban/Form-Kanban-Type'
 
 // schema
 const schema = z.object({
