@@ -86,10 +86,10 @@ export const Gemini = () => {
                     {/* Chat adaptdo a scroll area */}
                     <ScrollArea.Root className="p-2 text-justify w-full h-[65vh] rounded overflow-hidden bg-black/20">
                         <ScrollArea.Viewport className={`w-full h-full rounded ${isLoading && 'flex justify-center items-center'}`}>
-                            {!isLoading ? responseList.map((item, idx) => {
+                            {!isLoading ? responseList.map((response, idx) => {
                                 return(
                                     <div key={idx} className={`flex ${idx % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
-                                        <p className={`p-2 rounded-sm flex ${idx % 2 !== 0 && 'w-10/12'} my-1 mb-3 bg-black/10`}>{idx % 2 === 0 ? `Gemini: ${item}` : `Voce: ${item}`}</p>
+                                        <p className={`p-2 rounded-sm flex ${idx % 2 !== 0 && 'w-10/12'} my-1 mb-3 bg-black/10`}>{idx % 2 === 0 ? `Gemini: ${response}` : `Voce: ${response}`}</p>
                                     </div>
                                 )
                             }) : <LoadingGemini/>}
