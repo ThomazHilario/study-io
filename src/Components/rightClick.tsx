@@ -27,7 +27,7 @@ export const RightClick = ({children}:ChildrenType) => {
             <ContextMenu.Content color="indigo">
 
             {isLogged ? (
-                <>
+                <section>
                     <ContextMenu.Item shortcut="⌘" color="violet" onClick={() => setIsTask(!isTask)}>
                         {`${isTask ? 'Close' : 'Add'} Task`}
                     </ContextMenu.Item>
@@ -44,7 +44,7 @@ export const RightClick = ({children}:ChildrenType) => {
                         {`${isThemes ? 'Close' : 'Open'} Themes`}
                     </ContextMenu.Item>
 
-                </>
+                </section>
             ) : (
                 <ContextMenu.Item>Refresh</ContextMenu.Item>
             )}
