@@ -173,24 +173,33 @@ export const Timer = () => {
           default={{x:timerPositionX, y:timerPositionY, height:'', width:''}}
           onDragStop={saveDragTimerPosition}>
             <div className="bg-slate-700 rounded-sm w-full cursor-pointer py-2">
-                <div className='flex items-center justify-between px-3 mb-2 border-b-[1px]'>
-                    <div className="flex gap-1">
+
+                {/* Section steps container */}
+                <section className='flex items-center justify-between px-3 mb-2 border-b-[1px]'>
+                    {/* Section Steps */}
+                    <section className="flex gap-1">
                         <div className={`h-2 w-2 rounded-full bg-black/50 ${changeStepColor(1)}`}/>
                         <div className={`h-2 w-2 rounded-full bg-black/50 ${changeStepColor(2)}`}/>
                         <div className={`h-2 w-2 rounded-full bg-black/50 ${changeStepColor(3)}`}/>
                         <div className={`h-2 w-2 rounded-full bg-black/50 ${changeStepColor(4)}`}/>
-                    </div>
+                    </section>
 
+                    {/* Minus icon */}
                     <MinusIcon color='white' onClick={() => setIsTimer(false)}/>
-                </div>
+                </section>
 
-                <div className="text-white flex items-center gap-4 px-2">
+                {/* Time Informations for Pomodoro */}
+                <section className="text-white flex items-center gap-4 px-2">
+
+                    {/* StopWatch informations */}
                     <h1 className="text-6xl">{minuteMemorize}:{secondsMemorize}</h1>
 
+                    {/* Start or pause timer */}
                     <button className="bg-black/20 rounded-md py-2 px-5" onClick={() => setIsStartTimer(!isStartTimer)}>{!isStartTimer ? 'Start' : 'Pause'}</button>
 
+                    {/* Reset timer */}
                     <RotateCcw color="white" onClick={clearIntervalTimer} />
-                </div>
+                </section>
             </div>
         </Rnd>
     )
