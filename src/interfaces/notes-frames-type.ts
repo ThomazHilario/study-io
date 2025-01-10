@@ -1,4 +1,4 @@
-import { NotesProps } from '../interfaces/notesType'
+import { NotesProps } from './notesType
 
 export interface NotesFrameProps{
     notesList:NotesProps[],
