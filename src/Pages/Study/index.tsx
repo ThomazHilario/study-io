@@ -16,7 +16,7 @@ import TaskFrame from "@/Components/Task/task-frame"
 import { NotesFrame } from "@/Components/Notes/notes-frame"
 import { Timer } from '@/Components/timer'
 import { Themes } from "@/Components/themes"
-import { Gemini } from "@/Components/gemini"
+import { Gemini } from "@/Components/Gemini/gemini"
 
 // import Firebase
 import { database } from "@/Services/FirebaseConnection"

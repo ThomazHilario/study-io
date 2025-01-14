@@ -2,7 +2,8 @@
 import { useState } from 'react'
 
 // Components
-import { LoadingGemini } from './Summary/loading-gemini'
+import { LoadingGemini } from '../Summary/loading-gemini'
+import { ResponseOrQuestion } from './ResponseOrQuestion/ResponseOrQuestion'
 
 // import toast
 import { toast } from 'sonner'
@@ -20,7 +21,7 @@ import { SendHorizonal, Sparkle, Minus } from 'lucide-react'
 export const Gemini = () => {
 
     // Api key
-    const geminiIa = new GoogleGenerativeAI('AIzaSyC2GQItzSVd2jlMQ9PQW2qrGU7gfZ2h6LY')
+    const geminiIa = new GoogleGenerativeAI('AIzaSyDKAsM-3YkPc4siKnEjdwjB-OVgjblW1VY')
 
     // Modelo 
     const model = geminiIa.getGenerativeModel({model:'gemini-1.5-flash'})
@@ -88,9 +89,11 @@ export const Gemini = () => {
                         <ScrollArea.Viewport className={`w-full h-full rounded ${isLoading && 'flex justify-center items-center'}`}>
                             {!isLoading ? responseList.map((response, idx) => {
                                 return(
-                                    <div key={idx} className={`flex ${idx % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
-                                        <p className={`p-2 rounded-sm flex ${idx % 2 !== 0 && 'w-10/12'} my-1 mb-3 bg-black/10`}>{idx % 2 === 0 ? `Gemini: ${response}` : `Voce: ${response}`}</p>
-                                    </div>
+                                    <ResponseOrQuestion 
+                                        key={idx} 
+                                        idx={idx} 
+                                        response={response} 
+                                    />
                                 )
                             }) : <LoadingGemini/>}
                         </ScrollArea.Viewport>
