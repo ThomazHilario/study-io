@@ -16,7 +16,7 @@ import { Minus } from 'lucide-react'
 export const Calendar = () => {
 
     return(
-        <div className='text-white'>
+        <section className='text-white'>
             <div className='border-b-[1px] flex justify-end px-3 py-1 w-full'>
                 <Dialog.Close>
                     <Minus className='cursor-pointer' color='white'/>
@@ -35,6 +35,6 @@ export const Calendar = () => {
                 },
             }}
             />
-        </div>
+        </section>
     )
 }
