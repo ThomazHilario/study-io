@@ -18,8 +18,3 @@ export interface StoreProps{
     completeTask: TasksKanbanProps[],
     setCompleteTask: (task:TasksKanbanProps[]) => void
 }
-
-export interface GlobalStatesProps{
-    isReport:boolean;
-    setIsReport: (value:boolean) => void;
-}
