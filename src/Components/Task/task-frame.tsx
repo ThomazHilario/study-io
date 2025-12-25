@@ -1,332 +1,331 @@
 // import react
-import { FormEvent, useState, useEffect, memo } from "react"
+import { FormEvent, useState, useEffect, memo } from "react";
 
 // import lucide-icons
-import { MinusIcon } from 'lucide-react'
+import { MinusIcon } from "lucide-react";
 
 // import Context
-import { UseMyContext } from "@/Context/context"
-
-// import rnd
-import { Rnd, Props } from "react-rnd"
+import { UseMyContext } from "@/Context/context";
 
 // store
-import { user } from '@/Store/store'
+import { user } from "@/Store/store";
 
 // firebase
-import { database } from '@/Services/FirebaseConnection'
-import { doc, updateDoc, getDoc } from 'firebase/firestore'
+import { database } from "@/Services/FirebaseConnection";
+import { doc, updateDoc, getDoc } from "firebase/firestore";
 
 // Components
-import { Task } from "./task"
-import { ActiveDrag } from "@/Components/UI/active-drag"
+import { Task } from "./task";
+import { ActiveDrag } from "@/Components/UI/active-drag";
 
 // import interface
-import { TaskFrameProps } from '@/interfaces/tasksType'
-import { TaskProps } from "@/interfaces/tasksType"
-import { DraggableData, DraggableEvent } from "react-draggable"
+import { TaskFrameProps } from "@/interfaces/tasksType";
+import { TaskProps } from "@/interfaces/tasksType";
 
-function TaskFrame({task,setTask}:TaskFrameProps){
+// utils
+import { setLocalStorage, getLocalStorage } from "@/utils/localStorage";
+import { Drag } from "../commons/Drag/drag";
+import { useDrag } from "../commons/Drag";
 
-    // Context
-    const { setIsTask } = UseMyContext()
+function TaskFrame({ task, setTask }: TaskFrameProps) {
+  const { isDragging, updateCheckedValue } = useDrag({
+    key: "isDragginTaskFrame",
+  });
+  // Context
+  const { setIsTask } = UseMyContext();
 
-    // variaveis x e y
-    const positionXTaskFrame = localStorage.getItem('TaskFrameDrag') !== null ? JSON.parse(localStorage.getItem('TaskFrameDrag') as string).x : 10
+  // store
+  const userData = user((state) => state.user);
 
-    const positionYTaskFrame = localStorage.getItem('TaskFrameDrag') !== null ? JSON.parse(localStorage.getItem('TaskFrameDrag') as string).y : 65
+  // state - taskText
+  const [taskText, setTaskText] = useState<string>("");
 
-    // isDragging
-    const isDraggingInLocalStorage = localStorage.getItem('isDragging') !== null ? JSON.parse(localStorage.getItem('isDragging') as string) : false
+  // state - isAddTask
+  const [isAddTask, setIsAddTask] = useState<boolean>(false);
 
-    // store
-    const userData = user(state => state.user)
+  // state - isEditTask
+  const [isEditTask, setIsEditTask] = useState<boolean>(false);
 
-    // state isDragging
-    const [isDragging, setIsDragging] = useState(isDraggingInLocalStorage)
+  // state - editTaskText
+  const [editTaskText, setEditTaskText] = useState<string>("");
 
-    // state - taskText
-    const [taskText, setTaskText] = useState<string>('')
+  // state - editIndex
+  const [editId, setEditId] = useState<string | null>(null);
 
-    // state - isAddTask
-    const [isAddTask, setIsAddTask] = useState<boolean>(false)
+  // state - seach
+  const [seach, setSeach] = useState("");
 
-    // state - isEditTask
-    const [isEditTask, setIsEditTask] = useState<boolean>(false)
+  // taskFilterList
+  const taskFilterList =
+    seach !== ""
+      ? task.filter((task) =>
+          task.name.toLowerCase().includes(seach.toLowerCase()),
+        )
+      : task;
 
-    // state - editTaskText
-    const [editTaskText, setEditTaskText] = useState<string>('')
-
-    // state - editIndex
-    const [editId, setEditId] = useState<string | null>(null)
-
-    // state - seach
-    const [seach, setSeach] = useState('')
-
-    // taskFilterList
-    const taskFilterList = seach !== '' ? task.filter(task => task.name.toLowerCase().includes(seach.toLowerCase())) : task
-
-    useEffect(() => {
+  useEffect(() => {
+    // Buscando task
+    async function loadTask() {
+      try {
+        // docRef
+        const docRef = doc(database, "users", userData?.id as string);
 
         // Buscando task
-        async function loadTask(){
-            try {
+        const data = await getDoc(docRef);
 
-                // docRef
-                const docRef = doc(database, 'users', userData?.id as string)
-
-                // Buscando task
-                const data = await getDoc(docRef)
-
-                if(data.exists()){
-                    // Setando as task do banco de dados na state task
-                    setTask(data.data().task)
-                }
-            } catch (error) {
-                console.log(error)
-            }
+        if (data.exists()) {
+          // Setando as task do banco de dados na state task
+          setTask(data.data().task);
         }
-
-        // Executando loadTask
-        loadTask()
-    },[])
-
-    // updateTaskDataBase
-    async function updateTaskDataBase(taskArray:TaskProps[]){
-        try{
-            // Refenrencia do banco de dados do usuario
-            const docRef = doc(database, 'users', userData?.id as string)
-
-            // Atualizando as tasks no banco de dados
-            await updateDoc(docRef, {
-                task:taskArray
-            })
-        }catch(e){
-            console.log(e)
-        }
+      } catch (error) {
+        console.log(error);
+      }
     }
 
-    // addTask
-    function addTask(e:FormEvent){
-        
-        // Cancelado evento do formulario
-        e.preventDefault()
+    // Executando loadTask
+    loadTask();
+  }, []);
 
-        if(taskText !== ''){
-            // Alterando o valor do isAddTask
-            setIsAddTask(!isAddTask)
+  // updateTaskDataBase
+  async function updateTaskDataBase(taskArray: TaskProps[]) {
+    try {
+      // Refenrencia do banco de dados do usuario
+      const docRef = doc(database, "users", userData?.id as string);
 
-            // Estrutura da task.
-            const taskCreated = {
-                id:crypto.randomUUID(),
-                name:taskText,
-                checked:false
-            }
-
-            // Adicionando task ao state task
-            setTask([...task, taskCreated])
-
-            // Atualizando a coleção de tasks no banco de dados do usuário
-            updateTaskDataBase([...task, taskCreated])
-
-            // Limpando state
-            setTaskText('')
-        }
-    
+      // Atualizando as tasks no banco de dados
+      await updateDoc(docRef, {
+        task: taskArray,
+      });
+    } catch (e) {
+      console.log(e);
     }
+  }
 
-    // taskComplete
-    function taskComplete(taskValue:TaskProps){
-        // Alterando o valor do checked da task.
-        taskValue.checked === false ? taskValue.checked = true : taskValue.checked = false
+  // addTask
+  function addTask(e: FormEvent) {
+    // Cancelado evento do formulario
+    e.preventDefault();
 
-        // Setando alterações na state task.
-        setTask([...task])
+    if (taskText !== "") {
+      // Alterando o valor do isAddTask
+      setIsAddTask(!isAddTask);
 
-        // Salvando as alterações no banco de dados.
-        updateTaskDataBase([...task])
+      // Estrutura da task.
+      const taskCreated = {
+        id: crypto.randomUUID(),
+        name: taskText,
+        checked: false,
+      };
+
+      // Adicionando task ao state task
+      setTask([...task, taskCreated]);
+
+      // Atualizando a coleção de tasks no banco de dados do usuário
+      updateTaskDataBase([...task, taskCreated]);
+
+      // Limpando state
+      setTaskText("");
     }
+  }
 
-    // deleteTask
-    function deleteTask(idx:number){
-        
-        // Filtrando array sem o elemento especifico
-        const newTaskList = task.filter((item, index) => index !== idx && item)
+  // taskComplete
+  function taskComplete(taskValue: TaskProps) {
+    // Alterando o valor do checked da task.
+    taskValue.checked === false
+      ? (taskValue.checked = true)
+      : (taskValue.checked = false);
 
-        // Salvando na state task a nova lista de task
-        setTask(newTaskList)
+    // Setando alterações na state task.
+    setTask([...task]);
 
-        // Atualizando a coleção de tasks no banco de dados do usuário
-        updateTaskDataBase(newTaskList)
-        
+    // Salvando as alterações no banco de dados.
+    updateTaskDataBase([...task]);
+  }
+
+  // deleteTask
+  function deleteTask(idx: number) {
+    // Filtrando array sem o elemento especifico
+    const newTaskList = task.filter((item, index) => index !== idx && item);
+
+    // Salvando na state task a nova lista de task
+    setTask(newTaskList);
+
+    // Atualizando a coleção de tasks no banco de dados do usuário
+    updateTaskDataBase(newTaskList);
+  }
+
+  // activeEdit
+  function activeEdit(id: string) {
+    // Buscando a task do array de task
+    const taskForEditing = task.find((task) => task.id === id) as TaskProps;
+
+    // Alterando o valor da state isEditask
+    setIsEditTask(!isEditTask);
+
+    // state editTaskText recebe o valor da task no qual sera editada
+    setEditTaskText(taskForEditing.name);
+
+    // Passando o index para a state editIndex
+    setEditId(id);
+  }
+
+  // editTask
+  function editingTask() {
+    // Buscando tarefa
+    const taskEditing = task.find((task) => task.id === editId) as TaskProps;
+
+    // Editando tarefa especifica
+    taskEditing.name = editTaskText;
+
+    // Setando as alterações da state
+    setTask([...task]);
+
+    // Atualizando a coleção de tasks no banco de dados do usuário
+    updateTaskDataBase([...task]);
+
+    // Alterando valor boleano da state isEditTask
+    setIsEditTask(!isEditTask);
+
+    // Limpando state de edição
+    setEditTaskText("");
+
+    // Alterando index
+    setEditId(null);
+  }
+
+  // cancelTask
+  function cancelTask() {
+    // Alterando o valor da state isAddTask
+    setIsAddTask(false);
+
+    // Limpando input caso esteja com algum valor
+    if (taskText !== "") {
+      setTaskText("");
     }
+  }
 
-    // activeEdit
-    function activeEdit(id:string){
+  // isTaskEmptyAndEditIsFalse
+  const isTaskEmptyAndEditIsFalse = !isEditTask && task.length > 0;
 
-        // Buscando a task do array de task
-        const taskForEditing = task.find(task => task.id === id) as TaskProps
+  // isAddTaskAndEditTaskisFalse
+  const isAddTaskAndEditTaskisFalse = !isAddTask && !isEditTask;
 
-        // Alterando o valor da state isEditask
-        setIsEditTask(!isEditTask)
+  // numberOfTaskIsGreaterThanFour
+  const numberOfTaskIsGreaterThanFour = task.length > 4 && !isEditTask;
 
-        // state editTaskText recebe o valor da task no qual sera editada
-        setEditTaskText(taskForEditing.name)
+  return (
+    <Drag
+      isDragging={isDragging}
+      nameDragComponent="TaskFrameDrag"
+      positionXDefault={10}
+      positionYDefault={65}
+    >
+      <section className="bg-slate-700 py-3 px-2 rounded-sm text-white cursor-default w-[330px]">
+        <div className="flex items-center justify-between mb-2 cursor-pointer">
+          <ActiveDrag
+            checkedValue={isDragging}
+            updateCheckedValue={updateCheckedValue}
+          />
 
-        // Passando o index para a state editIndex
-        setEditId(id)
-    }
+          <MinusIcon
+            className="cursor-pointer"
+            color="white"
+            onClick={() => setIsTask(false)}
+          />
+        </div>
 
-    // editTask
-    function editingTask(){
-        
-        // Buscando tarefa
-        const taskEditing = task.find(task => task.id === editId) as TaskProps
+        {/* Form add task */}
+        {isAddTask && (
+          <section>
+            <form onSubmit={addTask}>
+              <textarea
+                className="resize-none bg-black/20 rounded-sm w-full p-2"
+                rows={3}
+                value={taskText}
+                onChange={(e) => setTaskText(e.target.value)}
+              ></textarea>
+              <button className="w-full text-center rounded-sm border-2">
+                Adicionar Task
+              </button>
+            </form>
+            <button
+              className="w-full bg-red-500 rounded-sm mt-1"
+              onClick={cancelTask}
+            >
+              Cancelar
+            </button>
+          </section>
+        )}
 
-        // Editando tarefa especifica
-        taskEditing.name = editTaskText
+        {/* Show button add task */}
+        {isAddTaskAndEditTaskisFalse && (
+          <button
+            className="text-center w-full border-2 rounded-sm"
+            onClick={() => setIsAddTask(!isAddTask)}
+          >
+            Adicionar Task
+          </button>
+        )}
 
-        // Setando as alterações da state
-        setTask([...task])
+        {/* Seach */}
+        {numberOfTaskIsGreaterThanFour && (
+          <input
+            className="w-full mt-2 outline-none bg-black/20 pl-1 rounded-sm"
+            type="text"
+            value={seach}
+            onChange={(e) => setSeach(e.target.value)}
+            placeholder="Seach for task..."
+          />
+        )}
 
-        // Atualizando a coleção de tasks no banco de dados do usuário
-        updateTaskDataBase([...task])
+        {/* minhas tarefas*/}
+        {isTaskEmptyAndEditIsFalse && (
+          <ul className="mt-3 flex flex-col gap-2">
+            {taskFilterList.map((task, idx) => {
+              return (
+                <Task
+                  key={idx}
+                  task={task}
+                  handleActiveEdit={() => activeEdit(task.id)}
+                  handleDeleteTask={() => deleteTask(idx)}
+                  handletTaskComplete={() => taskComplete(task)}
+                />
+              );
+            })}
+          </ul>
+        )}
 
-        // Alterando valor boleano da state isEditTask
-        setIsEditTask(!isEditTask)
+        {/* Form edit task */}
+        {isEditTask && (
+          <section className="flex flex-col gap-2">
+            <textarea
+              className="resize-none p-1 bg-black/20 outline-none"
+              rows={3}
+              cols={38}
+              value={editTaskText}
+              onChange={(e) => setEditTaskText(e.target.value)}
+            />
 
-        // Limpando state de edição
-        setEditTaskText('')
+            <div className="flex gap-2">
+              <button
+                className="bg-green-500 px-2 rounded-sm"
+                onClick={editingTask}
+              >
+                Editar
+              </button>
 
-        // Alterando index
-        setEditId(null)
-        
-    }
-
-    // cancelTask
-    function cancelTask(){
-        // Alterando o valor da state isAddTask
-        setIsAddTask(false)
-
-        // Limpando input caso esteja com algum valor
-        if(taskText !== ''){
-            setTaskText('')
-        }
-    }
-
-    // savingPositionComponentTask
-    function savingPositionComponentTask(mouse:DraggableEvent,position:DraggableData){
-        // Salvando valaores x e y na localStorage
-        localStorage.setItem('TaskFrameDrag',JSON.stringify({
-            mouse,
-            x:position.x,
-            y:position.y
-        }))
-    }
-
-    // Update dragCheckedValue
-    function updateCheckedValue(){
-        const isDraggingInLocalStorage = JSON.parse(localStorage.getItem('isDragging') as string)
-
-        const newCheckedValue = isDraggingInLocalStorage === true ? false : true
-
-        // Change in State isDragging
-        setIsDragging(newCheckedValue)
-
-        // Save in localStorage
-        localStorage.setItem('isDragging', JSON.stringify(newCheckedValue))
-
-    }
-
-    // isTaskEmptyAndEditIsFalse
-    const isTaskEmptyAndEditIsFalse = !isEditTask && task.length > 0
-
-    // isAddTaskAndEditTaskisFalse
-    const isAddTaskAndEditTaskisFalse = !isAddTask && !isEditTask
-
-    // numberOfTaskIsGreaterThanFour
-    const numberOfTaskIsGreaterThanFour = task.length > 4 && !isEditTask
-
-    // props Rnd
-    const propsRnd:Props = {
-        bounds:'window',
-        enableResizing:false,
-        default:{x:positionXTaskFrame, y:positionYTaskFrame, height:'', width:''},
-        onDragStop:savingPositionComponentTask,
-        disableDragging:isDragging
-    }
-
-    return(
-        <Rnd {...propsRnd}>
-            <section className="bg-slate-700 py-3 px-2 rounded-sm text-white cursor-default w-[330px]">
-                <div className='flex items-center justify-between mb-2 cursor-pointer'>
-                        <ActiveDrag 
-                            checkedValue={isDragging}
-                            updateCheckedValue={updateCheckedValue}
-                        />
-
-                        <MinusIcon className="cursor-pointer" color='white' onClick={() => setIsTask(false)}/>
-                </div>
-
-                {/* Form add task */}
-                {isAddTask && (
-                    <section>
-                        <form onSubmit={addTask}>
-                            <textarea className="resize-none bg-black/20 rounded-sm w-full p-2" rows={3} value={taskText} onChange={(e) => setTaskText(e.target.value)}></textarea>
-                            <button className="w-full text-center rounded-sm border-2">Adicionar Task</button>
-                        </form>
-                        <button className="w-full bg-red-500 rounded-sm mt-1" onClick={cancelTask}>Cancelar</button>
-                    </section>
-                )}
-
-                {/* Show button add task */}
-                {isAddTaskAndEditTaskisFalse &&(
-                    <button className="text-center w-full border-2 rounded-sm" onClick={() => setIsAddTask(!isAddTask)}>
-                        Adicionar Task
-                    </button>
-                )}
-
-                {/* Seach */}
-                {numberOfTaskIsGreaterThanFour && (
-                    <input className="w-full mt-2 outline-none bg-black/20 pl-1 rounded-sm" type="text" value={seach} onChange={(e) => setSeach(e.target.value)} placeholder="Seach for task..."/>
-                )}
-
-                {/* minhas tarefas*/}
-                {isTaskEmptyAndEditIsFalse &&(
-                    <ul className="mt-3 flex flex-col gap-2">
-                        {taskFilterList.map((task, idx) => {
-                            return(
-                                <Task 
-                                    key={idx} 
-                                    task={task} 
-                                    handleActiveEdit={() => activeEdit(task.id)}
-                                    handleDeleteTask={() => deleteTask(idx)}
-                                    handletTaskComplete={() => taskComplete(task)}
-                                />
-                            )
-                        })}
-                    </ul>
-                )} 
-
-                {/* Form edit task */}
-                {isEditTask &&(
-                    <section className="flex flex-col gap-2">
-                        <textarea className="resize-none p-1 bg-black/20 outline-none" rows={3} cols={38} value={editTaskText} onChange={(e) => setEditTaskText((e.target.value))}/>
-
-                        <div className="flex gap-2">
-                            <button className="bg-green-500 px-2 rounded-sm" onClick={editingTask}>
-                                Editar
-                            </button>
-
-                            <button className="bg-slate-800 px-2 rounded-sm" onClick={() => setIsEditTask(!isEditTask)}>
-                                Cancelar
-                            </button>
-                        </div>
-                    </section>
-                )}
-            </section>
-        </Rnd>    
-    )
+              <button
+                className="bg-slate-800 px-2 rounded-sm"
+                onClick={() => setIsEditTask(!isEditTask)}
+              >
+                Cancelar
+              </button>
+            </div>
+          </section>
+        )}
+      </section>
+    </Drag>
+  );
 }
 
-export default memo(TaskFrame)
+export default memo(TaskFrame);
