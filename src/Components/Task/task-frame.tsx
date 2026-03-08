@@ -23,9 +23,7 @@ import { TaskFrameProps } from "@/interfaces/tasksType";
 import { TaskProps } from "@/interfaces/tasksType";
 
 // utils
-import { setLocalStorage, getLocalStorage } from "@/utils/localStorage";
-import { Drag } from "../commons/Drag/drag";
-import { useDrag } from "../commons/Drag";
+import { Drag, useDrag } from "@/Components/commons";
 
 function TaskFrame({ task, setTask }: TaskFrameProps) {
   const { isDragging, updateCheckedValue } = useDrag({

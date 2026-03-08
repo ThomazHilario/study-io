@@ -21,8 +21,7 @@ import { NotesProps } from "@/interfaces/notesType";
 // Components
 import { Note } from "./notes";
 import { ActiveDrag } from "@/Components/UI/active-drag";
-import { Drag } from "../commons/Drag/drag";
-import { useDrag } from "../commons/Drag";
+import { Drag, useDrag } from "@/Components/commons";
 
 export const NotesFrame = memo(
   ({ notesList, setNotesList }: NotesFrameProps) => {

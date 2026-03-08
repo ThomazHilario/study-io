@@ -1,35 +1,52 @@
-// Radix
-import * as Dialog from '@radix-ui/react-dialog'
+// Components
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogPortal,
+} from "@/Components/commons";
 
 // Interface
-import { IconPropsComponent } from '@/interfaces/icon-type';
+import { IconPropsComponent } from "@/interfaces/icon-type";
 
 // Components
-import { Donate } from '../donate';
+import { Donate } from "../donate";
 
 // Lucide React
-import { HandHeart} from 'lucide-react'
+import { HandHeart } from "lucide-react";
+import { cn } from "@/utils";
 
-export const DonateDialog = (propsIcon:IconPropsComponent) => {
+export const DonateDialog = (propsIcon: IconPropsComponent) => {
+  // TailwindCss
+  const backgroundColor = "bg-gray-400/10";
 
-    // TailwindCss
-    const backgroundColor = 'bg-gray-400/10'
+  return (
+    <Dialog>
+      <DialogTrigger
+        role="donate_dialog_trigger"
+        className={cn(
+          "flex flex-col items-center justify-center py-[0.15rem] px-[0.35rem] rounded-md",
+          `data-[state="open"]:${backgroundColor}`,
+          `hover:${backgroundColor}`,
+        )}
+      >
+        {/* Icon */}
+        <HandHeart {...propsIcon} />
 
-    return(
-        <Dialog.Root>
-            <Dialog.Trigger role='donate_dialog_trigger' className={`flex flex-col items-center justify-center py-[0.15rem] px-[0.35rem] rounded-md hover:${backgroundColor} data-[state="open"]:${backgroundColor}`}>
-                {/* Icon */}
-                <HandHeart {...propsIcon} />
+        {/* Name */}
+        <p className="text-white text-[0.8rem] font-semibold font-system">
+          Donate
+        </p>
+      </DialogTrigger>
 
-                {/* Name */}
-                <p className='text-white text-[0.8rem] font-semibold font-system'>Donate</p>
-            </Dialog.Trigger>
-
-            <Dialog.Portal>
-                <Dialog.Content role='donate_content_trigger' className='absolute top-1/2 left-[52%] -translate-x-1/2 -translate-y-[45%]'>
-                    <Donate/>
-                </Dialog.Content>
-            </Dialog.Portal>
-        </Dialog.Root>
-    )
-}
+      <DialogPortal>
+        <DialogContent
+          role="donate_content_trigger"
+          className="absolute top-1/2 left-[52%] -translate-x-1/2 -translate-y-[45%]"
+        >
+          <Donate />
+        </DialogContent>
+      </DialogPortal>
+    </Dialog>
+  );
+};

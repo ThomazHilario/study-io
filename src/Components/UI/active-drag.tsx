@@ -1,22 +1,31 @@
 // Radix
-import { Badge } from "@radix-ui/themes"
+import { cn } from "@/utils";
+import { Badge } from "@radix-ui/themes";
 
-export const ActiveDrag = ({ checkedValue, updateCheckedValue }:{checkedValue:boolean, updateCheckedValue: () => void}) => {
+export const ActiveDrag = ({
+  checkedValue,
+  updateCheckedValue,
+}: {
+  checkedValue: boolean;
+  updateCheckedValue: () => void;
+}) => {
+  // Tailwind css button
+  const buttonActiveDragStyleDrag = !checkedValue
+    ? "bg-green-500"
+    : "bg-red-500";
 
-    // Tailwind css button
-    const buttonActiveDragStyleDrag = !checkedValue ? 'bg-green-500' : 'bg-red-500'
+  return (
+    <article className="flex items-center gap-2 text-white">
+      <Badge variant="solid" color="indigo">
+        <p className="text-sm text-white">Drag:</p>
+      </Badge>
 
-    return(
-        <article className="flex items-center gap-2 text-white">
-            <Badge variant="solid" color="indigo">
-                <p className="text-sm text-white">Drag:</p>
-            </Badge>
-
-            <button 
-            className={`${buttonActiveDragStyleDrag} w-12 h-6 rounded-sm`} 
-            onClick={updateCheckedValue}>
-                    {!checkedValue ? 'On' : 'Off'}
-            </button>
-        </article>
-    )
-}
+      <button
+        className={cn(buttonActiveDragStyleDrag, "w-12 h-6 rounded-sm")}
+        onClick={updateCheckedValue}
+      >
+        {!checkedValue ? "On" : "Off"}
+      </button>
+    </article>
+  );
+};
