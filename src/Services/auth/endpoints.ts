@@ -1,10 +1,11 @@
 import {
+  GetDataUserResponse,
   LoginUserProps,
   LoginUserResponse,
   RegisterUserProps,
   RegisterUserResponse,
 } from ".";
-import { Axios } from "@/utils";
+import { Axios, getLocalStorage } from "@/utils";
 
 export const registerUser = async ({
   ...payload
@@ -21,6 +22,30 @@ export const loginUser = async ({
 }: LoginUserProps): Promise<LoginUserResponse> => {
   const response = await Axios.post("/auth/login", {
     ...payload,
+  });
+
+  return response.data;
+};
+
+export const getDataUser = async (): Promise<GetDataUserResponse> => {
+  const token = getLocalStorage("token") || "";
+
+  const response = await Axios.get("/auth/getData", {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
+
+  return response.data;
+};
+
+export const verifyTokenUser = async (): Promise<boolean> => {
+  const token = getLocalStorage("token") || "";
+
+  const response = await Axios.get("/auth/onAuth", {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
   });
 
   return response.data;

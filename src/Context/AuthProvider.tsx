@@ -1,9 +1,12 @@
+import { useGetDataUser, useVerifyTokenUser } from "@/Services/auth";
+import { getLocalStorage } from "@/utils";
 import {
   Dispatch,
   ReactNode,
   SetStateAction,
   createContext,
   useContext,
+  useEffect,
   useState,
 } from "react";
 
@@ -16,6 +19,8 @@ export const AuthContext = createContext<AuthContextProps | null>(null);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(false);
+
+  const { data } = useGetDataUser();
 
   return (
     <AuthContext.Provider value={{ loading, setLoading }}>

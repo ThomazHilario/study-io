@@ -30,6 +30,7 @@ import { LoginType } from "@/interfaces/formType";
 import { RightClick } from "@/Components/rightClick";
 import { useAuth } from "@/Context/AuthProvider";
 import { useLoginUser } from "@/Services/auth";
+import { setLocalStorage } from "@/utils";
 
 export const Home = () => {
   const { loading, setLoading } = useAuth();
@@ -57,7 +58,9 @@ export const Home = () => {
           password: data.password,
         },
         {
-          onSuccess: () => navigate("/study"),
+          onSuccess: (e) => {
+            navigate("/study");
+          },
           onSettled: () => setLoading(false),
         },
       );
