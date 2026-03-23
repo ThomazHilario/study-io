@@ -1,11 +1,13 @@
-import { useQuery } from "@tanstack/react-query";
+import { UseQueryOptions, useQuery } from "@tanstack/react-query";
 import { verifyTokenUser } from "..";
-import { getLocalStorage } from "@/utils";
 
-export const useVerifyTokenUser = () =>
+type VerifyTokenResponse = Awaited<ReturnType<typeof verifyTokenUser>>;
+
+export const useVerifyTokenUser = (
+  options?: Omit<UseQueryOptions<VerifyTokenResponse>, "queryKey" | "queryFn">,
+) =>
   useQuery({
+    ...options,
     queryKey: ["token"],
     queryFn: () => verifyTokenUser(),
-    refetchInterval: 1000 * 60,
-    enabled: getLocalStorage("token") !== null,
   });

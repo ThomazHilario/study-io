@@ -51,6 +51,7 @@ import { Study } from "@/Pages/Study";
 // import Context - UserData
 import { UserData } from "@/Context/context";
 import { AuthProvider } from "./Context/AuthProvider";
+import { ProtectedRoute, PublicRouter } from "./Components/ProtectedRouter";
 
 function App() {
   return (
@@ -61,9 +62,19 @@ function App() {
 
         <AuthProvider>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/study" element={<Study />} />
+            <Route element={<PublicRouter />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/register" element={<Register />} />
+            </Route>
+
+            <Route
+              path="/study"
+              element={
+                <ProtectedRoute>
+                  <Study />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </AuthProvider>
       </BrowserRouter>

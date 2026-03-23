@@ -1,29 +1,23 @@
-import { useGetDataUser, useVerifyTokenUser } from "@/Services/auth";
-import { getLocalStorage } from "@/utils";
 import {
   Dispatch,
   ReactNode,
-  SetStateAction,
   createContext,
   useContext,
-  useEffect,
   useState,
 } from "react";
 
 type AuthContextProps = {
-  loading: boolean;
-  setLoading: Dispatch<SetStateAction<boolean>>;
+  loged: boolean | null;
+  setLoged: Dispatch<React.SetStateAction<null | boolean>>;
 };
 
 export const AuthContext = createContext<AuthContextProps | null>(null);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [loading, setLoading] = useState(false);
-
-  const { data } = useGetDataUser();
+  const [loged, setLoged] = useState<boolean | null>(null);
 
   return (
-    <AuthContext.Provider value={{ loading, setLoading }}>
+    <AuthContext.Provider value={{ loged, setLoged }}>
       {children}
     </AuthContext.Provider>
   );

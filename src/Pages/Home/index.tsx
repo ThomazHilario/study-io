@@ -1,6 +1,3 @@
-// Components
-import { Loading } from "@/Components/Summary/loading-pages";
-
 // imports react-router-dom
 import { Link, useNavigate } from "react-router-dom";
 
@@ -28,16 +25,10 @@ import { LoginType } from "@/interfaces/formType";
 
 // import RightClick component
 import { RightClick } from "@/Components/rightClick";
-import { useAuth } from "@/Context/AuthProvider";
 import { useLoginUser } from "@/Services/auth";
-import { setLocalStorage } from "@/utils";
 
 export const Home = () => {
-  const { loading, setLoading } = useAuth();
-
-  const { mutate: loginUser, isPending } = useLoginUser();
-
-  const isLoading = loading || isPending;
+  const { mutate: loginUser } = useLoginUser();
 
   // navigate
   const navigate = useNavigate();
@@ -58,10 +49,9 @@ export const Home = () => {
           password: data.password,
         },
         {
-          onSuccess: (e) => {
+          onSuccess: () => {
             navigate("/study");
           },
-          onSettled: () => setLoading(false),
         },
       );
     } catch (e) {
@@ -96,91 +86,88 @@ export const Home = () => {
     <RightClick>
       <main className=" flex justify-center items-center h-screen bg-[#5356ad]">
         {/* container do formulario de login */}
-        {isLoading ? (
-          <Loading />
-        ) : (
-          <section className={sectionContainer}>
-            <article className="w-1/2 flex flex-col justify-center items-center gap-10 ">
-              {/* Title */}
-              <h1 className="leading-[3.5rem] font-system text-5xl w-80 text-center">
-                Bem-vindo ao{" "}
-                <strong className="bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-fuchsia-500">
-                  Study-io
-                </strong>
-              </h1>
 
-              {/* Description */}
+        <section className={sectionContainer}>
+          <article className="w-1/2 flex flex-col justify-center items-center gap-10 ">
+            {/* Title */}
+            <h1 className="leading-[3.5rem] font-system text-5xl w-80 text-center">
+              Bem-vindo ao{" "}
+              <strong className="bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-fuchsia-500">
+                Study-io
+              </strong>
+            </h1>
 
-              <p className={descriptionParagraph}>
-                👉 O Study-io é um aplicativo de produtividade cuidadosamente
-                projetado para estudantes e trabalhadores de todas as áreas e
-                níveis de ensino.
+            {/* Description */}
+
+            <p className={descriptionParagraph}>
+              👉 O Study-io é um aplicativo de produtividade cuidadosamente
+              projetado para estudantes e trabalhadores de todas as áreas e
+              níveis de ensino.
+            </p>
+
+            <p className={descriptionParagraph}>
+              👉 Com o Study-io, você pode criar, organizar e priorizar suas
+              tarefas de estudo e trabalho em uma interface simples e intuitiva.
+              Nunca mais perca o foco do que realmente importa.
+            </p>
+
+            <h1 className="font-roboto text-[2.5rem] font-medium text-wrap text-center">
+              🌌Venha Conosco!🌌
+            </h1>
+          </article>
+
+          <form
+            className="w-1/2 flex flex-col justify-center items-center"
+            onSubmit={handleSubmit(singIn)}
+          >
+            <legend className="mb-7 font-bold font-roboto text-3xl">
+              Sing In
+            </legend>
+
+            <div className={styleContainerInputsForm}>
+              <label className="text-lg">Email:</label>
+              <input
+                type="text"
+                placeholder="Digite seu email..."
+                className={styleInputsForms(errors.email)}
+                {...register("email")}
+              />
+
+              {/* validação de erros dos inputs */}
+              {errors.email && (
+                <p className="text-red-500">{errors.email.message}</p>
+              )}
+            </div>
+
+            <div className={styleContainerInputsForm}>
+              <label className="text-lg">Password:</label>
+              <input
+                type="password"
+                placeholder="Digite sua senha"
+                className={styleInputsForms(errors.password)}
+                {...register("password")}
+              />
+
+              {/* validação de erros dos inputs */}
+              {errors.password && (
+                <p className="text-red-500">{errors.password.message}</p>
+              )}
+            </div>
+
+            <div className={`${styleContainerInputsForm} mt-2`}>
+              <button className="text-white bg-[#5356ad] w-[25vw] py-2 rounded-sm">
+                Entrar
+              </button>
+
+              <p className="text-center">
+                Não possui uma conta ?{" "}
+                <Link to="/register" className="text-violet-600">
+                  Crie agora
+                </Link>
               </p>
-
-              <p className={descriptionParagraph}>
-                👉 Com o Study-io, você pode criar, organizar e priorizar suas
-                tarefas de estudo e trabalho em uma interface simples e
-                intuitiva. Nunca mais perca o foco do que realmente importa.
-              </p>
-
-              <h1 className="font-roboto text-[2.5rem] font-medium text-wrap text-center">
-                🌌Venha Conosco!🌌
-              </h1>
-            </article>
-
-            <form
-              className="w-1/2 flex flex-col justify-center items-center"
-              onSubmit={handleSubmit(singIn)}
-            >
-              <legend className="mb-7 font-bold font-roboto text-3xl">
-                Sing In
-              </legend>
-
-              <div className={styleContainerInputsForm}>
-                <label className="text-lg">Email:</label>
-                <input
-                  type="text"
-                  placeholder="Digite seu email..."
-                  className={styleInputsForms(errors.email)}
-                  {...register("email")}
-                />
-
-                {/* validação de erros dos inputs */}
-                {errors.email && (
-                  <p className="text-red-500">{errors.email.message}</p>
-                )}
-              </div>
-
-              <div className={styleContainerInputsForm}>
-                <label className="text-lg">Password:</label>
-                <input
-                  type="password"
-                  placeholder="Digite sua senha"
-                  className={styleInputsForms(errors.password)}
-                  {...register("password")}
-                />
-
-                {/* validação de erros dos inputs */}
-                {errors.password && (
-                  <p className="text-red-500">{errors.password.message}</p>
-                )}
-              </div>
-
-              <div className={`${styleContainerInputsForm} mt-2`}>
-                <button className="text-white bg-[#5356ad] w-[25vw] py-2 rounded-sm">
-                  Entrar
-                </button>
-
-                <p className="text-center">
-                  Não possui uma conta ?{" "}
-                  <Link to="/register" className="text-violet-600">
-                    Crie agora
-                  </Link>
-                </p>
-              </div>
-            </form>
-          </section>
-        )}
+            </div>
+          </form>
+        </section>
       </main>
     </RightClick>
   );
